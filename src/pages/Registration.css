@@ -1,0 +1,320 @@
+.form-page {
+  min-height: 100vh;
+  display: block;
+  background: transparent;
+  padding-top: 100px;
+  padding-bottom: 50px;
+}
+
+.center-c.form-page {
+  padding-bottom: var(--spacing-xl);
+}
+
+.registration-split-panel {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  min-height: 700px;
+  overflow: hidden;
+  padding: 0;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  border: 1px solid var(--color-glass-border);
+  border-radius: var(--radius-lg);
+  margin-top: 3rem;
+}
+
+/* LEFT COLUMN */
+.split-left {
+  background: linear-gradient(135deg, rgba(139, 0, 0, 0.4), rgba(0, 0, 0, 0.4));
+  padding: 3.5rem;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  border-right: 1px solid var(--color-glass-border);
+}
+
+.left-content {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 2;
+}
+
+.reg-logo {
+  max-width: 180px;
+  margin-bottom: 3rem;
+}
+
+.left-content h2 {
+  font-size: 3.5rem;
+  line-height: 1.1;
+  color: white;
+  margin-bottom: 1rem;
+}
+
+.reg-subtitle {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1.1rem;
+  margin-bottom: 4rem;
+}
+
+/* MODERN STEPPER */
+.modern-stepper {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.step-node {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  opacity: 0.5;
+  transition: opacity 0.4s ease;
+}
+
+.step-node.active, .step-node.completed {
+  opacity: 1;
+}
+
+.node-circle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-secondary);
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.5);
+  transition: all 0.4s ease;
+}
+
+.step-node.active .node-circle {
+  border-color: var(--color-coral-glow);
+  color: var(--color-coral-glow);
+  box-shadow: 0 0 15px rgba(255, 107, 107, 0.3);
+}
+
+.step-node.completed .node-circle {
+  background: var(--color-crimson-bold);
+  border-color: var(--color-crimson-bold);
+  color: white;
+}
+
+.node-label {
+  font-weight: 500;
+  font-size: 1.1rem;
+  letter-spacing: 0.5px;
+}
+
+.step-line {
+  margin-left: 19px; /* align center of 40px circle */
+  width: 2px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.1);
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.line-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: var(--color-coral-glow);
+  box-shadow: 0 0 10px var(--color-coral-glow);
+}
+
+/* RIGHT COLUMN */
+.split-right {
+  padding: 3.5rem;
+  display: flex;
+  flex-direction: column;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.step-title {
+  color: var(--color-coral-glow);
+  font-size: 1.8rem;
+  margin-bottom: 2.5rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.form-content-area {
+  flex-grow: 1;
+  position: relative;
+}
+
+.form-step-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+/* FLOATING LABELS & MODERN INPUTS */
+.modern-input-group {
+  position: relative;
+  width: 100%;
+}
+
+.modern-input-group input {
+  width: 100%;
+  padding: 1.25rem 1rem 0.5rem 1rem;
+  background: rgba(255, 255, 255, 0.04);
+  border: none;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+  color: white;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+}
+
+.modern-input-group input:focus {
+  border-bottom-color: var(--color-coral-glow);
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 10px 20px -10px rgba(255, 107, 107, 0.2);
+}
+
+.modern-input-group label {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 1.1rem;
+  font-weight: 400;
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+
+.modern-input-group input:focus ~ label,
+.modern-input-group input:not(:placeholder-shown) ~ label {
+  top: 0.25rem;
+  font-size: 0.75rem;
+  color: var(--color-coral-glow);
+}
+
+.error-text {
+  color: #ff4444;
+  font-size: 0.85rem;
+  margin-top: 0.5rem;
+  display: block;
+}
+
+/* Static Select Groups */
+.modern-select-group {
+  margin-bottom: 1rem;
+}
+.static-label {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 0.5rem;
+  display: block;
+}
+.modern-select-group select {
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--radius-sm);
+  color: white;
+}
+.modern-select-group select:focus {
+  border-color: var(--color-coral-glow);
+}
+
+/* ACTIONS */
+.form-actions-modern {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 3rem;
+  border-top: 1px solid var(--color-glass-border);
+  padding-top: 2rem;
+}
+
+.spacer {
+  width: 100px;
+}
+
+.modern-glow-btn {
+  padding: 0.8rem 2.5rem;
+  box-shadow: 0 8px 20px rgba(211, 47, 47, 0.4);
+}
+
+.modern-glow-btn:hover {
+  box-shadow: 0 12px 25px rgba(211, 47, 47, 0.6), 0 0 15px rgba(255, 107, 107, 0.5);
+}
+
+/* Success State */
+.center-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 80px);
+}
+
+.success-message {
+  padding: 4rem;
+  text-align: center;
+  max-width: 600px;
+}
+
+.success-icon {
+  color: #4cd137;
+  margin-bottom: 1.5rem;
+}
+
+/* RESPONSIVE */
+@media (max-width: 992px) {
+  .registration-split-panel {
+    grid-template-columns: 1fr;
+  }
+  
+  .split-left {
+    padding: 2.5rem;
+    border-right: none;
+    border-bottom: 1px solid var(--color-glass-border);
+  }
+  
+  .modern-stepper {
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 2rem;
+  }
+  
+  .step-line {
+    width: 40px;
+    height: 2px;
+    margin: auto 0;
+  }
+  
+  .line-fill {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+  }
+  
+  .node-label {
+    display: none; /* hide labels on mobile stepper to save space */
+  }
+  
+  .split-right {
+    padding: 2.5rem;
+  }
+  
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+
