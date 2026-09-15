@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { CheckCircle, Upload, ArrowLeft } from 'lucide-react';
+import { CheckCircle, Upload, ArrowLeft, Loader } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
+import { submitFormData, uploadFile } from '../services/firebaseService';
 import './Checkout.css';
 
 const Checkout = () => {
@@ -16,7 +17,10 @@ const Checkout = () => {
     address: ''
   });
   const [fileName, setFileName] = useState('');
+  const [fileToUpload, setFileToUpload] = useState(null);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState('');
 
   useEffect(() => {
     if (cartItems.length === 0 && !isSubmitted) {
@@ -32,14 +36,37 @@ const Checkout = () => {
   const handleFileChange = (e) => {
     if (e.target.files && e.target.files.length > 0) {
       setFileName(e.target.files[0].name);
+      setFileToUpload(e.target.files[0]);
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (cartItems.length > 0) {
-      clearCart();
-      setIsSubmitted(true);
+      setSubmitError('');
+      setIsSubmitting(true);
+      
+      try {
+        let receiptUrl = null;
+        if (fileToUpload) {
+          receiptUrl = await uploadFile(fileToUpload, 'receipts');
+        }
+
+        await submitFormData('orders', {
+          ...formData,
+          items: cartItems,
+          total: getCartTotal(),
+          receiptUrl,
+        });
+
+        clearCart();
+        setIsSubmitted(true);
+      } catch (error) {
+        console.error(error);
+        setSubmitError('Failed to submit order. Please try again.');
+      } finally {
+        setIsSubmitting(false);
+      }
     }
   };
 
@@ -160,9 +187,23 @@ const Checkout = () => {
                 </label>
               </div>
 
-              <button type="submit" className="btn btn-primary checkout-submit-btn pulse-btn">
-                Confirm Order
-              </button>
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                <button 
+                  type="submit" 
+                  className="btn btn-primary checkout-submit-btn pulse-btn"
+                  disabled={isSubmitting}
+                  style={{ width: '100%' }}
+                >
+                  {isSubmitting ? (
+                    <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}>
+                      <Loader className="spin" size={18} /> Processing...
+                    </span>
+                  ) : (
+                    'Confirm Order'
+                  )}
+                </button>
+                {submitError && <span className="error-text" style={{ marginTop: '8px' }}>{submitError}</span>}
+              </div>
             </form>
           </div>
 

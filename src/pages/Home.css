@@ -23,7 +23,7 @@
   color: var(--color-text-primary) !important;
 }
 
-/* Section 1: Hero — Always dark red regardless of theme */
+/* Section 1: Hero */
 .hero-section {
   min-height: 100vh;
   display: flex;
@@ -32,9 +32,47 @@
   padding: var(--spacing-xl) 0;
   position: relative;
   overflow: hidden;
-  background: linear-gradient(135deg, rgba(139, 0, 0, 0.95), rgba(100, 0, 0, 1));
+  /* Background gradient moved to overlay */
   color: white;
   text-align: center;
+}
+
+/* Background Slideshow */
+.hero-slideshow-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.hero-slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 1.5s ease-in-out;
+}
+
+.hero-slide.active {
+  opacity: 1;
+}
+
+/* Overlay for low opacity effect */
+.hero-slideshow-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(139, 0, 0, 0.85), rgba(100, 0, 0, 0.95));
+  z-index: 1;
 }
 
 .hero-section h1,
@@ -344,8 +382,17 @@
   100% { transform: translateX(-50%); }
 }
 
+/* Section Spacing Adjustments */
+.gallery-section {
+  padding-bottom: 2rem !important;
+}
+
+.partner-spotlight {
+  padding-top: 2rem !important;
+}
+
 .memory-card-16-9 {
-  width: 500px;
+  width: 750px;
   aspect-ratio: 16 / 9;
   border-radius: var(--radius-md);
   overflow: hidden;
@@ -357,6 +404,13 @@
   transform: scale(1.05);
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
   z-index: 10;
+}
+
+.memory-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 .memory-placeholder-img {

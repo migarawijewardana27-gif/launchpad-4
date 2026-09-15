@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Target, Rocket, Users, Briefcase } from 'lucide-react';
@@ -6,6 +6,14 @@ import { FaWhatsapp, FaInstagram, FaLinkedinIn, FaGlobe, FaFacebookF, FaYoutube 
 import StaggeredText from '../components/StaggeredText';
 import SectionDivider from '../components/SectionDivider';
 import './Home.css';
+
+const heroImages = [
+  '/hero-1.jpeg',
+  '/hero-2.jpeg',
+  '/hero-3.jpeg',
+  '/hero-4.jpeg',
+  '/hero-5.jpeg'
+];
 
 // Reusable 3D Flip Card for Core Pillars
 const FlipCardPillar = ({ icon: Icon, title, delay }) => {
@@ -36,14 +44,36 @@ const FlipCardPillar = ({ icon: Icon, title, delay }) => {
   );
 };
 
-const memoryPlaceholders = Array.from({ length: 20 }, (_, i) => `Memory ${i + 1}`);
+const memoryImages = Array.from({ length: 20 }, (_, i) => `/memory-${i + 1}.jpg`);
 
 const Home = () => {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % heroImages.length);
+    }, 5000); // Change image every 5 seconds
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <div className="page-wrapper home-page">
       
       {/* SECTION 1: Hero Area */}
       <section className="hero-section full-screen-hero relative-hero">
+        
+        {/* Background Slideshow */}
+        <div className="hero-slideshow-container">
+          {heroImages.map((src, index) => (
+            <div 
+              key={src}
+              className={`hero-slide ${index === currentImageIndex ? 'active' : ''}`}
+              style={{ backgroundImage: `url(${src})` }}
+            />
+          ))}
+          <div className="hero-slideshow-overlay"></div>
+        </div>
+
         <div className="container hero-container center-align">
           <motion.div 
             initial={{ opacity: 0, scale: 0.95 }}
@@ -162,20 +192,38 @@ const Home = () => {
           <div className="marquee-content-row">
             {/* Group 1 */}
             <div className="marquee-group-row">
-              {memoryPlaceholders.map((mem, index) => (
+              {memoryImages.map((src, index) => (
                 <div key={`g1-${index}`} className="memory-card-16-9">
-                  <div className="memory-placeholder-img">
-                    <span>{mem}</span>
+                  <img 
+                    src={src} 
+                    alt={`Memory ${index + 1}`} 
+                    className="memory-card-img" 
+                    onError={(e) => { 
+                      e.target.style.display = 'none'; 
+                      e.target.nextSibling.style.display = 'flex'; 
+                    }} 
+                  />
+                  <div className="memory-placeholder-img" style={{ display: 'none' }}>
+                    <span>Memory {index + 1}</span>
                   </div>
                 </div>
               ))}
             </div>
             {/* Group 2 (Duplicate for infinite loop) */}
             <div className="marquee-group-row">
-              {memoryPlaceholders.map((mem, index) => (
+              {memoryImages.map((src, index) => (
                 <div key={`g2-${index}`} className="memory-card-16-9">
-                  <div className="memory-placeholder-img">
-                    <span>{mem}</span>
+                  <img 
+                    src={src} 
+                    alt={`Memory ${index + 1}`} 
+                    className="memory-card-img" 
+                    onError={(e) => { 
+                      e.target.style.display = 'none'; 
+                      e.target.nextSibling.style.display = 'flex'; 
+                    }} 
+                  />
+                  <div className="memory-placeholder-img" style={{ display: 'none' }}>
+                    <span>Memory {index + 1}</span>
                   </div>
                 </div>
               ))}

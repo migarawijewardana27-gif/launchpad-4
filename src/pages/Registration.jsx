@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { CheckCircle, ArrowRight, ArrowLeft } from 'lucide-react';
+import { CheckCircle, ArrowRight, ArrowLeft, Loader } from 'lucide-react';
+import { submitFormData } from '../services/firebaseService';
 import './Registration.css';
 
 const Registration = () => {
@@ -18,6 +19,8 @@ const Registration = () => {
   });
   const [errors, setErrors] = useState({});
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState('');
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -57,9 +60,20 @@ const Registration = () => {
     setStep((prev) => prev - 1);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setIsSubmitted(true);
+    setSubmitError('');
+    setIsSubmitting(true);
+    
+    try {
+      await submitFormData('registrations', formData);
+      setIsSubmitted(true);
+    } catch (error) {
+      setSubmitError('Failed to submit registration. Please try again.');
+      console.error(error);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const variants = {
@@ -236,9 +250,23 @@ const Registration = () => {
                   Next <ArrowRight size={18} style={{ marginLeft: '8px' }} />
                 </button>
               ) : (
-                <button type="button" className="btn btn-primary form-btn modern-glow-btn pulse-btn" onClick={handleSubmit}>
-                  Complete
-                </button>
+                <div className="submit-wrapper" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                  <button 
+                    type="button" 
+                    className="btn btn-primary form-btn modern-glow-btn pulse-btn" 
+                    onClick={handleSubmit}
+                    disabled={isSubmitting}
+                  >
+                    {isSubmitting ? (
+                      <span style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                        <Loader className="spin" size={18} /> Submitting...
+                      </span>
+                    ) : (
+                      'Complete'
+                    )}
+                  </button>
+                  {submitError && <span className="error-text" style={{ marginTop: '8px' }}>{submitError}</span>}
+                </div>
               )}
             </div>
           </div>
