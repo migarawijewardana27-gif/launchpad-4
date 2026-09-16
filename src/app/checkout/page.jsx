@@ -28,7 +28,7 @@ const Checkout = () => {
     if (cartItems.length === 0 && !isSubmitted) {
       router.push('/shop');
     }
-  }, [cartItems, navigate, isSubmitted]);
+  }, [cartItems, router, isSubmitted]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
