@@ -1,7 +1,9 @@
+"use client";
+
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ShoppingCart } from 'lucide-react';
-import { useCart } from '../context/CartContext';
+import { useCart } from '../../context/CartContext';
 import './Shop.css';
 
 const MERCH_ITEMS = [

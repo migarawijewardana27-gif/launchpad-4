@@ -1,7 +1,9 @@
+"use client";
+
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { CheckCircle, ArrowRight, ArrowLeft, Loader, Upload } from 'lucide-react';
-import { submitFormData, uploadFile } from '../services/firebaseService';
+import { submitFormData, uploadFile } from '../../services/firebaseService';
 import './Registration.css';
 
 const MEMORY_IMAGES = [
@@ -167,21 +169,20 @@ const Registration = () => {
         cvUrl = await uploadFile(cvFile, 'cvs');
       }
 
-      await submitFormData('registrations', {
+      const finalData = {
         ...formData,
         cvUrl
+      };
+
+      const response = await fetch('/api/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(finalData),
       });
-      
-      const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwdUVQiOOsulJpWiHmFNDT9ISvK6koESXa_yQX_GPbOvIrrAA3neiOnDstlGptiqtc/exec";
-      await fetch(APPS_SCRIPT_URL, {
-        method: "POST",
-        mode: "no-cors",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          email: formData.email,
-          name: `${formData.firstName} ${formData.lastName}`
-        })
-      });
+
+      if (!response.ok) {
+        throw new Error('Backend registration failed');
+      }
 
       setIsSubmitted(true);
     } catch (error) {

@@ -1,11 +1,13 @@
+"use client";
+
 import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import './PageLoader.css';
 
 const PageLoader = () => {
   const [isLoading, setIsLoading] = useState(true);
-  const location = useLocation();
+  const pathname = usePathname();
 
   useEffect(() => {
     // Trigger loader on every route change
@@ -17,7 +19,7 @@ const PageLoader = () => {
     }, 600); // Wait 0.6s before zooming
 
     return () => clearTimeout(timer);
-  }, [location.pathname]);
+  }, [pathname]);
 
   return (
     <AnimatePresence>

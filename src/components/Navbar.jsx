@@ -1,5 +1,8 @@
+"use client";
+
 import React, { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { Menu, X, ShoppingCart } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 import CartSlideOver from './CartSlideOver';
@@ -8,7 +11,7 @@ import './Navbar.css';
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const location = useLocation();
+  const pathname = usePathname();
   const { cartItems, setIsCartOpen, getCartCount } = useCart();
 
   useEffect(() => {
@@ -21,7 +24,7 @@ const Navbar = () => {
 
   useEffect(() => {
     setIsMobileMenuOpen(false);
-  }, [location]);
+  }, [pathname]);
 
   const navLinks = [
     { name: 'Home', path: '/' },
@@ -32,14 +35,14 @@ const Navbar = () => {
     { name: 'Shop', path: '/shop' },
   ];
 
-  const isLightPage = location.pathname === '/register' || location.pathname === '/checkout';
+  const isLightPage = pathname === '/register' || pathname === '/checkout';
   const shouldBeLight = isScrolled || isLightPage;
 
   return (
     <>
       <nav className={`navbar ${isScrolled ? 'scrolled' : ''} ${shouldBeLight ? 'light-mode' : ''}`}>
         <div className="container nav-container">
-          <Link to="/" className="nav-logo">
+          <Link href="/" className="nav-logo">
             <img 
               src={shouldBeLight ? "/icon red.png" : "/icon white.png"} 
               alt="LaunchPad Icon" 
@@ -53,8 +56,8 @@ const Navbar = () => {
             {navLinks.map((link) => (
               <Link 
                 key={link.name} 
-                to={link.path}
-                className={`nav-link ${location.pathname === link.path ? 'active' : ''}`}
+                href={link.path}
+                className={`nav-link ${pathname === link.path ? 'active' : ''}`}
               >
                 {link.name}
               </Link>
@@ -68,7 +71,7 @@ const Navbar = () => {
                 <span className="cart-badge">{getCartCount()}</span>
               </button>
             )}
-            <Link to="/register" className="btn btn-primary nav-cta">
+            <Link href="/register" className="btn btn-primary nav-cta">
               Register Now
             </Link>
           </div>
@@ -87,8 +90,8 @@ const Navbar = () => {
           {navLinks.map((link) => (
             <Link 
               key={link.name} 
-              to={link.path}
-              className={`mobile-nav-link ${location.pathname === link.path ? 'active' : ''}`}
+              href={link.path}
+              className={`mobile-nav-link ${pathname === link.path ? 'active' : ''}`}
             >
               {link.name}
             </Link>
@@ -98,7 +101,7 @@ const Navbar = () => {
               <ShoppingCart size={22} /> View Cart ({getCartCount()})
             </button>
           )}
-          <Link to="/register" className="btn btn-primary mobile-nav-cta">
+          <Link href="/register" className="btn btn-primary mobile-nav-cta">
             Register Now
           </Link>
         </div>

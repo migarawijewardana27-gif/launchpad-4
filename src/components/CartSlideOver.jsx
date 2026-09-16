@@ -1,17 +1,19 @@
+"use client";
+
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Trash2, ShoppingBag, ArrowRight } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { useRouter } from 'next/navigation';
 import { useCart } from '../context/CartContext';
 import './CartSlideOver.css';
 
 const CartSlideOver = () => {
   const { cartItems, isCartOpen, setIsCartOpen, removeFromCart, updateQuantity, getCartTotal } = useCart();
-  const navigate = useNavigate();
+  const router = useRouter();
 
   const handleCheckout = () => {
     setIsCartOpen(false);
-    navigate('/checkout');
+    router.push('/checkout');
   };
 
   return (
@@ -47,7 +49,7 @@ const CartSlideOver = () => {
                 <div className="empty-cart">
                   <ShoppingBag size={48} className="empty-icon" />
                   <p>Your cart is empty.</p>
-                  <button className="btn btn-primary" onClick={() => { setIsCartOpen(false); navigate('/shop'); }}>
+                  <button className="btn btn-primary" onClick={() => { setIsCartOpen(false); router.push('/shop'); }}>
                     Continue Shopping
                   </button>
                 </div>

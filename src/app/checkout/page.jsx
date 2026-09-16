@@ -1,14 +1,16 @@
+"use client";
+
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { CheckCircle, Upload, ArrowLeft, Loader } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
-import { useCart } from '../context/CartContext';
-import { submitFormData, uploadFile } from '../services/firebaseService';
+import { useRouter } from 'next/navigation';
+import { useCart } from '../../context/CartContext';
+import { submitFormData, uploadFile } from '../../services/firebaseService';
 import './Checkout.css';
 
 const Checkout = () => {
   const { cartItems, getCartTotal, clearCart } = useCart();
-  const navigate = useNavigate();
+  const router = useRouter();
   
   const [formData, setFormData] = useState({
     fullName: '',
@@ -24,7 +26,7 @@ const Checkout = () => {
 
   useEffect(() => {
     if (cartItems.length === 0 && !isSubmitted) {
-      navigate('/shop');
+      router.push('/shop');
     }
   }, [cartItems, navigate, isSubmitted]);
 
@@ -89,7 +91,7 @@ const Checkout = () => {
           <h2>Order Received!</h2>
           <p>Thank you for your purchase. We are manually reviewing your bank transfer receipt.</p>
           <p>You will receive a confirmation email shortly once verified.</p>
-          <button className="btn btn-primary mt-4" onClick={() => navigate('/')}>
+          <button className="btn btn-primary mt-4" onClick={() => router.push('/')}>
             Return Home
           </button>
         </motion.div>
@@ -101,7 +103,7 @@ const Checkout = () => {
     <div className="page-wrapper checkout-page theme-red">
       <div className="container">
         
-        <button className="back-link" onClick={() => navigate('/shop')}>
+        <button className="back-link" onClick={() => router.push('/shop')}>
           <ArrowLeft size={18} /> Back to Shop
         </button>
 

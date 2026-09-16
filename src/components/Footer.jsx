@@ -1,5 +1,7 @@
+"use client";
+
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { FaInstagram, FaLinkedinIn, FaFacebookF, FaYoutube, FaWhatsapp } from 'react-icons/fa';
 import './Footer.css';
 
@@ -17,13 +19,13 @@ const Footer = () => {
 
           {/* Quick Links */}
           <nav className="footer-nav">
-            <Link to="/">Home</Link>
-            <Link to="/ceylinco-life">Ceylinco Life</Link>
-            <Link to="/legacy">Legacy</Link>
-            <Link to="/team">Team</Link>
-            <Link to="/event">Event</Link>
-            <Link to="/shop">Shop</Link>
-            <Link to="/register">Register</Link>
+            <Link href="/">Home</Link>
+            <Link href="/ceylinco-life">Ceylinco Life</Link>
+            <Link href="/legacy">Legacy</Link>
+            <Link href="/team">Team</Link>
+            <Link href="/event">Event</Link>
+            <Link href="/shop">Shop</Link>
+            <Link href="/register">Register</Link>
           </nav>
 
           {/* Social Icons */}

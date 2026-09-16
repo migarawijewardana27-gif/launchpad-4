@@ -1,6 +1,8 @@
+"use client";
+
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { Target, Rocket, Users, Briefcase } from 'lucide-react';
 import { FaWhatsapp, FaInstagram, FaLinkedinIn, FaGlobe, FaFacebookF, FaYoutube } from 'react-icons/fa';
 import StaggeredText from '../components/StaggeredText';
@@ -86,7 +88,7 @@ const Home = () => {
             </div>
             <h1 className="hero-title text-white">Dare to Dream</h1>
             <motion.div className="hero-cta-container">
-              <Link to="/register" className="btn btn-primary pulse-btn">
+              <Link href="/register" className="btn btn-primary pulse-btn">
                 Register Now
               </Link>
             </motion.div>
