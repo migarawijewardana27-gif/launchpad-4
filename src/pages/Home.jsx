@@ -44,7 +44,7 @@ const FlipCardPillar = ({ icon: Icon, title, delay }) => {
   );
 };
 
-const memoryImages = Array.from({ length: 20 }, (_, i) => `/memory-${i + 1}.jpg`);
+const memoryImages = Array.from({ length: 20 }, (_, i) => `/images carousel/memory-${i + 1}.jpg`);
 
 const Home = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -60,7 +60,7 @@ const Home = () => {
     <div className="page-wrapper home-page">
       
       {/* SECTION 1: Hero Area */}
-      <section className="hero-section full-screen-hero relative-hero">
+      <section className="hero-section full-screen-hero relative-hero theme-red">
         
         {/* Background Slideshow */}
         <div className="hero-slideshow-container">
@@ -105,7 +105,7 @@ const Home = () => {
       </section>
 
       {/* SECTION 2: The Core Identity */}
-      <section className="identity-section section-padding">
+      <section className="identity-section section-padding theme-white">
         <div className="container">
           <div className="identity-grid">
             <motion.div 
@@ -148,10 +148,10 @@ const Home = () => {
         </div>
       </section>
 
-      <SectionDivider />
+      <SectionDivider fillColor="var(--color-bg-primary)" />
 
       {/* SECTION 3: Core Pillars Grid */}
-      <section className="pillars-section section-padding bg-alt">
+      <section className="pillars-section section-padding theme-red">
         <div className="container">
           <StaggeredText text="Core Pillars" className="center-align mb-lg" />
           <div className="pillars-grid">
@@ -163,17 +163,17 @@ const Home = () => {
         </div>
       </section>
 
-      <SectionDivider flip altColor />
+      <SectionDivider flip fillColor="#FFFFFF" />
 
       {/* SECTION 4: LaunchPad 3.0 Aftermovie */}
-      <section className="aftermovie-section section-padding dark-theme-section">
+      <section className="aftermovie-section section-padding theme-white">
         <div className="container center-align">
           <StaggeredText text="LaunchPad 3.0 Aftermovie" className="mb-md" />
           <div className="video-container-sleek">
             <iframe 
               width="100%" 
               height="100%" 
-              src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=0&mute=0" 
+              src="https://www.youtube.com/embed/9PwS06duexc?autoplay=0&mute=0" 
               title="LaunchPad 3.0 Aftermovie" 
               frameBorder="0" 
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
@@ -184,7 +184,7 @@ const Home = () => {
       </section>
 
       {/* SECTION 5: Past Memories (Single Row 16:9 Infinite Marquee) */}
-      <section className="gallery-section section-padding overflow-hidden">
+      <section className="gallery-section section-padding overflow-hidden theme-red">
         <div className="container">
           <StaggeredText text="Past Memories" className="center-align mb-lg" />
         </div>
@@ -233,7 +233,7 @@ const Home = () => {
       </section>
 
       {/* SECTION 6: Title Partner Spotlight (Ceylinco Life) (Dark Theme) */}
-      <section className="partner-spotlight section-padding dark-theme-section">
+      <section className="partner-spotlight section-padding theme-white">
         <div className="container">
           <div className="spotlight-content center-align">
             <h3 className="spotlight-badge">Title Partner</h3>
@@ -272,7 +272,7 @@ const Home = () => {
       </section>
 
       {/* SECTION 7: Contact the Team */}
-      <section className="contact-section section-padding">
+      <section className="contact-section section-padding theme-red">
         <div className="container">
           <StaggeredText text="Contact The Team" className="center-align mb-lg" />
           <div className="contact-grid">

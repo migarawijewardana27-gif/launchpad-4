@@ -327,16 +327,23 @@
 }
 
 .pillar-flip-back {
-  background: linear-gradient(135deg, var(--color-coral-glow), #FFFFFF);
+  background: linear-gradient(135deg, #FFFFFF, #F9F9F9);
   color: var(--color-bg-primary);
   transform: rotateY(180deg);
-  border: none;
+  border: 2px solid var(--color-glass-border);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
 }
 
 .pillar-flip-back h3 {
   font-family: var(--font-secondary);
   font-size: 1.75rem;
   margin-bottom: 1rem;
+  color: var(--color-crimson-bold) !important;
+}
+
+.pillar-flip-back p {
+  color: var(--color-bg-primary) !important;
+  font-weight: 500;
 }
 
 /* Section 5: Aftermovie */

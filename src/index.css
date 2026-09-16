@@ -255,3 +255,85 @@ label {
 .bg-alt {
   background-color: var(--color-bg-secondary);
 }
+
+/* ===== THEME UTILITY CLASSES ===== */
+.theme-red {
+  background-color: var(--color-bg-primary);
+  color: #FFFFFF;
+}
+
+.theme-red h1, .theme-red h2, .theme-red h3, .theme-red h4, .theme-red h5, .theme-red h6 {
+  color: #FFFFFF;
+}
+
+.theme-red p {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.theme-red .glass-panel {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.15);
+  color: #FFFFFF;
+}
+
+.theme-red .btn-secondary {
+  color: #FFFFFF;
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.theme-red .btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: #FFFFFF;
+}
+
+.theme-red input, .theme-red textarea, .theme-red select {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.2);
+  color: #FFFFFF;
+}
+
+.theme-white {
+  background-color: #FFFFFF;
+  color: #333333;
+}
+
+.theme-white h1, .theme-white h2, .theme-white h3, .theme-white h4, .theme-white h5, .theme-white h6 {
+  color: var(--color-bg-primary);
+}
+
+.theme-white p {
+  color: #555555;
+}
+
+.theme-white .glass-panel {
+  background: rgba(139, 0, 0, 0.03); /* slight red tint */
+  border-color: rgba(139, 0, 0, 0.1);
+  color: #333333;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.05);
+}
+
+.theme-white .glass-panel h2, .theme-white .glass-panel h3 {
+  color: var(--color-bg-primary);
+}
+
+.theme-white .btn-secondary {
+  color: var(--color-bg-primary);
+  border-color: rgba(139, 0, 0, 0.3);
+}
+
+.theme-white .btn-secondary:hover {
+  background: rgba(139, 0, 0, 0.05);
+  border-color: var(--color-bg-primary);
+}
+
+.theme-white input, .theme-white textarea, .theme-white select {
+  background: #F9F9F9;
+  border-color: #DDDDDD;
+  color: #333333;
+}
+
+.theme-white input:focus, .theme-white textarea:focus, .theme-white select:focus {
+  border-color: var(--color-coral-glow);
+  background: #FFFFFF;
+  box-shadow: 0 0 0 4px rgba(255, 107, 107, 0.1);
+}

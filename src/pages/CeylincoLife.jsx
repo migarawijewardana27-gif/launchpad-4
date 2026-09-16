@@ -26,7 +26,7 @@ const CeylincoLife = () => {
     <div className="page-wrapper ceylinco-page">
       
       {/* SECTION 1: Hero Section (Deep Garnet) */}
-      <section className="ceylinco-hero">
+      <section className="ceylinco-hero theme-red">
         <div className="container">
           <motion.div 
             className="ceylinco-hero-content"
@@ -50,7 +50,7 @@ const CeylincoLife = () => {
       </section>
 
       {/* SECTION 2: Commitment Section (Pure White) */}
-      <section className="commitment-section section-padding">
+      <section className="commitment-section section-padding theme-white">
         <div className="container">
           <div className="commitment-asymmetric-grid">
             <motion.div 
@@ -85,7 +85,7 @@ const CeylincoLife = () => {
       </section>
 
       {/* SECTION 3: Leadership Message (Peachy Cream) */}
-      <section className="leadership-message-section section-padding">
+      <section className="leadership-message-section section-padding theme-red">
         <div className="container">
           <motion.div 
             className="editorial-quote-block"
@@ -116,7 +116,7 @@ const CeylincoLife = () => {
       </section>
 
       {/* SECTION 4: Opportunities Section (Pure White) */}
-      <section className="opportunities-section section-padding">
+      <section className="opportunities-section section-padding theme-white">
         <div className="container">
           <motion.div 
             className="section-header center-align"
@@ -152,7 +152,7 @@ const CeylincoLife = () => {
       </section>
 
       {/* SECTION 5: Digital Footprint (Deep Garnet) */}
-      <section className="digital-footprint-section section-padding">
+      <section className="digital-footprint-section section-padding theme-red">
         <div className="container">
           <motion.div 
             className="footprint-content center-align"

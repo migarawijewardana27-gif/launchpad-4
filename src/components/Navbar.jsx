@@ -32,12 +32,20 @@ const Navbar = () => {
     { name: 'Shop', path: '/shop' },
   ];
 
+  const isLightPage = location.pathname === '/register' || location.pathname === '/checkout';
+  const shouldBeLight = isScrolled || isLightPage;
+
   return (
     <>
-      <nav className={`navbar ${isScrolled ? 'scrolled' : ''}`}>
+      <nav className={`navbar ${isScrolled ? 'scrolled' : ''} ${shouldBeLight ? 'light-mode' : ''}`}>
         <div className="container nav-container">
           <Link to="/" className="nav-logo">
-            <img src="/icon white.png" alt="LaunchPad Icon" className="nav-brand-icon" onError={(e) => { e.target.style.display = 'none'; }} />
+            <img 
+              src={shouldBeLight ? "/icon red.png" : "/icon white.png"} 
+              alt="LaunchPad Icon" 
+              className="nav-brand-icon" 
+              onError={(e) => { e.target.style.display = 'none'; }} 
+            />
           </Link>
 
           {/* Desktop Menu */}

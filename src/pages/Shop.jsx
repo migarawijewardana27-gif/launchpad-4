@@ -40,7 +40,7 @@ const Shop = () => {
 
   return (
     <div className="page-wrapper shop-page">
-      <div className="section-header center-align full-screen-hero shop-hero">
+      <section className="section-header center-align full-screen-hero shop-hero theme-red">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -52,10 +52,11 @@ const Shop = () => {
             Take a piece of LaunchPad 4.0 home with you. Pre-order your exclusive merchandise now.
           </p>
         </motion.div>
-      </div>
+      </section>
 
-      <div className="container shop-container">
-        <div className="shop-grid">
+      <section className="section-padding theme-white">
+        <div className="container shop-container">
+          <div className="shop-grid">
           {MERCH_ITEMS.map((item, index) => (
             <motion.div 
               key={item.id} 
@@ -87,8 +88,9 @@ const Shop = () => {
               </div>
             </motion.div>
           ))}
+          </div>
         </div>
-      </div>
+      </section>
     </div>
   );
 };

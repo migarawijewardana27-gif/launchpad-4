@@ -84,7 +84,7 @@ const Registration = () => {
 
   if (isSubmitted) {
     return (
-      <div className="page-wrapper form-page center-content">
+      <div className="page-wrapper form-page center-content theme-white">
         <motion.div 
           className="success-message glass-panel"
           initial={{ scale: 0.8, opacity: 0 }}
@@ -106,7 +106,7 @@ const Registration = () => {
   }
 
   return (
-    <div className="page-wrapper form-page">
+    <div className="page-wrapper form-page theme-white">
       <div className="container">
         <div className="registration-split-panel glass-panel">
           

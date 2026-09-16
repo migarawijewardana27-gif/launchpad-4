@@ -61,7 +61,7 @@ const Event = () => {
   return (
     <div className="page-wrapper event-page">
       {/* Hero Section for Event */}
-      <section className="event-hero full-screen-hero">
+      <section className="event-hero full-screen-hero theme-red">
         <div className="container">
           <motion.div 
             className="section-header center-align"
@@ -76,7 +76,7 @@ const Event = () => {
       </section>
 
       {/* Itinerary Section */}
-      <section className="itinerary-section section-padding">
+      <section className="itinerary-section section-padding theme-white">
         <div className="container">
           <h2>Event Itinerary</h2>
           
@@ -121,7 +121,7 @@ const Event = () => {
       </section>
 
       {/* Speakers Section */}
-      <section className="speakers-section section-padding bg-light">
+      <section className="speakers-section section-padding theme-red">
         <div className="container">
           <div className="section-header">
             <h2>Distinguished Speakers</h2>
@@ -137,7 +137,7 @@ const Event = () => {
       </section>
 
       {/* Career Fair Map */}
-      <section className="map-section section-padding">
+      <section className="map-section section-padding theme-white">
         <div className="container">
           <div className="section-header">
             <h2>Career Fair Layout</h2>

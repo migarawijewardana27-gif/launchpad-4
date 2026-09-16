@@ -1,204 +1,259 @@
 .team-page {
-  
   padding-bottom: var(--spacing-xl);
-  background: transparent;
+  min-height: 100vh;
 }
 
-.team-hierarchy-section {
-  display: flex;
-  flex-direction: column;
-  gap: 5rem;
-  margin-top: 3rem;
-}
-
-.team-tier {
+/* Header & Tabs */
+.team-revamp-header {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-bottom: 3rem;
 }
 
-.tier-title {
-  color: var(--color-coral-glow);
-  font-size: 2.2rem;
-  margin-bottom: 2rem;
+.revamp-title {
+  font-family: var(--font-secondary);
+  font-size: 4rem;
+  color: white;
   text-transform: uppercase;
   letter-spacing: 2px;
+  margin-bottom: 2rem;
   text-align: center;
 }
 
-.team-grid {
-  display: grid;
-  gap: 2rem;
-  width: 100%;
+.highlight-text {
+  color: var(--color-coral-glow);
 }
 
-.event-managers-grid {
-  grid-template-columns: repeat(3, minmax(280px, 1fr));
-  max-width: 1000px;
-}
-
-.oc-grid {
-  grid-template-columns: repeat(3, 1fr);
-  max-width: 1000px;
-  margin: 0 auto;
-}
-
-/* Spotlight Card Design */
-.team-card-spotlight {
-  position: relative;
-  border-radius: var(--radius-md);
-  overflow: hidden;
+.team-tabs-container {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  max-width: 900px;
+}
+
+.team-tab-button {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.7);
+  padding: 0.75rem 1.5rem;
+  border-radius: 2rem;
+  font-family: var(--font-primary);
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.team-tab-button:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+}
+
+.team-tab-button.active {
+  background: var(--color-coral-glow);
+  color: var(--color-bg-primary);
+  border-color: var(--color-coral-glow);
+  box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+}
+
+/* Accordion Layout */
+.accordion-section {
+  width: 100%;
+  padding: 0 2rem;
+}
+
+.accordion-container {
+  display: flex;
+  width: 100%;
+  max-width: 1200px;
+  height: 460px;
+  margin: 0 auto;
+  gap: 1rem;
+}
+
+.accordion-card {
+  position: relative;
+  flex: 1;
+  max-width: 800px;
+  border-radius: 2rem;
+  overflow: hidden;
   background: var(--color-glass-bg);
   border: 1px solid var(--color-glass-border);
-  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  transition: flex 0.7s cubic-bezier(0.25, 1, 0.3, 1), box-shadow 0.5s ease;
+  cursor: pointer;
+  min-width: 80px;
 }
 
-.team-card-spotlight::before {
-  content: "";
+.accordion-card:hover {
+  flex: 5;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+  border-color: rgba(255,255,255,0.2);
+}
+
+.accordion-image-bg {
   position: absolute;
   top: 0; left: 0; right: 0; bottom: 0;
-  border-radius: var(--radius-md);
-  padding: 2px;
-  background: linear-gradient(135deg, transparent 40%, rgba(255, 107, 107, 0), transparent 60%);
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  transition: opacity 0.4s ease, background 0.4s ease;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  filter: grayscale(100%) brightness(0.7);
+  transition: filter 0.7s ease;
+}
+
+.accordion-card:hover .accordion-image-bg {
+  filter: grayscale(0%) brightness(1);
+}
+
+.accordion-gradient {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 50%);
+  transition: background 0.7s ease;
+}
+
+.accordion-card:hover .accordion-gradient {
+  background: linear-gradient(to right, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.9) 70%, rgba(0,0,0,0.95) 100%);
+}
+
+.accordion-title-vertical {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  transform: rotate(180deg);
+  color: white;
+  font-family: var(--font-secondary);
+  font-size: 2.5rem;
+  margin: 0;
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%) rotate(180deg);
+  transition: opacity 0.3s ease;
+  white-space: nowrap;
+}
+
+.accordion-card:hover .accordion-title-vertical {
   opacity: 0;
-  z-index: 2;
+}
+
+.accordion-content {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
   pointer-events: none;
 }
 
-.team-card-spotlight:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4), 0 0 20px rgba(255, 107, 107, 0.1);
-  border-color: transparent;
+.accordion-card:hover .accordion-content {
+  pointer-events: auto;
 }
 
-.team-card-spotlight:hover::before {
-  opacity: 1;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 107, 107, 0.8) 50%, rgba(255, 255, 255, 0.1) 100%);
-}
-
-.card-image-wrapper {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 1;
-  overflow: hidden;
-  background: radial-gradient(circle at center, rgba(255, 107, 107, 0.12) 0%, transparent 70%);
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-}
-
-.team-background-icon {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 70%;
-  height: 70%;
-  object-fit: contain;
-  opacity: 0.15;
-  z-index: 0;
-  transition: all 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
-}
-
-.team-image {
-  position: relative;
-  z-index: 1;
-  width: 100%;
-  height: 93%;
-  object-fit: contain;
-  object-position: bottom;
-  transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
-}
-
-.team-card-spotlight:hover .team-background-icon {
-  transform: translate(-50%, -50%) scale(1.1) rotate(10deg);
-  opacity: 0.3;
-}
-
-.team-card-spotlight:hover .team-image {
-  transform: scale(1.06);
-}
-
-/* Info and Social Tray */
-.card-info-wrapper {
-  position: relative;
-  padding: 1.5rem;
-  background: rgba(139, 0, 0, 0.8);
-  backdrop-filter: blur(8px);
-  display: flex;
-  flex-direction: column;
-  z-index: 3;
-}
-
-.card-info {
-  transition: transform 0.4s ease;
-  text-align: center;
-}
-
-.card-info h3 {
-  color: white;
-  margin-bottom: 0.25rem;
-  font-size: 1.3rem;
-}
-
-.role {
-  color: var(--color-coral-glow);
-  font-size: 0.9rem;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-
-.social-tray {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  padding: 1rem;
-  display: flex;
-  justify-content: center;
-  gap: 1.25rem;
-  transform: translateY(100%);
+.accordion-details {
   opacity: 0;
-  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  transform: translateX(-20px);
+  transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.25, 1, 0.3, 1);
+  width: 100%;
+  max-width: 400px;
+  text-align: left;
 }
 
-.team-card-spotlight:hover .card-info {
-  transform: translateY(-20px);
-}
-
-.team-card-spotlight:hover .social-tray {
-  transform: translateY(0);
+.accordion-card:hover .accordion-details {
   opacity: 1;
+  transform: translateX(0);
+  transition-delay: 0.15s;
 }
 
-.social-icon {
+.member-name-large {
+  font-family: var(--font-secondary);
+  font-size: 3rem;
+  line-height: 1;
   color: white;
-  font-size: 1.25rem;
-  transition: color 0.3s ease, transform 0.3s ease;
+  margin-bottom: 0.5rem;
 }
 
-.social-icon:hover {
+.member-role-highlight {
+  font-family: var(--font-primary);
+  font-size: 1rem;
   color: var(--color-coral-glow);
-  transform: scale(1.2) translateY(-2px);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+}
+
+.member-desc-elegant {
+  font-size: 1rem;
+  color: rgba(255,255,255,0.8);
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+.social-tray-inline.end-align {
+  justify-content: flex-start;
+  display: flex;
+  gap: 1.5rem;
 }
 
 /* Responsive */
 @media (max-width: 992px) {
-  .event-managers-grid,
-  .oc-grid {
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  .accordion-container {
+    height: 450px;
   }
 }
 
 @media (max-width: 768px) {
-  .team-grid {
-    gap: var(--spacing-lg);
+  .accordion-container {
+    flex-direction: column;
+    height: auto;
+  }
+  
+  .accordion-card {
+    min-height: 120px;
+    flex: none;
+  }
+  
+  .accordion-card:hover {
+    min-height: 400px;
+  }
+  
+  .accordion-title-vertical {
+    writing-mode: horizontal-tb;
+    transform: none;
+    bottom: 50%;
+    left: 2rem;
+    transform: translateY(50%);
+  }
+  
+  .accordion-card:hover .accordion-gradient {
+    background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.6) 40%, rgba(0,0,0,0.2) 100%);
+  }
+  
+  .accordion-content {
+    align-items: center;
+    justify-content: flex-end;
+    padding: 2rem;
+  }
+  
+  .accordion-details {
+    text-align: center;
+    transform: translateY(20px);
+  }
+  
+  .accordion-card:hover .accordion-details {
+    transform: translateY(0);
+  }
+  
+  .social-tray-inline.end-align {
+    justify-content: center;
+  }
+  
+  .revamp-title {
+    font-size: 2.5rem;
   }
 }
