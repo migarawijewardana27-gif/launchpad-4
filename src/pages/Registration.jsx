@@ -84,7 +84,7 @@ const Registration = () => {
 
   if (isSubmitted) {
     return (
-      <div className="page-wrapper form-page center-content theme-white">
+      <div className="page-wrapper form-page center-content theme-red">
         <motion.div 
           className="success-message glass-panel"
           initial={{ scale: 0.8, opacity: 0 }}
@@ -106,12 +106,15 @@ const Registration = () => {
   }
 
   return (
-    <div className="page-wrapper form-page theme-white">
+    <div className="page-wrapper form-page theme-red">
       <div className="container">
         <div className="registration-split-panel glass-panel">
           
           {/* Left Column: Branding and Stepper */}
           <div className="split-left">
+            <div className="reg-watermark">
+              <img src="/icon white.png" alt="Watermark" />
+            </div>
             <div className="left-content">
               <img src="/White Logo.png" alt="Launchpad 4.0 Logo" className="reg-logo" />
               <h2>Step Into<br/>The Future.</h2>
