@@ -29,6 +29,10 @@ const pageTransition = {
 const AnimatedRoutes = () => {
   const location = useLocation();
   
+  React.useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
+
   return (
     <AnimatePresence mode="wait">
       <Routes location={location} key={location.pathname}>

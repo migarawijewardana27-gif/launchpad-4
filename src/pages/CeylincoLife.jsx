@@ -34,7 +34,7 @@ const CeylincoLife = () => {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8 }}
           >
-            <div className="partnership-badge-gold">Title Partner</div>
+            <div className="partnership-badge-glass">Title Partner</div>
             
             <div className="logo-lockup-glass">
               <img src="/White Logo.png" alt="LaunchPad 4.0 Logo" className="lockup-logo lp-logo" />
@@ -49,8 +49,8 @@ const CeylincoLife = () => {
         </div>
       </section>
 
-      {/* SECTION 2: Commitment Section (Pure White) */}
-      <section className="commitment-section section-padding theme-white">
+      {/* SECTION 2: Commitment Section (Pure White -> Dark Glassmorphism) */}
+      <section className="commitment-section section-padding theme-red">
         <div className="container">
           <div className="commitment-asymmetric-grid">
             <motion.div 
@@ -115,8 +115,8 @@ const CeylincoLife = () => {
         </div>
       </section>
 
-      {/* SECTION 4: Opportunities Section (Pure White) */}
-      <section className="opportunities-section section-padding theme-white">
+      {/* SECTION 4: Opportunities Section (Dark Glassmorphism) */}
+      <section className="opportunities-section section-padding theme-red">
         <div className="container">
           <motion.div 
             className="section-header center-align"
@@ -134,18 +134,21 @@ const CeylincoLife = () => {
               title="Career Fast-Tracking"
               desc="Exclusive fast-track interview opportunities for outstanding delegates at the career fair."
               delay={0.1}
+              isDark={true}
             />
             <BenefitCard 
               icon={Award}
               title="Mentorship Programs"
               desc="Connect with senior leadership from Ceylinco Life through dedicated mentorship circles."
               delay={0.2}
+              isDark={true}
             />
             <BenefitCard 
               icon={Shield}
               title="Skill Masterclasses"
               desc="Specialized sessions focused on financial literacy and personal branding in the corporate sector."
               delay={0.3}
+              isDark={true}
             />
           </div>
         </div>

@@ -54,7 +54,7 @@ const Shop = () => {
         </motion.div>
       </section>
 
-      <section className="section-padding theme-white">
+      <section className="section-padding theme-red">
         <div className="container shop-container">
           <div className="shop-grid">
           {MERCH_ITEMS.map((item, index) => (

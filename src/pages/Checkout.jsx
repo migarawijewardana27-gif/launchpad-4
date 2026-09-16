@@ -72,7 +72,7 @@ const Checkout = () => {
 
   if (isSubmitted) {
     return (
-      <div className="page-wrapper center-content theme-white">
+      <div className="page-wrapper center-content theme-red">
         <motion.div 
           className="success-message glass-panel"
           initial={{ scale: 0.8, opacity: 0 }}
@@ -98,7 +98,7 @@ const Checkout = () => {
   }
 
   return (
-    <div className="page-wrapper checkout-page theme-white">
+    <div className="page-wrapper checkout-page theme-red">
       <div className="container">
         
         <button className="back-link" onClick={() => navigate('/shop')}>

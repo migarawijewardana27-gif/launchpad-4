@@ -111,9 +111,9 @@
 }
 
 .powered-by-logo-hero {
+  width: 600px;
+  max-width: 90vw;
   height: auto;
-  max-height: 180px;
-  max-width: 90%;
   margin: 0 auto;
   object-fit: contain;
   filter: drop-shadow(0 4px 16px rgba(0, 0, 0, 0.35));
