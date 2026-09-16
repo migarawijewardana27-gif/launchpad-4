@@ -1,7 +1,8 @@
 import { initializeApp, getApps, cert } from 'firebase-admin/app';
 import { getFirestore } from 'firebase-admin/firestore';
 
-if (getApps().length === 0) {
+// Only initialize if the environment variables are present (prevents Next.js build crash)
+if (getApps().length === 0 && process.env.FIREBASE_PROJECT_ID) {
   initializeApp({
     credential: cert({
       projectId: process.env.FIREBASE_PROJECT_ID,
@@ -11,4 +12,4 @@ if (getApps().length === 0) {
   });
 }
 
-export const db = getFirestore();
+export const db = process.env.FIREBASE_PROJECT_ID ? getFirestore() : null;
