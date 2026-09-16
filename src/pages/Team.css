@@ -60,197 +60,179 @@
   box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
 }
 
-/* Accordion Layout */
-.accordion-section {
+/* Square Grid Layout */
+.square-grid-section {
   width: 100%;
   padding: 0 2rem;
+  margin-bottom: 4rem;
 }
 
-.accordion-container {
+.square-grid-container {
   display: flex;
-  width: 100%;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 3rem;
   max-width: 1200px;
-  height: 460px;
   margin: 0 auto;
-  gap: 1rem;
 }
 
-.accordion-card {
+.square-card {
   position: relative;
-  flex: 1;
-  max-width: 800px;
+  width: 320px;
+  height: 320px;
   border-radius: 2rem;
   overflow: hidden;
-  background: var(--color-glass-bg);
-  border: 1px solid var(--color-glass-border);
-  transition: flex 0.7s cubic-bezier(0.25, 1, 0.3, 1), box-shadow 0.5s ease;
+  border: 1px solid rgba(255,255,255,0.1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  transition: height 0.5s cubic-bezier(0.25, 1, 0.3, 1), transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
   cursor: pointer;
-  min-width: 80px;
+  background: var(--color-glass-bg);
+  display: flex;
+  flex-direction: column;
 }
 
-.accordion-card:hover {
-  flex: 5;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
-  border-color: rgba(255,255,255,0.2);
+.square-card:hover {
+  height: 580px;
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+  border-color: var(--color-coral-glow);
 }
 
-.accordion-image-bg {
+.card-image-wrapper {
+  position: relative;
+  width: 100%;
+  height: 320px;
+  flex-shrink: 0;
+  background: radial-gradient(circle at center, rgba(139,0,0,0.3) 0%, rgba(0,0,0,0.8) 100%);
+}
+
+/* Background Logo Icon */
+.logo-background {
   position: absolute;
   top: 0; left: 0; right: 0; bottom: 0;
-  width: 100%; height: 100%;
-  object-fit: cover;
-  object-position: center top;
-  filter: grayscale(100%) brightness(0.7);
-  transition: filter 0.7s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 0;
 }
 
-.accordion-card:hover .accordion-image-bg {
-  filter: grayscale(0%) brightness(1);
+.dynamic-logo {
+  position: absolute;
+  height: auto;
+  opacity: 0.1;
+  transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
-.accordion-gradient {
+.square-card:hover .dynamic-logo {
+  opacity: 0.25;
+  /* Hover scale up slightly on whatever its base transform is - we can do a blanket scale using React state or just CSS zoom but filter/brightness works better */
+  filter: brightness(1.5);
+}
+
+/* Portrait Image */
+.square-image {
   position: absolute;
   top: 0; left: 0; right: 0; bottom: 0;
-  background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 50%);
-  transition: background 0.7s ease;
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* Prevents cropping if they are cutouts */
+  object-position: bottom center;
+  z-index: 1;
+  filter: grayscale(100%);
+  transition: filter 0.5s ease;
 }
 
-.accordion-card:hover .accordion-gradient {
-  background: linear-gradient(to right, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.9) 70%, rgba(0,0,0,0.95) 100%);
+.square-card:hover .square-image {
+  filter: grayscale(0%);
 }
 
-.accordion-title-vertical {
-  writing-mode: vertical-rl;
-  text-orientation: mixed;
-  transform: rotate(180deg);
-  color: white;
-  font-family: var(--font-secondary);
-  font-size: 2.5rem;
-  margin: 0;
-  position: absolute;
-  bottom: 2rem;
-  left: 50%;
-  transform: translateX(-50%) rotate(180deg);
-  transition: opacity 0.3s ease;
-  white-space: nowrap;
-}
-
-.accordion-card:hover .accordion-title-vertical {
-  opacity: 0;
-}
-
-.accordion-content {
-  position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  padding: 3rem;
+/* Dropdown Details Reveal */
+.card-details-wrapper {
+  flex-grow: 1;
+  width: 100%;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.8) 100%);
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: flex-start;
-  pointer-events: none;
+  padding: 1.5rem;
+  position: relative;
 }
 
-.accordion-card:hover .accordion-content {
-  pointer-events: auto;
+/* Add a subtle top border to separate image and text */
+.card-details-wrapper::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 10%; right: 10%;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(255,255,255,0.2), transparent);
 }
 
-.accordion-details {
+.card-details-content {
+  text-align: center;
   opacity: 0;
-  transform: translateX(-20px);
-  transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.25, 1, 0.3, 1);
-  width: 100%;
-  max-width: 400px;
-  text-align: left;
+  transform: translateY(-20px);
+  transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.25, 1, 0.3, 1);
 }
 
-.accordion-card:hover .accordion-details {
+.square-card:hover .card-details-content {
   opacity: 1;
-  transform: translateX(0);
-  transition-delay: 0.15s;
+  transform: translateY(0);
+  transition-delay: 0.2s;
 }
 
 .member-name-large {
   font-family: var(--font-secondary);
-  font-size: 3rem;
+  font-size: 2.5rem;
   line-height: 1;
   color: white;
   margin-bottom: 0.5rem;
+  text-transform: lowercase;
 }
 
 .member-role-highlight {
   font-family: var(--font-primary);
-  font-size: 1rem;
+  font-size: 0.85rem;
   color: var(--color-coral-glow);
   text-transform: uppercase;
   letter-spacing: 2px;
   font-weight: 700;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
 }
 
 .member-desc-elegant {
-  font-size: 1rem;
+  font-size: 0.85rem;
   color: rgba(255,255,255,0.8);
-  line-height: 1.6;
-  margin-bottom: 2rem;
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
 }
 
-.social-tray-inline.end-align {
-  justify-content: flex-start;
+.social-tray-inline.center-align {
+  justify-content: center;
   display: flex;
-  gap: 1.5rem;
+  gap: 1.25rem;
+}
+
+.social-icon {
+  color: rgba(255,255,255,0.5);
+  font-size: 1.25rem;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.social-icon:hover {
+  transform: translateY(-3px);
+  color: var(--color-coral-glow);
 }
 
 /* Responsive */
-@media (max-width: 992px) {
-  .accordion-container {
-    height: 450px;
-  }
-}
-
 @media (max-width: 768px) {
-  .accordion-container {
-    flex-direction: column;
-    height: auto;
+  .square-grid-container {
+    gap: 2rem;
   }
   
-  .accordion-card {
-    min-height: 120px;
-    flex: none;
-  }
-  
-  .accordion-card:hover {
-    min-height: 400px;
-  }
-  
-  .accordion-title-vertical {
-    writing-mode: horizontal-tb;
-    transform: none;
-    bottom: 50%;
-    left: 2rem;
-    transform: translateY(50%);
-  }
-  
-  .accordion-card:hover .accordion-gradient {
-    background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.6) 40%, rgba(0,0,0,0.2) 100%);
-  }
-  
-  .accordion-content {
-    align-items: center;
-    justify-content: flex-end;
-    padding: 2rem;
-  }
-  
-  .accordion-details {
-    text-align: center;
-    transform: translateY(20px);
-  }
-  
-  .accordion-card:hover .accordion-details {
-    transform: translateY(0);
-  }
-  
-  .social-tray-inline.end-align {
-    justify-content: center;
+  .square-card {
+    width: 100%;
+    max-width: 340px;
+    height: 340px;
   }
   
   .revamp-title {
