@@ -79,12 +79,12 @@
 .square-card {
   position: relative;
   width: 320px;
-  height: 320px;
+  max-height: 320px;
   border-radius: 2rem;
   overflow: hidden;
   border: 1px solid rgba(255,255,255,0.1);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-  transition: height 0.5s cubic-bezier(0.25, 1, 0.3, 1), transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+  transition: max-height 0.6s cubic-bezier(0.25, 1, 0.3, 1), transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
   cursor: pointer;
   background: var(--color-glass-bg);
   display: flex;
@@ -92,7 +92,7 @@
 }
 
 .square-card:hover {
-  height: 580px;
+  max-height: 800px;
   transform: translateY(-10px);
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
   border-color: var(--color-coral-glow);
@@ -232,7 +232,7 @@
   .square-card {
     width: 100%;
     max-width: 340px;
-    height: 340px;
+    max-height: 320px;
   }
   
   .revamp-title {

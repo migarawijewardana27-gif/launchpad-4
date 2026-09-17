@@ -7,7 +7,7 @@ import { FaFacebookF, FaInstagram, FaLinkedinIn, FaGlobe } from 'react-icons/fa'
 import './CeylincoLife.css';
 
 const BenefitCard = ({ icon: Icon, title, desc, delay, isDark }) => (
-  <motion.div 
+  <motion.div
     className={`benefit-card glass-panel ${isDark ? 'dark-card' : ''}`}
     initial={{ opacity: 0, y: 30 }}
     whileInView={{ opacity: 1, y: 0 }}
@@ -26,18 +26,18 @@ const BenefitCard = ({ icon: Icon, title, desc, delay, isDark }) => (
 const CeylincoLife = () => {
   return (
     <div className="page-wrapper ceylinco-page">
-      
+
       {/* SECTION 1: Hero Section (Deep Garnet) */}
       <section className="ceylinco-hero theme-red">
         <div className="container">
-          <motion.div 
+          <motion.div
             className="ceylinco-hero-content"
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8 }}
           >
             <div className="partnership-badge-glass">Title Partner</div>
-            
+
             <div className="logo-lockup-glass">
               <img src="/White Logo.png" alt="LaunchPad 4.0 Logo" className="lockup-logo lp-logo" />
               <div className="lockup-divider"></div>
@@ -55,7 +55,7 @@ const CeylincoLife = () => {
       <section className="commitment-section section-padding theme-red">
         <div className="container">
           <div className="commitment-asymmetric-grid">
-            <motion.div 
+            <motion.div
               className="commitment-card main-card"
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -67,8 +67,8 @@ const CeylincoLife = () => {
                 As the leading life insurance provider in Sri Lanka, Ceylinco Life has always been deeply invested in the future of our nation. By partnering with LaunchPad 4.0, Ceylinco Life aims to bridge the gap between academic education and the dynamic needs of the corporate world.
               </p>
             </motion.div>
-            
-            <motion.div 
+
+            <motion.div
               className="commitment-card secondary-card"
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -89,28 +89,26 @@ const CeylincoLife = () => {
       {/* SECTION 3: Leadership Message (Peachy Cream) */}
       <section className="leadership-message-section section-padding theme-red">
         <div className="container">
-          <motion.div 
+          <motion.div
             className="editorial-quote-block"
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
           >
-            <div className="quote-icon-container">
-              <Quote size={60} className="editorial-quote-icon" />
+            <div className="author-image-container">
+              <img src="/ceylinco/Chamath.png" alt="Mr. Chamath Alwis" className="author-large-image" />
             </div>
             <div className="editorial-content">
+              <div className="quote-icon-container">
+                <Quote size={60} className="editorial-quote-icon" />
+              </div>
               <blockquote>
-                "Our vision at Ceylinco Life is closely aligned with the ambition of LaunchPad 4.0. We believe in providing the youth of Sri Lanka with the robust foundation they need to excel globally. By investing in their potential today, we are securing a brighter, more innovative future for our entire nation."
+                "A quote on AIESEC and Launchpad given by Mr. Chamath will be added here"
               </blockquote>
-              <div className="author-info">
-                <div className="author-headshot-placeholder">
-                   <span>Headshot Placeholder</span>
-                </div>
-                <div className="author-details">
-                  <h4>Mr. Chamath Alwis</h4>
-                  <p>Leadership Representative, Ceylinco Life</p>
-                </div>
+              <div className="author-details-new">
+                <h4>Mr. Chamath Alwis</h4>
+                <p>Assistant General Manager<br></br>Brand Development<br></br>Ceylinco Life Insurance Limited</p>
               </div>
             </div>
           </motion.div>
@@ -120,7 +118,7 @@ const CeylincoLife = () => {
       {/* SECTION 4: Opportunities Section (Dark Glassmorphism) */}
       <section className="opportunities-section section-padding theme-red">
         <div className="container">
-          <motion.div 
+          <motion.div
             className="section-header center-align"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -131,21 +129,21 @@ const CeylincoLife = () => {
           </motion.div>
 
           <div className="benefits-grid">
-            <BenefitCard 
+            <BenefitCard
               icon={TrendingUp}
               title="Career Fast-Tracking"
               desc="Exclusive fast-track interview opportunities for outstanding delegates at the career fair."
               delay={0.1}
               isDark={true}
             />
-            <BenefitCard 
+            <BenefitCard
               icon={Award}
               title="Mentorship Programs"
               desc="Connect with senior leadership from Ceylinco Life through dedicated mentorship circles."
               delay={0.2}
               isDark={true}
             />
-            <BenefitCard 
+            <BenefitCard
               icon={Shield}
               title="Skill Masterclasses"
               desc="Specialized sessions focused on financial literacy and personal branding in the corporate sector."
@@ -159,7 +157,7 @@ const CeylincoLife = () => {
       {/* SECTION 5: Digital Footprint (Deep Garnet) */}
       <section className="digital-footprint-section section-padding theme-red">
         <div className="container">
-          <motion.div 
+          <motion.div
             className="footprint-content center-align"
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
@@ -170,7 +168,7 @@ const CeylincoLife = () => {
             <p className="footprint-subtext mx-auto">
               Explore their initiatives, career opportunities, and stay updated with the latest news by following their official channels.
             </p>
-            
+
             <div className="social-hub">
               <a href="https://www.ceylincolife.com/" target="_blank" rel="noopener noreferrer" className="hub-link">
                 <div className="hub-icon-wrapper"><FaGlobe size={28} /></div>

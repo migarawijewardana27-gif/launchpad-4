@@ -93,6 +93,68 @@
   font-size: 0.9rem;
 }
 
+/* ===== DROPDOWN ===== */
+.nav-dropdown-container {
+  position: relative;
+  cursor: pointer;
+  padding: 10px 0; /* Expanded hit area */
+}
+
+.nav-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(10px);
+  min-width: 180px;
+  background: rgba(10, 10, 10, 0.95);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: var(--radius-md);
+  padding: 0.5rem 0;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+  display: flex;
+  flex-direction: column;
+}
+
+.navbar.light-mode .nav-dropdown {
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(0,0,0,0.1);
+}
+
+.nav-dropdown-container:hover .nav-dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+
+.dropdown-item {
+  padding: 0.75rem 1.5rem;
+  color: var(--color-text-primary);
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: background 0.2s ease, color 0.2s ease;
+  text-decoration: none;
+}
+
+.navbar.light-mode .dropdown-item {
+  color: var(--color-bg-primary);
+}
+
+.dropdown-item:hover, .dropdown-item.active {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--color-coral-glow);
+}
+
+.navbar.light-mode .dropdown-item:hover, 
+.navbar.light-mode .dropdown-item.active {
+  background: rgba(0, 0, 0, 0.05);
+  color: var(--color-crimson-bold);
+}
+
 /* ===== CART ===== */
 .cart-nav-btn {
   background: transparent;
@@ -175,6 +237,24 @@
     font-weight: 500;
     border-bottom: 1px solid var(--color-glass-border);
     color: var(--color-text-primary);
+    text-decoration: none;
+    display: block;
+  }
+
+  .mobile-nav-section-title {
+    padding: 1rem 2rem 0.5rem;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    color: var(--color-coral-glow);
+    font-weight: 700;
+    letter-spacing: 1px;
+    border-bottom: 1px solid var(--color-glass-border);
+  }
+
+  .mobile-nav-link.nested {
+    padding-left: 3rem;
+    font-size: 0.95rem;
+    opacity: 0.9;
   }
 
   .mobile-nav-cta {

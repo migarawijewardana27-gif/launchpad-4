@@ -102,7 +102,7 @@ const Home = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.5 }}
         >
-          <div className="launching-text">LAUNCHING SOON</div>
+          <div className="launching-text">SCROLL TO EXPLORE</div>
         </motion.div>
       </section>
 
@@ -175,7 +175,7 @@ const Home = () => {
             <iframe 
               width="100%" 
               height="100%" 
-              src="https://www.youtube.com/embed/9PwS06duexc?autoplay=0&mute=0" 
+              src="https://www.youtube.com/embed/9PwS06duexc?autoplay=1&mute=1&loop=1&playlist=9PwS06duexc" 
               title="LaunchPad 3.0 Aftermovie" 
               frameBorder="0" 
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
@@ -245,9 +245,15 @@ const Home = () => {
             </p>
             
             <div className="partner-media-grid">
-              <div className="media-box primary-box"><div className="media-placeholder">Ceylinco Life HQ</div></div>
-              <div className="media-box secondary-box-1"><div className="media-placeholder">Initiative 1</div></div>
-              <div className="media-box secondary-box-2"><div className="media-placeholder">Initiative 2</div></div>
+              <div className="media-box primary-box">
+                <img src="/ceylinco/HQ.webp" alt="Ceylinco Life HQ" className="media-img" />
+              </div>
+              <div className="media-box secondary-box-1">
+                <img src="/ceylinco/P1.jpg" alt="Initiative 1" className="media-img" />
+              </div>
+              <div className="media-box secondary-box-2">
+                <img src="/ceylinco/P2.jpg" alt="Initiative 2" className="media-img" />
+              </div>
             </div>
 
             <div className="spotlight-actions mt-lg">

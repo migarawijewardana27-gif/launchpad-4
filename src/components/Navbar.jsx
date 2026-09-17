@@ -26,13 +26,10 @@ const Navbar = () => {
     setIsMobileMenuOpen(false);
   }, [pathname]);
 
-  const navLinks = [
-    { name: 'Home', path: '/' },
-    { name: 'Ceylinco Life', path: '/ceylinco-life' },
+  const aboutLinks = [
     { name: 'Legacy', path: '/legacy' },
     { name: 'Team', path: '/team' },
-    { name: 'Event', path: '/event' },
-    { name: 'Shop', path: '/shop' },
+    { name: 'Ceylinco Life', path: '/ceylinco-life' },
   ];
 
   const isLightPage = pathname === '/register' || pathname === '/checkout';
@@ -53,15 +50,24 @@ const Navbar = () => {
 
           {/* Desktop Menu */}
           <div className="nav-links desktop-only">
-            {navLinks.map((link) => (
-              <Link 
-                key={link.name} 
-                href={link.path}
-                className={`nav-link ${pathname === link.path ? 'active' : ''}`}
-              >
-                {link.name}
-              </Link>
-            ))}
+            <Link href="/" className={`nav-link ${pathname === '/' ? 'active' : ''}`}>Home</Link>
+            
+            <div className="nav-dropdown-container">
+              <span className={`nav-link ${aboutLinks.some(link => pathname === link.path) ? 'active' : ''}`}>
+                About Us
+              </span>
+              <div className="nav-dropdown">
+                {aboutLinks.map((link) => (
+                  <Link key={link.name} href={link.path} className={`dropdown-item ${pathname === link.path ? 'active' : ''}`}>
+                    {link.name}
+                  </Link>
+                ))}
+              </div>
+            </div>
+
+            <Link href="/event" className={`nav-link ${pathname === '/event' ? 'active' : ''}`}>Event</Link>
+            <Link href="/updates" className={`nav-link ${pathname === '/updates' ? 'active' : ''}`}>Updates</Link>
+            <Link href="/shop" className={`nav-link ${pathname === '/shop' ? 'active' : ''}`}>Shop</Link>
           </div>
           
           <div className="nav-actions desktop-only">
@@ -87,15 +93,18 @@ const Navbar = () => {
 
         {/* Mobile Menu */}
         <div className={`mobile-menu ${isMobileMenuOpen ? 'open' : ''}`}>
-          {navLinks.map((link) => (
-            <Link 
-              key={link.name} 
-              href={link.path}
-              className={`mobile-nav-link ${pathname === link.path ? 'active' : ''}`}
-            >
+          <Link href="/" className={`mobile-nav-link ${pathname === '/' ? 'active' : ''}`}>Home</Link>
+          
+          <div className="mobile-nav-section-title">About Us</div>
+          {aboutLinks.map((link) => (
+            <Link key={link.name} href={link.path} className={`mobile-nav-link nested ${pathname === link.path ? 'active' : ''}`}>
               {link.name}
             </Link>
           ))}
+
+          <Link href="/event" className={`mobile-nav-link ${pathname === '/event' ? 'active' : ''}`}>Event</Link>
+          <Link href="/updates" className={`mobile-nav-link ${pathname === '/updates' ? 'active' : ''}`}>Updates</Link>
+          <Link href="/shop" className={`mobile-nav-link ${pathname === '/shop' ? 'active' : ''}`}>Shop</Link>
           {cartItems.length > 0 && (
             <button className="mobile-cart-btn" onClick={() => { setIsCartOpen(true); setIsMobileMenuOpen(false); }}>
               <ShoppingCart size={22} /> View Cart ({getCartCount()})
