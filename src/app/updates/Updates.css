@@ -178,3 +178,66 @@
     justify-content: center;
   }
 }
+
+/* Layout Container for Ribbon */
+.updates-layout-container {
+  display: flex;
+  width: 100%;
+  min-height: 100vh;
+}
+
+.updates-main-content {
+  flex: 0 0 85%;
+  width: 85%;
+  border-right: 1px solid var(--color-glass-border);
+}
+
+.updates-ribbon {
+  flex: 0 0 15%;
+  width: 15%;
+  background-color: var(--color-bg-secondary);
+  border-left: 1px solid rgba(0,0,0,0.2);
+  position: relative;
+}
+
+.ribbon-sticky-content {
+  position: sticky;
+  top: 120px; /* Below navbar */
+  padding: 2rem 1rem;
+  text-align: center;
+  color: white;
+}
+
+.ribbon-title {
+  font-family: var(--font-secondary);
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: var(--color-coral-glow);
+  letter-spacing: 1px;
+}
+
+.ribbon-placeholder {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+@media (max-width: 992px) {
+  .updates-layout-container {
+    flex-direction: column;
+  }
+  .updates-main-content {
+    flex: 1 1 100%;
+    width: 100%;
+    border-right: none;
+  }
+  .updates-ribbon {
+    flex: 1 1 100%;
+    width: 100%;
+    border-left: none;
+    border-top: 1px solid var(--color-glass-border);
+  }
+  .ribbon-sticky-content {
+    position: static;
+    padding: 3rem 1rem;
+  }
+}

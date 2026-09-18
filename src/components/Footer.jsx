@@ -3,6 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { FaInstagram, FaLinkedinIn, FaFacebookF, FaYoutube, FaWhatsapp } from 'react-icons/fa';
+import { Lock } from 'lucide-react';
 import './Footer.css';
 
 const Footer = () => {
@@ -23,7 +24,9 @@ const Footer = () => {
             <Link href="/ceylinco-life">Ceylinco Life</Link>
             <Link href="/legacy">Legacy</Link>
             <Link href="/team">Team</Link>
-            <Link href="/event">Event</Link>
+            <span style={{ cursor: 'not-allowed', opacity: 0.6, display: 'inline-flex', alignItems: 'center', color: 'inherit', textDecoration: 'none', margin: '0 1rem' }} title="Coming Soon">
+              Event <Lock size={12} style={{ marginLeft: '4px' }} />
+            </span>
             <Link href="/shop">Shop</Link>
             <Link href="/register">Register</Link>
           </nav>

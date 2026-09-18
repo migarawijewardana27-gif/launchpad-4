@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Menu, X, ShoppingCart } from 'lucide-react';
+import { Menu, X, ShoppingCart, Lock } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 import CartSlideOver from './CartSlideOver';
 import './Navbar.css';
@@ -65,7 +65,9 @@ const Navbar = () => {
               </div>
             </div>
 
-            <Link href="/event" className={`nav-link ${pathname === '/event' ? 'active' : ''}`}>Event</Link>
+            <span className="nav-link" style={{ cursor: 'not-allowed', opacity: 0.6, display: 'inline-flex', alignItems: 'center' }} title="Coming Soon">
+              Event <Lock size={14} style={{ marginLeft: '4px' }} />
+            </span>
             <Link href="/updates" className={`nav-link ${pathname === '/updates' ? 'active' : ''}`}>Updates</Link>
             <Link href="/shop" className={`nav-link ${pathname === '/shop' ? 'active' : ''}`}>Shop</Link>
           </div>
@@ -102,7 +104,9 @@ const Navbar = () => {
             </Link>
           ))}
 
-          <Link href="/event" className={`mobile-nav-link ${pathname === '/event' ? 'active' : ''}`}>Event</Link>
+          <span className="mobile-nav-link" style={{ cursor: 'not-allowed', opacity: 0.6, display: 'flex', alignItems: 'center' }} title="Coming Soon">
+            Event <Lock size={16} style={{ marginLeft: '6px' }} />
+          </span>
           <Link href="/updates" className={`mobile-nav-link ${pathname === '/updates' ? 'active' : ''}`}>Updates</Link>
           <Link href="/shop" className={`mobile-nav-link ${pathname === '/shop' ? 'active' : ''}`}>Shop</Link>
           {cartItems.length > 0 && (

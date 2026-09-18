@@ -8,7 +8,11 @@ import './Updates.css';
 const Updates = () => {
   return (
     <div className="page-wrapper updates-page">
-      {/* Hero Section */}
+      <div className="updates-layout-container">
+        
+        {/* LEFT SIDE: Main Content (85%) */}
+        <div className="updates-main-content">
+          {/* Hero Section */}
       <section className="updates-hero full-screen-hero theme-red" style={{ position: 'relative' }}>
         <div className="container center-align">
           <motion.div 
@@ -137,6 +141,18 @@ const Updates = () => {
         </div>
       </section>
 
+        </div>
+        {/* End of LEFT SIDE */}
+        
+        {/* RIGHT SIDE: Static Ribbon (15%) */}
+        <aside className="updates-ribbon">
+          <div className="ribbon-sticky-content">
+            <h3 className="ribbon-title">New Content</h3>
+            <p className="ribbon-placeholder">Coming soon...</p>
+          </div>
+        </aside>
+
+      </div>
     </div>
   );
 };

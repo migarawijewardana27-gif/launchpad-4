@@ -155,7 +155,7 @@ const Home = () => {
         </div>
       </section>
 
-      <SectionDivider fillColor="var(--color-bg-primary)" />
+      <SectionDivider flip fillColor="#FFFFFF" />
 
       {/* SECTION 3: Core Pillars Grid */}
       <section className="pillars-section section-padding theme-red">
@@ -170,7 +170,7 @@ const Home = () => {
         </div>
       </section>
 
-      <SectionDivider flip fillColor="#FFFFFF" />
+      <SectionDivider fillColor="#FFFFFF" />
 
       {/* SECTION 4: LaunchPad 3.0 Aftermovie */}
       <section className="aftermovie-section section-padding theme-white">
@@ -288,13 +288,32 @@ const Home = () => {
       <section className="contact-section section-padding theme-red">
         <div className="container">
           <StaggeredText text="Contact The Team" className="center-align mb-lg" />
+          <div className="contact-grid" style={{ marginBottom: '3rem' }}>
+            {[
+              { role: "Organizing Committee President", name: "Thrinayani Selvanathan", image: "/oc/thrinayani.png", whatsapp: "https://wa.me/94779680928", instagram: "https://www.instagram.com/inayeux/", linkedin: "https://www.linkedin.com/in/thrinayanis/" }
+            ].map((member, i) => (
+              <div key={`ocp-${i}`} className="contact-card">
+                <div className="contact-pic-wrapper">
+                  <img src={member.image} alt={member.name} className="contact-pic"/>
+                </div>
+                <h4>{member.name}</h4>
+                <p>{member.role}</p>
+                <div className="contact-socials">
+                  {member.whatsapp && <a href={member.whatsapp} target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><FaWhatsapp size={18} /></a>}
+                  {member.instagram && <a href={member.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram"><FaInstagram size={18} /></a>}
+                  {member.linkedin && <a href={member.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><FaLinkedinIn size={18} /></a>}
+                </div>
+              </div>
+            ))}
+          </div>
+
           <div className="contact-grid">
             {[
               { role: "OCVP Delegates", name: "Pumuthu Weerakoon", image: "/oc/pumuthu.png", whatsapp: "https://wa.me/94761020132", instagram: "https://www.instagram.com/pumuthunimaya?igsi=MWRyam1hMnpjYnIxMA%3D%3D&utm_source=qr", linkedin: "https://www.linkedin.com/in/pumuthu-weerakoon?utm_source=share_via&utm_content=profile&utm_medium=member_ios" },
-              { role: "Organizing Committee President", name: "Thrinayani Selvanathan", image: "/oc/thrinayani.png", whatsapp: "https://wa.me/94779680928", instagram: "https://www.instagram.com/inayeux/", linkedin: "https://www.linkedin.com/in/thrinayanis/" },
-              { role: "OCVP Delegates", name: "Sahanya Herath", image: "/oc/sahanya.png", whatsapp: "https://wa.me/94773979334", instagram: "https://www.instagram.com/justt.ssiya?igsi=NnQ1a240MWp2dzU0&utm_source=qr", linkedin: "https://www.linkedin.com/in/sahanya-herath-97a260311?utm_source=share_via&utm_content=profile&utm_medium=member_ios" }
+              { role: "OCVP Delegates", name: "Sahanya Herath", image: "/oc/sahanya.png", whatsapp: "https://wa.me/94773979334", instagram: "https://www.instagram.com/justt.ssiya?igsi=NnQ1a240MWp2dzU0&utm_source=qr", linkedin: "https://www.linkedin.com/in/sahanya-herath-97a260311?utm_source=share_via&utm_content=profile&utm_medium=member_ios" },
+              { role: "OCVP Delegates", name: "Sidangana Inimankada", image: "/oc/sidangana.png", whatsapp: "https://wa.me/94712442125", instagram: "https://www.instagram.com/sidangana_h?igsi=OXd0MHp3Z2xqZmk5&utm_source=qr", linkedin: "http://www.linkedin.com/in/sidangana-inimankada" }
             ].map((member, i) => (
-              <div key={i} className="contact-card">
+              <div key={`del-${i}`} className="contact-card">
                 <div className="contact-pic-wrapper">
                   <img src={member.image} alt={member.name} className="contact-pic"/>
                 </div>
