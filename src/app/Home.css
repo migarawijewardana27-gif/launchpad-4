@@ -185,7 +185,7 @@
 .hero-title {
   color: white;
   font-family: var(--font-secondary);
-  font-size: clamp(5rem, 10vw, 8rem);
+  font-size: clamp(2.5rem, 6vw, 6rem);
   text-transform: uppercase;
   margin-bottom: 1.5rem;
   line-height: 1;
@@ -193,6 +193,7 @@
   text-align: center;
   font-weight: 900;
   filter: drop-shadow(0 10px 8px rgba(0,0,0,0.4));
+  white-space: nowrap;
 }
 
 .hero-cta-container {
@@ -200,6 +201,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
   width: 100%;
 }
 
@@ -358,14 +361,16 @@
 
 /* Hover illumination */
 .pillar-flip-card:hover .pillar-flip-front {
-  background: rgba(255, 255, 255, 0.15);
-  border-color: #FFFFFF;
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 107, 107, 0.6);
+  box-shadow: 0 0 40px rgba(255, 107, 107, 0.25), 0 12px 30px rgba(0,0,0,0.3);
 }
 
 .pillar-flip-card:hover .front-icon {
-  transform: scale(1.1);
+  transform: scale(1.15);
   opacity: 1;
-  color: var(--color-crimson-bold);
+  color: var(--color-coral-glow);
+  filter: drop-shadow(0 0 10px rgba(255, 107, 107, 0.6));
 }
 
 .pillar-flip-back {
@@ -394,11 +399,11 @@
   max-width: 900px;
   margin: 0 auto;
   aspect-ratio: 16/9;
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-lg);
   overflow: hidden;
   background: black;
-  box-shadow: 0 25px 50px -12px rgba(139, 0, 0, 0.2);
-  border: 2px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 30px 80px -12px rgba(139, 0, 0, 0.35), 0 0 0 1px rgba(255,107,107,0.2);
+  border: 2px solid rgba(255, 107, 107, 0.15);
 }
 
 /* Section 5: Single Row 16:9 Infinite Marquee */

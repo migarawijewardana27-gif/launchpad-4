@@ -22,7 +22,7 @@ const FlipCardPillar = ({ icon: Icon, title, delay }) => {
   const [isFlipped, setIsFlipped] = useState(false);
 
   return (
-    <motion.div 
+    <motion.div
       className="pillar-flip-card"
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
@@ -60,14 +60,14 @@ const Home = () => {
 
   return (
     <div className="page-wrapper home-page">
-      
+
       {/* SECTION 1: Hero Area */}
       <section className="hero-section full-screen-hero relative-hero theme-red">
-        
+
         {/* Background Slideshow */}
         <div className="hero-slideshow-container">
           {heroImages.map((src, index) => (
-            <div 
+            <div
               key={src}
               className={`hero-slide ${index === currentImageIndex ? 'active' : ''}`}
               style={{ backgroundImage: `url(${src})` }}
@@ -77,7 +77,7 @@ const Home = () => {
         </div>
 
         <div className="container hero-container center-align">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8 }}
@@ -86,17 +86,20 @@ const Home = () => {
             <div className="powered-by-hero">
               <img src="/powered by white.png" alt="Powered by LaunchPad" className="powered-by-logo-hero" onError={(e) => { e.target.style.display = 'none'; }} />
             </div>
-            <h1 className="hero-title text-white">Dare to Dream</h1>
+            <h1 className="hero-title text-white">Beyond the blueprint</h1>
             <motion.div className="hero-cta-container">
               <Link href="/register" className="btn btn-primary pulse-btn">
                 Register Now
               </Link>
+              <a href="#aftermovie" className="btn btn-secondary">
+                Experience LaunchPad 3.0
+              </a>
             </motion.div>
           </motion.div>
         </div>
-        
+
         {/* Floating Launching Soon Bar */}
-        <motion.div 
+        <motion.div
           className="hero-launching-soon glass-panel"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -113,19 +116,20 @@ const Home = () => {
       <section className="identity-section section-padding theme-white">
         <div className="container">
           <div className="identity-grid">
-            <motion.div 
+            <motion.div
               className="intro-text"
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
             >
+              <div className="section-label">About the Event</div>
               <h2>What is LaunchPad 4.0?</h2>
               <p>A premier career guidance program equipping and empowering Sri Lanka's youth for the global stage.</p>
             </motion.div>
-            
+
             <div className="vision-mission-side-by-side">
-              <motion.div 
+              <motion.div
                 className="identity-card"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -138,7 +142,7 @@ const Home = () => {
                 <p>Sri Lanka's youth being equipped, empowered, and ready to own the global stage.</p>
               </motion.div>
 
-              <motion.div 
+              <motion.div
                 className="identity-card"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -160,7 +164,10 @@ const Home = () => {
       {/* SECTION 3: Core Pillars Grid */}
       <section className="pillars-section section-padding theme-red">
         <div className="container">
-          <StaggeredText text="Core Pillars" className="center-align mb-lg" />
+          <div className="center-align mb-lg">
+            <div className="section-label" style={{ justifyContent: 'center' }}>What We Stand For</div>
+            <StaggeredText text="Core Pillars" className="" />
+          </div>
           <div className="pillars-grid">
             <FlipCardPillar icon={Target} title="Career Exploration" delay={0.1} />
             <FlipCardPillar icon={Rocket} title="Skill Development" delay={0.2} />
@@ -174,16 +181,16 @@ const Home = () => {
 
       {/* SECTION 4: LaunchPad 3.0 Aftermovie */}
       <section className="aftermovie-section section-padding theme-white">
-        <div className="container center-align">
+        <div id="aftermovie" className="container center-align">
           <StaggeredText text="LaunchPad 3.0 Aftermovie" className="mb-md" />
           <div className="video-container-sleek">
-            <iframe 
-              width="100%" 
-              height="100%" 
-              src="https://www.youtube.com/embed/9PwS06duexc?autoplay=1&mute=1&loop=1&playlist=9PwS06duexc" 
-              title="LaunchPad 3.0 Aftermovie" 
-              frameBorder="0" 
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            <iframe
+              width="100%"
+              height="100%"
+              src="https://www.youtube.com/embed/9PwS06duexc?autoplay=1&mute=1&loop=1&playlist=9PwS06duexc"
+              title="LaunchPad 3.0 Aftermovie"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
             ></iframe>
           </div>
@@ -201,14 +208,14 @@ const Home = () => {
             <div className="marquee-group-row">
               {memoryImages.map((src, index) => (
                 <div key={`g1-${index}`} className="memory-card-16-9">
-                  <img 
-                    src={src} 
-                    alt={`Memory ${index + 1}`} 
-                    className="memory-card-img" 
-                    onError={(e) => { 
-                      e.target.style.display = 'none'; 
-                      e.target.nextSibling.style.display = 'flex'; 
-                    }} 
+                  <img
+                    src={src}
+                    alt={`Memory ${index + 1}`}
+                    className="memory-card-img"
+                    onError={(e) => {
+                      e.target.style.display = 'none';
+                      e.target.nextSibling.style.display = 'flex';
+                    }}
                   />
                   <div className="memory-placeholder-img" style={{ display: 'none' }}>
                     <span>Memory {index + 1}</span>
@@ -220,14 +227,14 @@ const Home = () => {
             <div className="marquee-group-row">
               {memoryImages.map((src, index) => (
                 <div key={`g2-${index}`} className="memory-card-16-9">
-                  <img 
-                    src={src} 
-                    alt={`Memory ${index + 1}`} 
-                    className="memory-card-img" 
-                    onError={(e) => { 
-                      e.target.style.display = 'none'; 
-                      e.target.nextSibling.style.display = 'flex'; 
-                    }} 
+                  <img
+                    src={src}
+                    alt={`Memory ${index + 1}`}
+                    className="memory-card-img"
+                    onError={(e) => {
+                      e.target.style.display = 'none';
+                      e.target.nextSibling.style.display = 'flex';
+                    }}
                   />
                   <div className="memory-placeholder-img" style={{ display: 'none' }}>
                     <span>Memory {index + 1}</span>
@@ -248,7 +255,7 @@ const Home = () => {
             <p className="spotlight-desc max-w-md mx-auto">
               Ceylinco Life is deeply committed to youth development in Sri Lanka. As the Title Partner for LaunchPad 4.0, they aim to bridge the gap between academic education and the dynamic needs of the corporate world, nurturing the next generation of leaders.
             </p>
-            
+
             <div className="partner-media-grid">
               <div className="media-box primary-box">
                 <img src="/ceylinco/HQ.webp" alt="Ceylinco Life HQ" className="media-img" />
@@ -287,14 +294,18 @@ const Home = () => {
       {/* SECTION 7: Contact the Team */}
       <section className="contact-section section-padding theme-red">
         <div className="container">
-          <StaggeredText text="Contact The Team" className="center-align mb-lg" />
+          <div className="center-align">
+            <div className="section-label" style={{ justifyContent: 'center' }}>Get In Touch</div>
+            <StaggeredText text="Contact The Team" className="mb-md" />
+            <p style={{ marginBottom: '3rem', opacity: 0.8, fontSize: '1rem' }}>Any questions? Reach out to our team directly.</p>
+          </div>
           <div className="contact-grid" style={{ marginBottom: '3rem' }}>
             {[
               { role: "Organizing Committee President", name: "Thrinayani Selvanathan", image: "/oc/thrinayani.png", whatsapp: "https://wa.me/94779680928", instagram: "https://www.instagram.com/inayeux/", linkedin: "https://www.linkedin.com/in/thrinayanis/" }
             ].map((member, i) => (
               <div key={`ocp-${i}`} className="contact-card">
                 <div className="contact-pic-wrapper">
-                  <img src={member.image} alt={member.name} className="contact-pic"/>
+                  <img src={member.image} alt={member.name} className="contact-pic" />
                 </div>
                 <h4>{member.name}</h4>
                 <p>{member.role}</p>
@@ -315,7 +326,7 @@ const Home = () => {
             ].map((member, i) => (
               <div key={`del-${i}`} className="contact-card">
                 <div className="contact-pic-wrapper">
-                  <img src={member.image} alt={member.name} className="contact-pic"/>
+                  <img src={member.image} alt={member.name} className="contact-pic" />
                 </div>
                 <h4>{member.name}</h4>
                 <p>{member.role}</p>

@@ -56,7 +56,7 @@ const Registration = () => {
     itSector: [],
     educationSector: [],
     engineeringSector: [],
-    gainingFromLaunchpad: [],
+    gainingFromLaunchPad: [],
 
     // Step 4: Opportunities
     opportunityType: [],
@@ -248,7 +248,7 @@ const Registration = () => {
               </div>
             </div>
             <div className="left-content">
-              <img src="/White Logo.png" alt="Launchpad 4.0 Logo" className="reg-logo" />
+              <img src="/White Logo.png" alt="LaunchPad 4.0 Logo" className="reg-logo" />
               <h2>Step Into<br/>The Future.</h2>
               <p className="reg-subtitle">Join the most anticipated corporate simulation event of the year.</p>
               
@@ -498,13 +498,13 @@ const Registration = () => {
                     <div className="checkbox-grid-group">
                       <label className="static-label">What are you most interested in gaining from LaunchPad 4.0?</label>
                       <div className="checkbox-grid">
-                        {renderCheckbox('gainingFromLaunchpad', 'Career Guidance', 'Career Guidance')}
-                        {renderCheckbox('gainingFromLaunchpad', 'Industry Insights', 'Industry Insights')}
-                        {renderCheckbox('gainingFromLaunchpad', 'Internships', 'Internships')}
-                        {renderCheckbox('gainingFromLaunchpad', 'Networking', 'Networking')}
-                        {renderCheckbox('gainingFromLaunchpad', 'Mentorship', 'Mentorship')}
-                        {renderCheckbox('gainingFromLaunchpad', 'CV Dev', 'CV Development')}
-                        {renderCheckbox('gainingFromLaunchpad', 'Interview Prep', 'Interview Prep')}
+                        {renderCheckbox('gainingFromLaunchPad', 'Career Guidance', 'Career Guidance')}
+                        {renderCheckbox('gainingFromLaunchPad', 'Industry Insights', 'Industry Insights')}
+                        {renderCheckbox('gainingFromLaunchPad', 'Internships', 'Internships')}
+                        {renderCheckbox('gainingFromLaunchPad', 'Networking', 'Networking')}
+                        {renderCheckbox('gainingFromLaunchPad', 'Mentorship', 'Mentorship')}
+                        {renderCheckbox('gainingFromLaunchPad', 'CV Dev', 'CV Development')}
+                        {renderCheckbox('gainingFromLaunchPad', 'Interview Prep', 'Interview Prep')}
                       </div>
                     </div>
                   </motion.div>

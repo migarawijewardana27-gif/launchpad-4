@@ -27,37 +27,48 @@
 
 .team-tabs-container {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 1rem;
-  max-width: 900px;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  justify-content: flex-start;
+  gap: 0.6rem;
+  max-width: 100%;
+  padding: 0.5rem 0 1rem;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.team-tabs-container::-webkit-scrollbar {
+  display: none;
 }
 
 .team-tab-button {
   background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: rgba(255, 255, 255, 0.7);
-  padding: 0.75rem 1.5rem;
-  border-radius: 2rem;
+  border: 1.5px solid rgba(255, 255, 255, 0.12);
+  color: rgba(255, 255, 255, 0.65);
+  padding: 0.55rem 1.3rem;
+  border-radius: 100px;
   font-family: var(--font-primary);
-  font-size: 0.9rem;
+  font-size: 0.82rem;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 0.08em;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.25s ease;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .team-tab-button:hover {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.3);
   color: white;
 }
 
 .team-tab-button.active {
-  background: var(--color-coral-glow);
-  color: var(--color-bg-primary);
-  border-color: var(--color-coral-glow);
-  box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+  background: linear-gradient(135deg, var(--color-crimson-bold), var(--color-coral-glow));
+  color: white;
+  border-color: transparent;
+  box-shadow: 0 4px 20px rgba(255, 107, 107, 0.5);
 }
 
 /* Square Grid Layout */

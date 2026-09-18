@@ -41,7 +41,7 @@ const Navbar = () => {
         <div className="container nav-container">
           <Link href="/" className="nav-logo">
             <img 
-              src={shouldBeLight ? "/icon red.png" : "/icon white.png"} 
+              src="/icon white.png" 
               alt="LaunchPad Icon" 
               className="nav-brand-icon" 
               onError={(e) => { e.target.style.display = 'none'; }} 
@@ -69,7 +69,9 @@ const Navbar = () => {
               Event <Lock size={14} style={{ marginLeft: '4px' }} />
             </span>
             <Link href="/updates" className={`nav-link ${pathname === '/updates' ? 'active' : ''}`}>Updates</Link>
-            <Link href="/shop" className={`nav-link ${pathname === '/shop' ? 'active' : ''}`}>Shop</Link>
+            <span className="nav-link" style={{ cursor: 'not-allowed', opacity: 0.6, display: 'inline-flex', alignItems: 'center' }} title="Coming Soon">
+              Shop <Lock size={14} style={{ marginLeft: '4px' }} />
+            </span>
           </div>
           
           <div className="nav-actions desktop-only">
@@ -108,7 +110,9 @@ const Navbar = () => {
             Event <Lock size={16} style={{ marginLeft: '6px' }} />
           </span>
           <Link href="/updates" className={`mobile-nav-link ${pathname === '/updates' ? 'active' : ''}`}>Updates</Link>
-          <Link href="/shop" className={`mobile-nav-link ${pathname === '/shop' ? 'active' : ''}`}>Shop</Link>
+          <span className="mobile-nav-link" style={{ cursor: 'not-allowed', opacity: 0.6, display: 'flex', alignItems: 'center' }} title="Coming Soon">
+            Shop <Lock size={16} style={{ marginLeft: '6px' }} />
+          </span>
           {cartItems.length > 0 && (
             <button className="mobile-cart-btn" onClick={() => { setIsCartOpen(true); setIsMobileMenuOpen(false); }}>
               <ShoppingCart size={22} /> View Cart ({getCartCount()})

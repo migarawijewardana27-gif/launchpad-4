@@ -45,7 +45,7 @@ const PageLoader = () => {
           >
             <img 
               src="/icon white.png" 
-              alt="Launchpad Loading" 
+              alt="LaunchPad Loading" 
               className="page-loader-logo" 
             />
           </motion.div>

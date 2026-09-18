@@ -30,7 +30,7 @@ const teamHierarchy = [
     tierName: "Public Relations",
     members: [
       { id: 'pr-1', name: 'Ashrath Rumie', role: 'OCVP Public Relations', description: "Stepping up to handle PR! Armed with brilliant communication skills and a passion for networking.", image: '/oc/ashrath.png', links: { linkedin: 'https://www.linkedin.com/in/ashrath-rumie-29261826b?utm_source=share_via&utm_content=profile&utm_medium=member_ios', whatsapp: 'https://wa.me/94762191023', instagram: 'https://www.instagram.com/ashrath.rumie?igsi=MXNvcHI2aGtzM3JyMQ==', email: 'ashrath2025@gmail.com' } },
-      { id: 'pr-2', name: 'Savandi Liyanayapa', role: 'OCVP Public Relations', description: "Ready to keep everyone engaged, talking, and smiling all day long while promoting the Launchpad brand.", image: '/oc/savandi.png', links: { linkedin: 'https://www.linkedin.com/in/savandi-liyanayapa-31ba86310?utm_source=share_via&utm_content=profile&utm_medium=member_ios', whatsapp: 'https://wa.me/94711496849', instagram: 'https://www.instagram.com/savandii_?utm_source=ig_web_button_share_sheet&stkn=ZDNlZDc0MzIxNw==', email: 'savandisanulya@aiesec.net' } }
+      { id: 'pr-2', name: 'Savandi Liyanayapa', role: 'OCVP Public Relations', description: "Ready to keep everyone engaged, talking, and smiling all day long while promoting the LaunchPad brand.", image: '/oc/savandi.png', links: { linkedin: 'https://www.linkedin.com/in/savandi-liyanayapa-31ba86310?utm_source=share_via&utm_content=profile&utm_medium=member_ios', whatsapp: 'https://wa.me/94711496849', instagram: 'https://www.instagram.com/savandii_?utm_source=ig_web_button_share_sheet&stkn=ZDNlZDc0MzIxNw==', email: 'savandisanulya@aiesec.net' } }
     ]
   },
   {
@@ -44,7 +44,7 @@ const teamHierarchy = [
   {
     tierName: "Events",
     members: [
-      { id: 'evt-1', name: 'Fathima Afsha', role: 'OCVP Events', description: "Planning the core events of Launchpad 4.0 with meticulous attention to detail and a flair for the dramatic.", image: '/oc/afsha.png', links: { linkedin: 'https://www.linkedin.com/in/fathima-afsha', whatsapp: 'https://wa.me/94772568368', instagram: 'https://www.instagram.com/_fathima.afsha_?igsi=MTY3NjE0eHN5bjdoYQ==', email: 'fathimaafsha@aiesec.net' } },
+      { id: 'evt-1', name: 'Fathima Afsha', role: 'OCVP Events', description: "Planning the core events of LaunchPad 4.0 with meticulous attention to detail and a flair for the dramatic.", image: '/oc/afsha.png', links: { linkedin: 'https://www.linkedin.com/in/fathima-afsha', whatsapp: 'https://wa.me/94772568368', instagram: 'https://www.instagram.com/_fathima.afsha_?igsi=MTY3NjE0eHN5bjdoYQ==', email: 'fathimaafsha@aiesec.net' } },
       { id: 'evt-2', name: 'Dinithi Muthukumarana', role: 'OCVP Events', description: "A creative powerhouse ready to brainstorm brilliant event designs that will leave a lasting impact.", image: '/oc/dinithi.png', links: { linkedin: 'https://www.linkedin.com/in/dinithi-muthukumarana-636594348?utm_source=share_via&utm_content=profile&utm_medium=member_ios', whatsapp: 'https://wa.me/94704982264', instagram: 'https://www.instagram.com/dinithi.m_7?utm_source=ig_web_button_share_sheet&stkn=ZDNlZDc0MzIxNw==', email: 'dinithimuthu@aiesec.net' } }
     ]
   },
@@ -52,7 +52,7 @@ const teamHierarchy = [
     tierName: "Marketing",
     members: [
       { id: 'mkt-1', name: 'Disen Sathnidu', role: 'OCVP Marketing', description: "Fueled by a passion for the project and ready to keep the team's marketing energy buzzing with brilliant posts.", image: '/oc/disen.png', links: { linkedin: 'https://www.linkedin.com/in/disen-sathnidu-19a8b52b0?utm_source=share_via&utm_content=profile&utm_medium=member_android', whatsapp: 'https://wa.me/94764761285', instagram: 'https://www.instagram.com/itssathnidu?igsi=ZmFoeXFycTU1d3Zu', email: 'disensathnidu@aiesec.net' } },
-      { id: 'mkt-2', name: 'Sanistha', role: 'OCVP Marketing', description: "Bringing out-of-the-box ideas to our digital campaigns and ensuring Launchpad is seen everywhere.", image: '/oc/sanistha.png', links: { linkedin: '#', whatsapp: '#', instagram: '#', email: '#' } },
+      { id: 'mkt-2', name: 'Sanistha', role: 'OCVP Marketing', description: "Bringing out-of-the-box ideas to our digital campaigns and ensuring LaunchPad is seen everywhere.", image: '/oc/sanistha.png', links: { linkedin: '#', whatsapp: '#', instagram: '#', email: '#' } },
       { id: 'mkt-3', name: 'Shalomi Liyanaarachchi', role: 'OCVP Marketing', description: "Mastering the algorithm and ready to skyrocket our engagement metrics with perfectly timed content.", image: '/oc/shalomi.png', links: { linkedin: '#', whatsapp: 'https://wa.me/94763938393', instagram: 'https://www.instagram.com/shalomiii_/?utm_source=ig_web_button_share_sheet', email: 'shalomiaiesec04@gmail.com' } }
     ]
   },
@@ -103,7 +103,7 @@ const SquareGridCard = ({ member, index }) => {
             <img 
               key={i}
               src="/icon white.png" 
-              alt="Launchpad Logo" 
+              alt="LaunchPad Logo" 
               className="dynamic-logo"
               style={{
                 width: style.size,
@@ -151,7 +151,7 @@ const Team = () => {
             animate={{ opacity: 1, y: 0 }}
             className="revamp-title"
           >
-            The Force Behind <span className="highlight-text">Launchpad</span>
+            The Force Behind <span className="highlight-text">LaunchPad</span>
           </motion.h1>
           
           <motion.div 

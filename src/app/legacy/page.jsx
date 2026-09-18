@@ -18,15 +18,20 @@ const LegacyEventSection = ({ version, title, date, location, description, after
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.7 }}
         >
-      <div className="legacy-event-content glass-panel">
+      <div className="legacy-event-content glass-panel" style={{ position: 'relative', overflow: 'hidden' }}>
+        {/* Ghost version watermark */}
+        {!isFirst && (
+          <div className="legacy-ghost-version">{version}</div>
+        )}
         <div className="legacy-event-header">
+          <div className="section-label">{isFirst ? 'LaunchPad' : `Edition ${version}`}</div>
           <div className="legacy-badge" style={isFirst ? { display: 'inline-flex', alignItems: 'center', padding: '6px 16px' } : {}}>
-            {isFirst ? <img src="/icon white.png" alt="Launchpad Icon" style={{ height: '20px', objectFit: 'contain' }} /> : version}
+            {isFirst ? <img src="/icon white.png" alt="LaunchPad Icon" style={{ height: '20px', objectFit: 'contain' }} /> : version}
           </div>
           <h2>{title}</h2>
           <div className="legacy-meta">
-            {date && <span className="meta-item"><Calendar size={16} /> {date}</span>}
-            {location && <span className="meta-item"><MapPin size={16} /> {location}</span>}
+            {date && <span className="meta-item"><Calendar size={14} /> {date}</span>}
+            {location && <span className="meta-item"><MapPin size={14} /> {location}</span>}
           </div>
         </div>
 
@@ -36,7 +41,7 @@ const LegacyEventSection = ({ version, title, date, location, description, after
           {quote && (
             <div className="ocp-quote-block">
               <p className="ocp-quote-text">"{quote}"</p>
-              <p className="ocp-name">— {ocpName}, OCP {isFirst ? 'Launchpad' : `Launchpad ${version}`}</p>
+              <p className="ocp-name">— {ocpName}, OCP {isFirst ? 'LaunchPad' : `LaunchPad ${version}`}</p>
             </div>
           )}
         </div>
@@ -59,7 +64,7 @@ const LegacyEventSection = ({ version, title, date, location, description, after
           <div className="legacy-photo-grid">
             {photos.map((photo, i) => (
               <div key={i} className="legacy-photo-wrapper">
-                <img src={photo} alt={`Launchpad ${version} Highlight ${i + 1}`} loading="lazy" />
+                <img src={photo} alt={`LaunchPad ${version} Highlight ${i + 1}`} loading="lazy" />
               </div>
             ))}
           </div>
@@ -111,7 +116,7 @@ const Legacy = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <img src="/logo only.png" alt="Launchpad Logo" className="legacy-hero-logo" />
+            <img src="/logo only.png" alt="LaunchPad Logo" className="legacy-hero-logo" />
             <h1 style={{ color: 'white' }}>Our Legacy</h1>
             <p className="max-w-md mx-auto legacy-intro-para">
               Since its inception, LaunchPad has been a beacon of inspiration for thousands of youths across Sri Lanka. What started as a daring dream has evolved into a nationwide movement, equipping the next generation of leaders with the skills, network, and mindset to conquer their futures. Take a journey through our history.
@@ -129,7 +134,7 @@ const Legacy = () => {
             location="TBA"
             description="LaunchPad 3.0 highlights and key moments will be featured here, building upon the massive success of the previous iterations and continuing to empower the future leaders of tomorrow."
             aftermovieUrl="https://www.youtube.com/embed/9PwS06duexc"
-            quote="Launchpad 3.0 is going to be the pinnacle of youth development this year. We are ready."
+            quote="LaunchPad 3.0 is going to be the pinnacle of youth development this year. We are ready."
             ocpName="OCP Name Placeholder"
             photos={[
               '/images carousel/memory-8.jpg',

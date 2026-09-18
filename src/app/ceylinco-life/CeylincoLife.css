@@ -1,20 +1,32 @@
 .ceylinco-page {
-  padding-top: 80px;
+  padding-top: 0;
 }
 
-/* SECTION 1: Hero Section */
+/* ===== HERO ===== */
 .ceylinco-hero {
   min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-  background-image: linear-gradient(to bottom, rgba(0,0,0,0.6), rgba(0,0,0,0.8)), url('/ceylinco/HQ.webp');
+  position: relative;
+  overflow: hidden;
+  padding: var(--spacing-xl) 0 6rem;
+}
+
+.ceylinco-hero-bg-overlay {
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(to bottom, rgba(60,0,0,0.7) 0%, rgba(139,0,0,0.85) 60%, rgba(139,0,0,1) 100%), url('/ceylinco/HQ.webp');
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
-  border-bottom: 1px solid var(--color-glass-border);
-  padding: var(--spacing-xl) 0;
+  z-index: 0;
+}
+
+.ceylinco-hero > .container {
+  position: relative;
+  z-index: 1;
 }
 
 .ceylinco-hero-content {
@@ -25,6 +37,63 @@
   align-items: center;
 }
 
+.hero-headline-cey {
+  font-family: var(--font-secondary);
+  font-size: clamp(3rem, 6vw, 5.5rem);
+  color: #fff;
+  letter-spacing: 0.04em;
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+  line-height: 1.1;
+  text-shadow: 0 4px 30px rgba(0,0,0,0.4);
+}
+
+.hero-subheadline-white {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 1.15rem;
+  max-width: 600px;
+  margin: 0 auto 3rem;
+  line-height: 1.7;
+}
+
+/* Stats Row */
+.hero-stats-row {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.stat-pill {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: var(--radius-md);
+  padding: 1rem 2rem;
+  min-width: 120px;
+}
+
+.stat-number {
+  font-family: var(--font-secondary);
+  font-size: 2.2rem;
+  color: var(--color-coral-glow);
+  line-height: 1;
+  margin-bottom: 0.25rem;
+}
+
+.stat-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.7);
+}
+
+/* Logo Lockup */
 .partnership-badge-glass {
   display: inline-block;
   padding: 0.5rem 1.75rem;
@@ -37,7 +106,6 @@
   text-transform: uppercase;
   letter-spacing: 2px;
   margin-bottom: var(--spacing-lg);
-  box-shadow: 0 4px 15px rgba(255, 107, 107, 0.2);
 }
 
 .logo-lockup-glass {
@@ -49,101 +117,83 @@
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.2);
-  padding: 2rem 3rem;
+  padding: 1.5rem 2.5rem;
   border-radius: var(--radius-lg);
-  margin-bottom: var(--spacing-lg);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
 }
 
 .lockup-logo {
-  height: 80px;
+  height: 70px;
   object-fit: contain;
 }
 
 .lockup-divider {
   width: 2px;
-  height: 60px;
-  background-color: rgba(255, 255, 255, 1);
+  height: 55px;
+  background-color: rgba(255, 255, 255, 0.5);
 }
 
-.hero-subheadline-white {
-  color: #FFFFFF;
-  font-size: 1.25rem;
-  max-width: 600px;
-  margin: 0 auto;
-  opacity: 0.9;
-}
-
-/* SECTION 2: Commitment Section */
+/* ===== COMMITMENT SECTION (WHITE) ===== */
 .commitment-section {
-  background-color: transparent;
+  padding: var(--spacing-xl) 0;
 }
 
-.commitment-asymmetric-grid {
+.commitment-layout {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: var(--spacing-lg);
-  align-items: stretch;
+  gap: 5rem;
+  align-items: center;
 }
 
-.commitment-card {
-  background: rgba(0, 0, 0, 0.4);
-  backdrop-filter: blur(20px);
-  border-radius: var(--radius-md);
-  padding: 3rem;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 20px 40px rgba(0,0,0,0.6);
-}
-
-.commitment-card.main-card {
-  grid-column: 1 / 2;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  background-image: linear-gradient(to right, rgba(0,0,0,0.8), rgba(0,0,0,0.6)), url('/ceylinco/P1.jpg');
-  background-size: cover;
-  background-position: center;
-}
-
-.commitment-card.main-card h2 {
-  color: var(--color-text-primary);
-  margin-bottom: var(--spacing-md);
-}
-
-.commitment-card.main-card p {
-  font-size: 1.1rem;
-  line-height: 1.7;
-}
-
-.commitment-card.secondary-card {
-  grid-column: 2 / 3;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  background-image: linear-gradient(to bottom, rgba(139,0,0,0.8), rgba(0,0,0,0.8)), url('/ceylinco/P2.jpg');
-  background-size: cover;
-  background-position: center;
-  border: 1px solid rgba(255, 107, 107, 0.2);
-}
-
-.card-icon-wrapper {
+.commitment-text-side h2 {
+  color: var(--color-bg-primary);
+  margin-top: 0.5rem;
   margin-bottom: 1.5rem;
 }
 
-.apricot-icon {
-  color: var(--color-coral-glow);
+.commitment-text-side p {
+  color: #444;
+  margin-bottom: 1rem;
 }
 
-.commitment-card.secondary-card p {
-  font-size: 1.1rem;
-  font-weight: 500;
-  color: rgba(255, 255, 255, 0.8);
-  line-height: 1.6;
+/* Media grid (borrowed from home) */
+.partner-media-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto;
+  gap: 0.75rem;
+  height: 420px;
 }
 
-/* SECTION 3: Leadership Message */
+.media-box {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+}
+
+.primary-box {
+  grid-column: 1 / 3;
+  height: 240px;
+}
+
+.secondary-box-1, .secondary-box-2 {
+  height: 160px;
+}
+
+.media-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.media-box:hover .media-img {
+  transform: scale(1.04);
+}
+
+/* ===== LEADERSHIP QUOTE (RED) ===== */
 .leadership-message-section {
-  background-color: transparent;
+  position: relative;
 }
 
 .editorial-quote-block {
@@ -151,29 +201,50 @@
   margin: 0 auto;
   display: flex;
   gap: 4rem;
-  align-items: center;
+  align-items: flex-start;
 }
 
 .author-image-container {
-  flex: 0 0 35%;
+  flex: 0 0 320px;
   border-radius: var(--radius-lg);
   overflow: hidden;
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  background: rgba(0, 0, 0, 0.2);
 }
 
 .author-large-image {
   width: 100%;
-  height: auto;
-  display: block;
+  height: 380px;
   object-fit: cover;
+  display: block;
+}
+
+.author-image-caption {
+  background: rgba(0,0,0,0.4);
+  backdrop-filter: blur(10px);
+  padding: 1.25rem 1.5rem;
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.author-image-caption h4 {
+  color: #fff;
+  font-size: 1.2rem;
+  margin-bottom: 0.2rem;
+}
+
+.author-image-caption p {
+  color: var(--color-coral-glow);
+  font-size: 0.85rem;
+  margin: 0;
+  line-height: 1.4;
 }
 
 .editorial-content {
   flex: 1;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  padding-top: 2rem;
 }
 
 .quote-icon-container {
@@ -184,97 +255,76 @@
 
 .editorial-content blockquote {
   font-family: var(--font-secondary);
-  font-size: 1.6rem;
+  font-size: 1.8rem;
   line-height: 1.6;
-  color: var(--color-text-primary);
-  margin-bottom: 2rem;
+  color: rgba(255,255,255,0.9);
+  margin-bottom: 0;
   border: none;
   padding: 0;
-  font-style: italic;
 }
 
-.author-details-new {
-  margin-top: 1rem;
-}
-
-.author-details-new h4 {
-  color: var(--color-text-primary);
-  margin-bottom: 0.5rem;
-  font-size: 1.5rem;
-}
-
-.author-details-new p {
-  color: var(--color-coral-glow);
-  font-size: 1.1rem;
-  font-weight: 600;
-  margin: 0;
-  line-height: 1.5;
-}
-
-/* SECTION 4: Opportunities Section */
+/* ===== OPPORTUNITIES (WHITE) ===== */
 .opportunities-section {
-  background-color: transparent;
+  padding: var(--spacing-xl) 0;
 }
 
 .benefits-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: var(--spacing-md);
-  margin-top: var(--spacing-xl);
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
 }
 
 .benefit-card {
-  padding: var(--spacing-lg) var(--spacing-md);
+  background: #FFFFFF;
+  border-radius: var(--radius-lg);
+  padding: 2.5rem 2rem;
   text-align: center;
-  background: rgba(0, 0, 0, 0.3);
-  backdrop-filter: blur(15px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
-  border-radius: var(--radius-md);
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  border: 1px solid rgba(139, 0, 0, 0.08);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.06);
+  transition: all 0.4s ease;
 }
 
-.benefit-card.dark-card h3 {
-  color: white;
+.benefit-card h3 {
+  color: var(--color-bg-primary);
+  font-size: 1.5rem;
+  margin-bottom: 0.75rem;
+  margin-top: 0.5rem;
 }
-.benefit-card.dark-card p {
-  color: rgba(255, 255, 255, 0.8);
+
+.benefit-card p {
+  color: #555;
+  font-size: 1rem;
+  line-height: 1.6;
 }
 
 .benefit-icon {
   width: 64px;
   height: 64px;
-  margin: 0 auto var(--spacing-md);
-  background: rgba(255, 255, 255, 0.1);
-  color: var(--color-text-primary);
+  margin: 0 auto 1.25rem;
+  background: rgba(139, 0, 0, 0.06);
+  color: var(--color-crimson-bold);
   border-radius: var(--radius-md);
   display: flex;
   align-items: center;
   justify-content: center;
-  transform: rotate(-10deg);
-  transition: transform 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .benefit-card:hover .benefit-icon {
-  transform: rotate(0deg) scale(1.1);
-  background: var(--color-coral-glow);
+  background: var(--color-crimson-bold);
   color: white;
+  transform: scale(1.1);
+  box-shadow: 0 8px 20px rgba(211, 47, 47, 0.4);
 }
 
-.benefit-card h3 {
-  color: var(--color-text-primary);
-  font-size: 1.5rem;
-  margin-bottom: var(--spacing-sm);
-}
-
-/* SECTION 5: Digital Footprint */
+/* ===== CONNECT (RED) ===== */
 .digital-footprint-section {
-  background-color: transparent;
-  border-top: 1px solid var(--color-glass-border);
+  position: relative;
 }
 
 .footprint-content h2 {
-  font-size: 2.5rem;
+  font-size: clamp(2.5rem, 4vw, 4rem);
+  margin-bottom: 1rem;
 }
 
 .footprint-subtext {
@@ -296,72 +346,73 @@
   flex-direction: column;
   align-items: center;
   text-decoration: none;
-  gap: 1rem;
+  gap: 0.75rem;
 }
 
 .hub-icon-wrapper {
-  width: 80px;
-  height: 80px;
+  width: 72px;
+  height: 72px;
   border-radius: var(--radius-md);
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(5px);
-  -webkit-backdrop-filter: blur(5px);
   border: 1px solid rgba(255, 255, 255, 0.2);
   display: flex;
   align-items: center;
   justify-content: center;
   color: #FFFFFF;
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: all 0.4s var(--transition-smooth);
 }
 
 .hub-link span {
-  color: #FFFFFF;
-  font-family: var(--font-secondary);
+  color: rgba(255,255,255,0.7);
+  font-size: 0.8rem;
   font-weight: 600;
-  font-size: 1rem;
-  opacity: 0.9;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
   transition: color 0.3s ease;
 }
 
 .hub-link:hover .hub-icon-wrapper {
-  transform: scale(1.15) translateY(-10px);
+  transform: scale(1.15) translateY(-8px);
   background: var(--color-coral-glow);
-  color: white;
   border-color: var(--color-coral-glow);
-  box-shadow: 0 15px 25px rgba(255, 107, 107, 0.4);
+  box-shadow: 0 15px 30px rgba(255, 107, 107, 0.45);
 }
 
 .hub-link:hover span {
   color: var(--color-coral-glow);
 }
 
-/* Responsive */
-@media (max-width: 768px) {
+/* ===== RESPONSIVE ===== */
+@media (max-width: 900px) {
+  .commitment-layout {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+  .editorial-quote-block {
+    flex-direction: column;
+    gap: 2rem;
+  }
+  .author-image-container {
+    flex: none;
+    width: 100%;
+  }
+  .author-large-image {
+    height: 280px;
+  }
+  .benefits-grid {
+    grid-template-columns: 1fr;
+  }
   .logo-lockup-glass {
     flex-direction: column;
     padding: 1.5rem;
     gap: 1.5rem;
   }
-
   .lockup-divider {
     width: 60px;
     height: 2px;
   }
-
-  .commitment-asymmetric-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .commitment-card.secondary-card {
-    grid-column: 1 / 2;
-  }
-
-  .editorial-quote-block {
-    flex-direction: column;
-    gap: 1.5rem;
-  }
-
-  .editorial-content blockquote {
-    font-size: 1.4rem;
+  .partner-media-grid {
+    height: auto;
   }
 }
