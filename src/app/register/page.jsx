@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { CheckCircle, ArrowRight, ArrowLeft, Loader, Upload } from 'lucide-react';
-import { submitFormData, uploadFile } from '../../services/firebaseService';
+import { submitFormData, uploadFile } from '../../services/supabaseService';
 import './Registration.css';
 
 const MEMORY_IMAGES = [

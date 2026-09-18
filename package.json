@@ -10,9 +10,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "firebase": "^12.19.0",
-    "firebase-admin": "^14.4.0",
-    "firebase-functions": "^7.3.2",
+    "@supabase/supabase-js": "^2.116.0",
     "framer-motion": "^13.2.0",
     "googleapis": "^181.0.0",
     "lucide-react": "^1.45.0",

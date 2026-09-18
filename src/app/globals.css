@@ -7,7 +7,7 @@ html {
 
 :root {
   /* Color Palette */
-  --color-peachy-cream: #FFFFFF;
+  --color-peachy-cream: #F8FAFC;
   --color-deep-garnet: #8B0000;
   --color-crimson-bold: #D32F2F;
   --color-coral-glow: #FF6B6B;
@@ -42,10 +42,10 @@ html {
   --spacing-xl: 8rem;
 
   /* Border Radius */
-  --radius-sm: 8px;
-  --radius-md: 16px;
-  --radius-lg: 24px;
-  --radius-full: 9999px;
+  --radius-sm: 12px;
+  --radius-md: 12px;
+  --radius-lg: 12px;
+  --radius-full: 12px;
 }
 
 
@@ -65,8 +65,26 @@ input, textarea, select {
   padding: 0;
 }
 
+/* ===== GLOBAL SELECTION STYLE ===== */
+::selection {
+  background-color: var(--color-crimson-bold);
+  color: #FFFFFF;
+}
+
+/* ===== ACCESSIBILITY FOCUS STATES ===== */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+[tabindex]:not([tabindex="-1"]):focus-visible {
+  outline: none !important;
+  box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.5) !important;
+}
+
 body {
   font-family: var(--font-primary);
+  font-size: 1.125rem;
   background-color: var(--color-bg-primary);
   color: var(--color-text-primary);
   line-height: 1.6;
@@ -76,9 +94,16 @@ body {
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-secondary);
   font-weight: normal;
-  letter-spacing: 0.05em;
   line-height: 1.2;
   color: var(--color-text-primary);
+}
+
+h1, h2, h3 {
+  letter-spacing: -0.025em;
+}
+
+h4, h5, h6 {
+  letter-spacing: 0.05em;
 }
 
 h1 {
@@ -99,6 +124,7 @@ h3 {
 p {
   margin-bottom: var(--spacing-sm);
   font-size: 1.125rem;
+  line-height: 1.625;
   color: var(--color-text-secondary);
 }
 
@@ -293,7 +319,7 @@ label {
 }
 
 .theme-white {
-  background-color: #FFFFFF;
+  background-color: #F8FAFC;
   color: #333333;
 }
 
@@ -334,6 +360,6 @@ label {
 
 .theme-white input:focus, .theme-white textarea:focus, .theme-white select:focus {
   border-color: var(--color-coral-glow);
-  background: #FFFFFF;
+  background: #F8FAFC;
   box-shadow: 0 0 0 4px rgba(255, 107, 107, 0.1);
 }

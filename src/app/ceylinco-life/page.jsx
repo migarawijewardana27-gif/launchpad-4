@@ -41,7 +41,7 @@ const CeylincoLife = () => {
             <div className="logo-lockup-glass">
               <img src="/White Logo.png" alt="LaunchPad 4.0 Logo" className="lockup-logo lp-logo" />
               <div className="lockup-divider"></div>
-              <img src="/ceylinco.png" alt="Ceylinco Life Logo" className="lockup-logo ceylinco-logo" />
+              <img src="/ceylinco.png" alt="Ceylinco Life Logo" className="lockup-logo ceylinco-logo bg-white rounded-full px-6 py-2" />
             </div>
 
             <p className="hero-subheadline-white">

@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { Target, Rocket, Users, Briefcase } from 'lucide-react';
+import { Target, Rocket, Users, Briefcase, ChevronDown, Eye } from 'lucide-react';
 import { FaWhatsapp, FaInstagram, FaLinkedinIn, FaGlobe, FaFacebookF, FaYoutube } from 'react-icons/fa';
 import StaggeredText from '../components/StaggeredText';
 import SectionDivider from '../components/SectionDivider';
@@ -102,7 +102,10 @@ const Home = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.5 }}
         >
-          <div className="launching-text">SCROLL TO EXPLORE</div>
+          <div className="launching-text">
+            SCROLL TO EXPLORE
+            <ChevronDown className="scroll-icon" />
+          </div>
         </motion.div>
       </section>
 
@@ -123,25 +126,27 @@ const Home = () => {
             
             <div className="vision-mission-side-by-side">
               <motion.div 
-                className="identity-card glass-panel"
+                className="identity-card"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.2 }}
                 whileHover={{ y: -5, boxShadow: '0 15px 30px rgba(139,0,0,0.1)' }}
               >
+                <Eye className="card-icon" style={{ color: 'var(--color-crimson-bold)' }} />
                 <h3>Vision</h3>
                 <p>Sri Lanka's youth being equipped, empowered, and ready to own the global stage.</p>
               </motion.div>
 
               <motion.div 
-                className="identity-card glass-panel"
+                className="identity-card"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.4 }}
                 whileHover={{ y: -5, boxShadow: '0 15px 30px rgba(139,0,0,0.1)' }}
               >
+                <Target className="card-icon" style={{ color: 'var(--color-crimson-bold)' }} />
                 <h3>Mission</h3>
                 <p>To equip Sri Lanka's youth with the tools, mindset, and opportunities to elevate themselves, secure careers, share ideas, and connect with key partners.</p>
               </motion.div>
@@ -239,7 +244,7 @@ const Home = () => {
         <div className="container">
           <div className="spotlight-content center-align">
             <h3 className="spotlight-badge">Title Partner</h3>
-            <h2 className="spotlight-name">Ceylinco Life</h2>
+            <img src="/ceylinco.png" alt="Ceylinco Life" className="spotlight-logo" />
             <p className="spotlight-desc max-w-md mx-auto">
               Ceylinco Life is deeply committed to youth development in Sri Lanka. As the Title Partner for LaunchPad 4.0, they aim to bridge the gap between academic education and the dynamic needs of the corporate world, nurturing the next generation of leaders.
             </p>
@@ -285,20 +290,20 @@ const Home = () => {
           <StaggeredText text="Contact The Team" className="center-align mb-lg" />
           <div className="contact-grid">
             {[
-              { role: "Organizing Committee President", name: "Sarah Jane" },
-              { role: "OCVP Delegate Experience", name: "Mark Doe" },
-              { role: "OCVP Logistics", name: "Emma Smith" }
+              { role: "OCVP Delegates", name: "Pumuthu Weerakoon", image: "/oc/pumuthu.png", whatsapp: "https://wa.me/94761020132", instagram: "https://www.instagram.com/pumuthunimaya?igsi=MWRyam1hMnpjYnIxMA%3D%3D&utm_source=qr", linkedin: "https://www.linkedin.com/in/pumuthu-weerakoon?utm_source=share_via&utm_content=profile&utm_medium=member_ios" },
+              { role: "Organizing Committee President", name: "Thrinayani Selvanathan", image: "/oc/thrinayani.png", whatsapp: "https://wa.me/94779680928", instagram: "https://www.instagram.com/inayeux/", linkedin: "https://www.linkedin.com/in/thrinayanis/" },
+              { role: "OCVP Delegates", name: "Sahanya Herath", image: "/oc/sahanya.png", whatsapp: "https://wa.me/94773979334", instagram: "https://www.instagram.com/justt.ssiya?igsi=NnQ1a240MWp2dzU0&utm_source=qr", linkedin: "https://www.linkedin.com/in/sahanya-herath-97a260311?utm_source=share_via&utm_content=profile&utm_medium=member_ios" }
             ].map((member, i) => (
               <div key={i} className="contact-card">
                 <div className="contact-pic-wrapper">
-                  <img src="/person.png" alt={member.name} className="contact-pic"/>
+                  <img src={member.image} alt={member.name} className="contact-pic"/>
                 </div>
                 <h4>{member.name}</h4>
                 <p>{member.role}</p>
                 <div className="contact-socials">
-                  <a href="#" aria-label="WhatsApp"><FaWhatsapp size={18} /></a>
-                  <a href="#" aria-label="Instagram"><FaInstagram size={18} /></a>
-                  <a href="#" aria-label="LinkedIn"><FaLinkedinIn size={18} /></a>
+                  {member.whatsapp && <a href={member.whatsapp} target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><FaWhatsapp size={18} /></a>}
+                  {member.instagram && <a href={member.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram"><FaInstagram size={18} /></a>}
+                  {member.linkedin && <a href={member.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><FaLinkedinIn size={18} /></a>}
                 </div>
               </div>
             ))}

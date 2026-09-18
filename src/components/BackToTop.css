@@ -5,7 +5,7 @@
   z-index: 1500;
   width: 56px;
   height: 56px;
-  border-radius: 50%;
+  border-radius: var(--radius-md);
   border: none;
   background: linear-gradient(135deg, var(--color-crimson-bold), var(--color-coral-glow));
   cursor: pointer;

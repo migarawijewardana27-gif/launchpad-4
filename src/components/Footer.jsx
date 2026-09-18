@@ -28,14 +28,6 @@ const Footer = () => {
             <Link href="/register">Register</Link>
           </nav>
 
-          {/* Social Icons */}
-          <div className="footer-socials">
-            <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><FaInstagram size={20} /></a>
-            <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><FaFacebookF size={20} /></a>
-            <a href="#" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><FaLinkedinIn size={20} /></a>
-            <a href="#" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><FaYoutube size={20} /></a>
-            <a href="#" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><FaWhatsapp size={20} /></a>
-          </div>
 
           {/* Powered By */}
           <div className="footer-powered">

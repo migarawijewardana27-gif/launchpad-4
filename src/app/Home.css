@@ -146,6 +146,22 @@
   letter-spacing: 5px;
   text-transform: uppercase;
   font-weight: 600;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.scroll-icon {
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-top: 0.5rem;
+  opacity: 0.8;
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(-25%); animation-timing-function: cubic-bezier(0.8, 0, 1, 1); }
+  50% { transform: translateY(0); animation-timing-function: cubic-bezier(0, 0, 0.2, 1); }
 }
 
 @keyframes logo-breathe {
@@ -175,6 +191,8 @@
   line-height: 1;
   letter-spacing: 2px;
   text-align: center;
+  font-weight: 900;
+  filter: drop-shadow(0 10px 8px rgba(0,0,0,0.4));
 }
 
 .hero-cta-container {
@@ -210,15 +228,32 @@
 }
 
 .intro-text h2 {
-  color: var(--color-text-primary);
+  color: var(--color-bg-primary);
   font-size: 3rem;
   margin-bottom: 1rem;
   text-align: center;
 }
 
+.spotlight-name {
+  font-size: 3rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.spotlight-logo {
+  display: block;
+  margin: 1.5rem auto 1.5rem;
+  height: 120px;
+  object-fit: contain;
+}
+
+.spotlight-desc {
+  text-align: center;
+}
+
 .intro-text p {
   font-size: 1.25rem;
-  color: rgba(255, 255, 255, 0.8);
+  color: #555555;
   text-align: center;
   max-width: 700px;
   margin: 0 auto;
@@ -233,15 +268,20 @@
 .identity-card {
   padding: 2.5rem;
   border-radius: var(--radius-md);
-  background: var(--color-glass-bg);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  background: white;
   transition: all 0.4s ease;
-  border: 1px solid var(--color-glass-border);
+  border: 1px solid #f3f4f6;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.card-icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  margin-bottom: 1rem;
 }
 
 .identity-card h3 {
-  color: var(--color-text-primary);
+  color: var(--color-bg-primary);
   font-family: var(--font-secondary);
   font-size: 2rem;
   margin-bottom: 1rem;
@@ -304,8 +344,9 @@
 
 .front-icon {
   color: var(--color-text-primary);
+  opacity: 0.5;
   margin-bottom: 1.5rem;
-  transition: transform 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .pillar-flip-front h3 {
@@ -323,11 +364,12 @@
 
 .pillar-flip-card:hover .front-icon {
   transform: scale(1.1);
+  opacity: 1;
   color: var(--color-crimson-bold);
 }
 
 .pillar-flip-back {
-  background: linear-gradient(135deg, #FFFFFF, #F9F9F9);
+  background: linear-gradient(135deg, #F8FAFC, #F9F9F9);
   color: var(--color-bg-primary);
   transform: rotateY(180deg);
   border: 2px solid var(--color-glass-border);
@@ -355,7 +397,7 @@
   border-radius: var(--radius-md);
   overflow: hidden;
   background: black;
-  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 25px 50px -12px rgba(139, 0, 0, 0.2);
   border: 2px solid rgba(255, 255, 255, 0.2);
 }
 
@@ -375,13 +417,13 @@
 }
 
 .marquee-content-row:hover {
-  animation-play-state: paused;
+  /* Removed animation-play-state: paused; to prevent stopping */
 }
 
 .marquee-group-row {
   display: flex;
-  gap: 1.5rem;
-  padding-right: 1.5rem;
+  gap: 2.5rem;
+  padding-right: 2.5rem;
 }
 
 @keyframes scroll-left-single {
@@ -408,7 +450,6 @@
 }
 
 .memory-card-16-9:hover {
-  transform: scale(1.05);
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
   z-index: 10;
 }
@@ -418,6 +459,13 @@
   height: 100%;
   object-fit: cover;
   display: block;
+  filter: grayscale(100%);
+  transition: filter 0.5s ease, transform 0.5s ease;
+}
+
+.memory-card-16-9:hover .memory-card-img {
+  filter: grayscale(0%);
+  transform: scale(1.05);
 }
 
 .memory-placeholder-img {
@@ -455,7 +503,7 @@
   background: rgba(0, 0, 0, 0.05);
   overflow: hidden;
   box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-  border: none;
+  border: 1px solid rgba(0, 0, 0, 0.1);
   position: relative;
 }
 
@@ -500,10 +548,10 @@
   justify-content: center;
   width: 56px;
   height: 56px;
-  border-radius: 50%;
-  background: var(--color-glass-bg);
-  color: rgba(255, 255, 255, 0.8);
-  border: 1px solid var(--color-glass-border);
+  border-radius: var(--radius-md);
+  background: rgba(139, 0, 0, 0.05);
+  color: var(--color-bg-primary);
+  border: 1px solid rgba(139, 0, 0, 0.2);
   transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), background 0.3s ease, border-color 0.3s ease;
 }
 
@@ -536,8 +584,8 @@
 }
 
 .contact-pic-wrapper {
-  width: 120px;
-  height: 120px;
+  width: 200px;
+  height: 200px;
   margin: 0 auto 1.25rem;
   border-radius: 50%;
   padding: 4px;
@@ -582,7 +630,7 @@
   justify-content: center;
   width: 32px;
   height: 32px;
-  border-radius: 50%;
+  border-radius: var(--radius-md);
   background: var(--color-glass-bg);
   border: 1px solid var(--color-glass-border);
   color: var(--color-text-primary);

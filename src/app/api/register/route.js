@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { db } from '../../../lib/firebase-admin';
+import { createClient } from '@supabase/supabase-js';
 import nodemailer from 'nodemailer';
 
 const transporter = nodemailer.createTransport({
@@ -18,40 +18,56 @@ export async function POST(request) {
   try {
     const data = await request.json();
 
-    // 1. Insert registration document into Firestore
-    const docRef = await db.collection('registrations').add({
-      ...data,
-      createdAt: new Date(),
-    });
+    const supabaseAdmin = createClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL,
+      process.env.SUPABASE_SERVICE_ROLE_KEY
+    );
+
+    // 1. Insert registration document into Supabase
+    const { data: insertedData, error: insertError } = await supabaseAdmin
+      .from('registrations')
+      .insert([{ current_status: data.currentStatus, data: data }])
+      .select('id')
+      .single();
+
+    if (insertError) {
+      throw insertError;
+    }
 
     // 2. Query Total and Category-Specific Counts in Parallel
-    const col = db.collection('registrations');
+    const getCount = async (status) => {
+      let query = supabaseAdmin.from('registrations').select('*', { count: 'exact', head: true });
+      if (status) query = query.eq('current_status', status);
+      const { count } = await query;
+      return count || 0;
+    };
+
     const [
-      totalSnap,
-      undergradSnap,
-      schoolSnap,
-      gradSnap,
-      employedSnap,
-      seekingSnap,
-      otherSnap,
+      total,
+      undergraduate,
+      schoolStudent,
+      graduate,
+      employed,
+      seekingOpportunities,
+      other,
     ] = await Promise.all([
-      col.count().get(),
-      col.where('currentStatus', '==', 'Undergraduate').count().get(),
-      col.where('currentStatus', '==', 'School Student').count().get(),
-      col.where('currentStatus', '==', 'Graduate').count().get(),
-      col.where('currentStatus', '==', 'Employed').count().get(),
-      col.where('currentStatus', '==', 'Currently Seeking Opportunities').count().get(),
-      col.where('currentStatus', '==', 'Other').count().get(),
+      getCount(null),
+      getCount('Undergraduate'),
+      getCount('School Student'),
+      getCount('Graduate'),
+      getCount('Employed'),
+      getCount('Currently Seeking Opportunities'),
+      getCount('Other'),
     ]);
 
     const stats = {
-      total: totalSnap.data().count,
-      undergraduate: undergradSnap.data().count,
-      schoolStudent: schoolSnap.data().count,
-      graduate: gradSnap.data().count,
-      employed: employedSnap.data().count,
-      seekingOpportunities: seekingSnap.data().count,
-      other: otherSnap.data().count,
+      total,
+      undergraduate,
+      schoolStudent,
+      graduate,
+      employed,
+      seekingOpportunities,
+      other,
     };
 
     // 3. Send Both Emails Concurrently
@@ -83,7 +99,7 @@ export async function POST(request) {
       console.error('Nodemailer Error 2:', emailResult2.reason);
     }
 
-    return NextResponse.json({ success: true, id: docRef.id });
+    return NextResponse.json({ success: true, id: insertedData.id });
   } catch (error) {
     console.error('Registration Error:', error);
     return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });

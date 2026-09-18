@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 import { CheckCircle, Upload, ArrowLeft, Loader } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { useCart } from '../../context/CartContext';
-import { submitFormData, uploadFile } from '../../services/firebaseService';
+import { submitFormData, uploadFile } from '../../services/supabaseService';
 import './Checkout.css';
 
 const Checkout = () => {
