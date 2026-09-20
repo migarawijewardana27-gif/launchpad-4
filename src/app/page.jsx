@@ -84,7 +84,7 @@ const Home = () => {
             className="hero-content-wrapper"
           >
             <div className="powered-by-hero">
-              <img src="/powered by white.png" alt="Powered by LaunchPad" className="powered-by-logo-hero" onError={(e) => { e.target.style.display = 'none'; }} />
+              <img src="/logo only.png" alt="Powered by LaunchPad" className="powered-by-logo-hero" onError={(e) => { e.target.style.display = 'none'; }} />
             </div>
             <h1 className="hero-title text-white">Beyond the blueprint</h1>
             <motion.div className="hero-cta-container">
@@ -247,6 +247,7 @@ const Home = () => {
       </section>
 
       {/* SECTION 6: Title Partner Spotlight (Ceylinco Life) (Dark Theme) */}
+      {false && (
       <section className="partner-spotlight section-padding theme-white">
         <div className="container">
           <div className="spotlight-content center-align">
@@ -290,6 +291,7 @@ const Home = () => {
           </div>
         </div>
       </section>
+      )}
 
       {/* SECTION 7: Contact the Team */}
       <section className="contact-section section-padding theme-red">

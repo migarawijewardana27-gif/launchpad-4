@@ -29,7 +29,6 @@ const Navbar = () => {
   const aboutLinks = [
     { name: 'Legacy', path: '/legacy' },
     { name: 'Team', path: '/team' },
-    { name: 'Ceylinco Life', path: '/ceylinco-life' },
   ];
 
   const isLightPage = pathname === '/register' || pathname === '/checkout';

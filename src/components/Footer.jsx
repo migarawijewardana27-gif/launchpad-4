@@ -26,7 +26,6 @@ const Footer = () => {
             <div className="footer-col-title">Navigate</div>
             <div className="footer-nav-col">
               <Link href="/">Home</Link>
-              <Link href="/ceylinco-life">Ceylinco Life</Link>
               <Link href="/legacy">Legacy</Link>
               <Link href="/team">Team</Link>
               <span style={{ cursor: 'not-allowed', opacity: 0.5 }} title="Coming Soon">

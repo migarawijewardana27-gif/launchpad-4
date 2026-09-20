@@ -12,7 +12,7 @@ const MERCH_ITEMS = [
     name: 'The Ultimate Combo',
     price: 2200,
     description: 'Get the T-Shirt, Wrist Band, and Tote Bag together at a discounted price! The complete LaunchPad 4.0 delegate experience.',
-    image: '/powered by white.png'
+    image: '/logo only.png'
   },
   {
     id: 'tshirt',
