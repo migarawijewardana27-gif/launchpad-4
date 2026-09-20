@@ -91,9 +91,9 @@ const Home = () => {
               <Link href="/register" className="btn btn-primary pulse-btn">
                 Register Now
               </Link>
-              <a href="#aftermovie" className="btn btn-secondary">
-                Experience LaunchPad 3.0
-              </a>
+              <Link href="/ambassadors" className="btn btn-secondary">
+                Become an Ambassador
+              </Link>
             </motion.div>
           </motion.div>
         </div>
