@@ -23,10 +23,63 @@ export async function POST(request) {
       process.env.SUPABASE_SERVICE_ROLE_KEY
     );
 
+    const isT = (condition) => condition ? 'T' : 'F';
+    const hasArrayItem = (arr, item) => Array.isArray(arr) && arr.includes(item);
+
+    const flatData = {
+      first_name: data.firstName || '',
+      last_name: data.lastName || '',
+      email: data.email || '',
+      whatsapp: data.whatsapp || '',
+      ambassador_code: data.ambassadorCode || '',
+      is_aiesecer: data.isAiesecer === 'Yes' ? 'T' : 'F',
+      current_status: data.currentStatus || '',
+
+      university: data.university || '',
+      academic_year: data.academicYear || '',
+      school: data.school || '',
+      planning_to_pursue: data.planningToPursue || '',
+      grad_year: data.gradYear || '',
+      currently_looking: data.currentlyLooking === 'Yes' ? 'T' : (data.currentlyLooking === 'No' ? 'F' : ''),
+      job_role: data.jobRole || '',
+      industry: data.industry || '',
+      experience_years: data.experienceYears || '',
+      highest_education: data.highestEducation || '',
+      opportunity_looking_for: data.opportunityLookingFor || '',
+      preferred_career_area: data.preferredCareerArea || '',
+
+      bs_marketing: isT(hasArrayItem(data.businessSector, 'Marketing')),
+      bs_hr: isT(hasArrayItem(data.businessSector, 'Human Resources')),
+      bs_business_admin: isT(hasArrayItem(data.businessSector, 'Business Admin')),
+      bs_finance: isT(hasArrayItem(data.businessSector, 'Finance')),
+      bs_business_dev: isT(hasArrayItem(data.businessSector, 'Business Dev')),
+
+      it_software_dev: isT(hasArrayItem(data.itSector, 'Software Dev')),
+      it_data_science: isT(hasArrayItem(data.itSector, 'Data Science')),
+      it_cybersecurity: isT(hasArrayItem(data.itSector, 'Cybersecurity')),
+      it_ui_ux: isT(hasArrayItem(data.itSector, 'UI/UX')),
+
+      gl_career_guidance: isT(hasArrayItem(data.gainingFromLaunchPad, 'Career Guidance')),
+      gl_industry_insights: isT(hasArrayItem(data.gainingFromLaunchPad, 'Industry Insights')),
+      gl_internships: isT(hasArrayItem(data.gainingFromLaunchPad, 'Internships')),
+      gl_networking: isT(hasArrayItem(data.gainingFromLaunchPad, 'Networking')),
+      gl_mentorship: isT(hasArrayItem(data.gainingFromLaunchPad, 'Mentorship')),
+      gl_cv_dev: isT(hasArrayItem(data.gainingFromLaunchPad, 'CV Dev')),
+      gl_interview_prep: isT(hasArrayItem(data.gainingFromLaunchPad, 'Interview Prep')),
+
+      opp_local: isT(hasArrayItem(data.opportunityType, 'Local')),
+      opp_international: isT(hasArrayItem(data.opportunityType, 'International')),
+
+      partner_info: data.partnerInfo || '',
+      availability: data.availability || '',
+      cv_consideration: data.cvConsideration === 'Yes' ? 'T' : (data.cvConsideration === 'No' ? 'F' : ''),
+      cv_url: data.cvUrl || ''
+    };
+
     // 1. Insert registration document into Supabase
     const { data: insertedData, error: insertError } = await supabaseAdmin
       .from('registrations')
-      .insert([{ current_status: data.currentStatus, data: data }])
+      .insert([flatData])
       .select('id')
       .single();
 
@@ -70,8 +123,8 @@ export async function POST(request) {
       other,
     };
 
-    // 3. Send Both Emails Concurrently
-    const [emailResult1, emailResult2] = await Promise.allSettled([
+    // 3. Send Emails and Webhook Concurrently
+    const [emailResult1, emailResult2, webhookResult] = await Promise.allSettled([
       // Email 1: Delegate Confirmation (CC Delegate VPs)
       transporter.sendMail({
         from: `"LaunchPad 4.0" <${process.env.GMAIL_USER}>`,
@@ -90,6 +143,13 @@ export async function POST(request) {
         subject: `[New Reg] ${data.firstName} ${data.lastName} (${data.currentStatus})`,
         html: getAdminAlertHtml(data, stats),
       }),
+      
+      // Webhook 3: Google Apps Script Sheet Integration
+      process.env.GOOGLE_SCRIPT_URL ? fetch(process.env.GOOGLE_SCRIPT_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(flatData)
+      }) : Promise.resolve('No webhook URL')
     ]);
 
     if (emailResult1.status === 'rejected') {
@@ -97,6 +157,9 @@ export async function POST(request) {
     }
     if (emailResult2.status === 'rejected') {
       console.error('Nodemailer Error 2:', emailResult2.reason);
+    }
+    if (webhookResult.status === 'rejected') {
+      console.error('Webhook Error:', webhookResult.reason);
     }
 
     return NextResponse.json({ success: true, id: insertedData.id });

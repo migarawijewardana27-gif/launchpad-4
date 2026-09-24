@@ -97,7 +97,7 @@ const Home = () => {
                     Become an Ambassador
                   </Link>
                 </div>
-                <span style={{ fontSize: '1rem', opacity: 0.9, marginTop: '0.5rem', fontWeight: 500 }}>Hurry! Registrations close on October 25th</span>
+                <span style={{ fontSize: '1rem', opacity: 0.9, marginTop: '0.5rem', fontWeight: 500 }}></span>
               </div>
             </motion.div>
           </motion.div>
@@ -253,49 +253,49 @@ const Home = () => {
 
       {/* SECTION 6: Title Partner Spotlight (Ceylinco Life) (Dark Theme) */}
       {false && (
-      <section className="partner-spotlight section-padding theme-white">
-        <div className="container">
-          <div className="spotlight-content center-align">
-            <h3 className="spotlight-badge">Title Partner</h3>
-            <img src="/ceylinco.png" alt="Ceylinco Life" className="spotlight-logo" />
-            <p className="spotlight-desc max-w-md mx-auto">
-              Ceylinco Life is deeply committed to youth development in Sri Lanka. As the Title Partner for LaunchPad 4.0, they aim to bridge the gap between academic education and the dynamic needs of the corporate world, nurturing the next generation of leaders.
-            </p>
+        <section className="partner-spotlight section-padding theme-white">
+          <div className="container">
+            <div className="spotlight-content center-align">
+              <h3 className="spotlight-badge">Title Partner</h3>
+              <img src="/ceylinco.png" alt="Ceylinco Life" className="spotlight-logo" />
+              <p className="spotlight-desc max-w-md mx-auto">
+                Ceylinco Life is deeply committed to youth development in Sri Lanka. As the Title Partner for LaunchPad 4.0, they aim to bridge the gap between academic education and the dynamic needs of the corporate world, nurturing the next generation of leaders.
+              </p>
 
-            <div className="partner-media-grid">
-              <div className="media-box primary-box">
-                <img src="/ceylinco/HQ.webp" alt="Ceylinco Life HQ" className="media-img" />
+              <div className="partner-media-grid">
+                <div className="media-box primary-box">
+                  <img src="/ceylinco/HQ.webp" alt="Ceylinco Life HQ" className="media-img" />
+                </div>
+                <div className="media-box secondary-box-1">
+                  <img src="/ceylinco/P1.jpg" alt="Initiative 1" className="media-img" />
+                </div>
+                <div className="media-box secondary-box-2">
+                  <img src="/ceylinco/P2.jpg" alt="Initiative 2" className="media-img" />
+                </div>
               </div>
-              <div className="media-box secondary-box-1">
-                <img src="/ceylinco/P1.jpg" alt="Initiative 1" className="media-img" />
-              </div>
-              <div className="media-box secondary-box-2">
-                <img src="/ceylinco/P2.jpg" alt="Initiative 2" className="media-img" />
-              </div>
-            </div>
 
-            <div className="spotlight-actions mt-lg">
-              <div className="social-links-row">
-                <a href="#" target="_blank" rel="noopener noreferrer" className="circular-btn" aria-label="Website">
-                  <FaGlobe size={20} />
-                </a>
-                <a href="#" target="_blank" rel="noopener noreferrer" className="circular-btn" aria-label="Facebook">
-                  <FaFacebookF size={20} />
-                </a>
-                <a href="#" target="_blank" rel="noopener noreferrer" className="circular-btn" aria-label="Instagram">
-                  <FaInstagram size={20} />
-                </a>
-                <a href="#" target="_blank" rel="noopener noreferrer" className="circular-btn" aria-label="LinkedIn">
-                  <FaLinkedinIn size={20} />
-                </a>
-                <a href="#" target="_blank" rel="noopener noreferrer" className="circular-btn" aria-label="YouTube">
-                  <FaYoutube size={20} />
-                </a>
+              <div className="spotlight-actions mt-lg">
+                <div className="social-links-row">
+                  <a href="#" target="_blank" rel="noopener noreferrer" className="circular-btn" aria-label="Website">
+                    <FaGlobe size={20} />
+                  </a>
+                  <a href="#" target="_blank" rel="noopener noreferrer" className="circular-btn" aria-label="Facebook">
+                    <FaFacebookF size={20} />
+                  </a>
+                  <a href="#" target="_blank" rel="noopener noreferrer" className="circular-btn" aria-label="Instagram">
+                    <FaInstagram size={20} />
+                  </a>
+                  <a href="#" target="_blank" rel="noopener noreferrer" className="circular-btn" aria-label="LinkedIn">
+                    <FaLinkedinIn size={20} />
+                  </a>
+                  <a href="#" target="_blank" rel="noopener noreferrer" className="circular-btn" aria-label="YouTube">
+                    <FaYoutube size={20} />
+                  </a>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
       )}
 
       {/* SECTION 7: Contact the Team */}

@@ -55,7 +55,7 @@ const CeylincoLife = () => {
               Title Partner
             </div>
             <div className="logo-lockup-glass">
-              <img src="/White Logo.png" alt="LaunchPad 4.0 Logo" className="lockup-logo lp-logo" />
+              <img src="/logo only.png" alt="LaunchPad 4.0 Logo" className="lockup-logo lp-logo" />
               <div className="lockup-divider" />
               <img src="/ceylinco.png" alt="Ceylinco Life Logo" className="lockup-logo ceylinco-logo" />
             </div>
