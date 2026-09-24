@@ -65,7 +65,6 @@ const Registration = () => {
 
     // Step 5: Profile
     cvConsideration: '',
-    privacyPolicy: false,
   });
 
   const [cvFile, setCvFile] = useState(null);
@@ -79,18 +78,14 @@ const Registration = () => {
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     if (type === 'checkbox') {
-      if (name === 'privacyPolicy') {
-        setFormData(prev => ({ ...prev, [name]: checked }));
-      } else {
-        setFormData(prev => {
-          const arr = prev[name];
-          if (checked) {
-            return { ...prev, [name]: [...arr, value] };
-          } else {
-            return { ...prev, [name]: arr.filter(item => item !== value) };
-          }
-        });
-      }
+      setFormData(prev => {
+        const arr = prev[name];
+        if (checked) {
+          return { ...prev, [name]: [...arr, value] };
+        } else {
+          return { ...prev, [name]: arr.filter(item => item !== value) };
+        }
+      });
     } else {
       setFormData(prev => ({ ...prev, [name]: value }));
     }
@@ -139,11 +134,8 @@ const Registration = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  const validateStep5 = () => {
-    const newErrors = {};
-    if (!formData.privacyPolicy) newErrors.privacyPolicy = 'You must agree to the privacy policy';
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
+  const validateStep6 = () => {
+    return true;
   }
 
   const handleNext = () => {
@@ -158,7 +150,7 @@ const Registration = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!validateStep5()) return;
+    if (!validateStep6()) return;
     
     setSubmitError('');
     setIsSubmitting(true);
@@ -248,18 +240,17 @@ const Registration = () => {
               </div>
             </div>
             <div className="left-content">
-              <img src="/White Logo.png" alt="LaunchPad 4.0 Logo" className="reg-logo" />
               <h2>Step Into<br/>The Future.</h2>
               <p className="reg-subtitle">Join the most anticipated corporate simulation event of the year.</p>
               
               <div className="modern-stepper">
-                {['Personal Info', 'Background', 'Interests', 'Opportunities', 'Profile'].map((label, idx) => (
+                {['Personal Info', 'Background', 'Interests', 'Goals', 'Opportunities', 'Profile'].map((label, idx) => (
                   <React.Fragment key={idx}>
                     <div className={`step-node ${step >= idx + 1 ? 'active' : ''} ${step > idx + 1 ? 'completed' : ''}`}>
                       <div className="node-circle">{idx + 1}</div>
                       <span className="node-label">{label}</span>
                     </div>
-                    {idx < 4 && (
+                    {idx < 5 && (
                       <div className="step-line">
                         <motion.div className="line-fill" initial={{ height: 0 }} animate={{ height: step > idx + 1 ? '100%' : '0%' }} transition={{ duration: 0.4 }} />
                       </div>
@@ -277,8 +268,9 @@ const Registration = () => {
                 {step === 1 && "Personal Information"}
                 {step === 2 && "Academic & Professional Background"}
                 {step === 3 && "Career Interests"}
-                {step === 4 && "Discover Opportunities"}
-                {step === 5 && "Build Your Profile"}
+                {step === 4 && "Goals & Expectations"}
+                {step === 5 && "Discover Opportunities"}
+                {step === 6 && "Build Your Profile"}
               </h3>
               
               <AnimatePresence mode="wait">
@@ -495,6 +487,12 @@ const Registration = () => {
                       </div>
                     </div>
 
+                  </motion.div>
+                )}
+
+                {/* STEP 4: GOALS */}
+                {step === 4 && (
+                  <motion.div key="step4" variants={variants} initial="initial" animate="animate" exit="exit" transition={{ duration: 0.3 }} className="form-step-wrapper">
                     <div className="checkbox-grid-group">
                       <label className="static-label">What are you most interested in gaining from LaunchPad 4.0?</label>
                       <div className="checkbox-grid">
@@ -510,9 +508,9 @@ const Registration = () => {
                   </motion.div>
                 )}
 
-                {/* STEP 4: OPPORTUNITIES */}
-                {step === 4 && (
-                  <motion.div key="step4" variants={variants} initial="initial" animate="animate" exit="exit" transition={{ duration: 0.3 }} className="form-step-wrapper">
+                {/* STEP 5: OPPORTUNITIES */}
+                {step === 5 && (
+                  <motion.div key="step5" variants={variants} initial="initial" animate="animate" exit="exit" transition={{ duration: 0.3 }} className="form-step-wrapper">
                     
                     <div className="form-group modern-radio-group">
                       <label className="static-label">What type of opportunities are you interested in?</label>
@@ -543,9 +541,9 @@ const Registration = () => {
                   </motion.div>
                 )}
 
-                {/* STEP 5: PROFILE */}
-                {step === 5 && (
-                  <motion.div key="step5" variants={variants} initial="initial" animate="animate" exit="exit" transition={{ duration: 0.3 }} className="form-step-wrapper">
+                {/* STEP 6: PROFILE */}
+                {step === 6 && (
+                  <motion.div key="step6" variants={variants} initial="initial" animate="animate" exit="exit" transition={{ duration: 0.3 }} className="form-step-wrapper">
                     
                     <div className="form-group modern-radio-group">
                       <label className="static-label">Would you like your CV to be considered for relevant opportunities from our partner companies?</label>
@@ -567,17 +565,6 @@ const Registration = () => {
                       </label>
                     </div>
 
-                    <div className="privacy-policy-box">
-                      <label className="checkbox-label" style={{ alignItems: 'flex-start' }}>
-                        <input type="checkbox" name="privacyPolicy" checked={formData.privacyPolicy} onChange={handleChange} />
-                        <span style={{ fontSize: '0.9rem', lineHeight: '1.5' }}>
-                          Privacy Policy * <br/>
-                          I have read and agree to AIESEC in Sri Lanka's Privacy Policy.
-                        </span>
-                      </label>
-                      {errors.privacyPolicy && <span className="error-text">{errors.privacyPolicy}</span>}
-                    </div>
-
                   </motion.div>
                 )}
               </AnimatePresence>
@@ -592,7 +579,7 @@ const Registration = () => {
                 <div className="spacer"></div>
               )}
               
-              {step < 5 ? (
+              {step < 6 ? (
                 <button type="button" className="btn btn-primary form-btn modern-glow-btn" onClick={handleNext}>
                   Next <ArrowRight size={18} style={{ marginLeft: '8px' }} />
                 </button>

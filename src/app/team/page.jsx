@@ -1,14 +1,14 @@
 "use client";
 
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React from 'react';
+import { motion } from 'framer-motion';
 import { FaLinkedinIn, FaWhatsapp, FaInstagram, FaEnvelope } from 'react-icons/fa';
 import './Team.css';
 
 const eventManagers = [
-  { id: 'em-1', name: 'Devmi', role: 'Event Manager', description: "Taking charge of the project's event management with a sharp eye and a self-proclaimed talent for perfection.", image: '/oc/devmi.png', links: { linkedin: '#', whatsapp: '#', instagram: '#', email: '#' } },
-  { id: 'em-2', name: 'Vihangi', role: 'Event Manager', description: "Armed with boundless energy, ready to map out seamless event logistics with incredible focus and precision.", image: '/oc/vihangi.png', links: { linkedin: '#', whatsapp: '#', instagram: '#', email: '#' } },
-  { id: 'em-3', name: 'Jayashni', role: 'Event Manager', description: "A magnet for solving problems, ready to pivot that talent into spotting challenges and ensuring absolute success.", image: '/oc/jayashni.png', links: { linkedin: '#', whatsapp: '#', instagram: '#', email: '#' } },
+  { id: 'em-1', name: 'Devmi Galagedara', role: 'Event Manager', description: "Taking charge of the project's event management with a sharp eye and a self-proclaimed talent for perfection.", image: '/oc/devmi.png', links: { linkedin: 'https://www.linkedin.com/in/devmi-galagedara-9a3073345?utm_source=share_via&utm_content=profile&utm_medium=member_android', whatsapp: 'https://wa.me/94740994528', instagram: 'https://www.instagram.com/tessaverse_?stkn=aDRvZzhrMnUycmZv', email: 'devmigalagedara@aiesec.net' } },
+  { id: 'em-2', name: 'Vihangi Ranaweera', role: 'Event Manager', description: "Armed with boundless energy, ready to map out seamless event logistics with incredible focus and precision.", image: '/oc/vihangi.png', links: { linkedin: 'https://www.linkedin.com/in/vihangi-ranaweera-1b1a59307?utm_source=share_via&utm_content=profile&utm_medium=member_ios', whatsapp: '#', instagram: 'https://www.instagram.com/vihangi_rw?stkn=MWx6dXF0MmJmOGZ2bA%3D%3D&utm_source=qr', email: 'vihangiranaweera@aiesec.net' } },
+  { id: 'em-3', name: 'Jayashni Rodrigo', role: 'Event Manager', description: "A magnet for solving problems, ready to pivot that talent into spotting challenges and ensuring absolute success.", image: '/oc/jayashni.png', links: { linkedin: 'https://www.linkedin.com/in/jayashni-rodrigo-0b6866308?utm_source=share_via&utm_content=profile&utm_medium=member_ios', whatsapp: 'https://wa.me/94763105304', instagram: 'https://www.instagram.com/jayashnii._/', email: 'jayashnir@aiesec.net' } },
 ];
 
 const teamHierarchy = [
@@ -137,15 +137,11 @@ const SquareGridCard = ({ member, index }) => {
 };
 
 const Team = () => {
-  const [activeTab, setActiveTab] = useState(allTiers[0].tierName);
-  
-  const activeTierData = allTiers.find(t => t.tierName === activeTab);
-
   return (
-    <div className="page-wrapper team-page theme-red" style={{ paddingTop: '100px' }}>
+    <div className="page-wrapper team-page theme-red" style={{ paddingTop: '100px', paddingBottom: '100px' }}>
       
       <div className="container">
-        <div className="team-revamp-header">
+        <div className="team-revamp-header" style={{ marginBottom: '3rem' }}>
           <motion.h1 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -153,41 +149,35 @@ const Team = () => {
           >
             The Force Behind <span className="highlight-text">LaunchPad</span>
           </motion.h1>
-          
-          <motion.div 
-            className="team-tabs-container"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
-          >
-            {allTiers.map((tier) => (
-              <button 
-                key={tier.tierName}
-                className={`team-tab-button ${activeTab === tier.tierName ? 'active' : ''}`}
-                onClick={() => setActiveTab(tier.tierName)}
-              >
-                {tier.tierName}
-              </button>
-            ))}
-          </motion.div>
         </div>
       </div>
 
-      <div className="square-grid-section">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={activeTab}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.4 }}
-            className="square-grid-container"
-          >
-            {activeTierData.members.map((member, index) => (
-              <SquareGridCard key={member.id} member={member} index={index} />
-            ))}
-          </motion.div>
-        </AnimatePresence>
+      <div className="all-tiers-container">
+        {allTiers.map((tier) => (
+          <div key={tier.tierName} className="tier-section" style={{ marginBottom: '4rem' }}>
+            <motion.h2 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              style={{ textAlign: 'center', color: 'white', marginBottom: '2rem', fontSize: '2.5rem', fontFamily: 'var(--font-secondary)', textTransform: 'uppercase', letterSpacing: '2px' }}
+            >
+              {tier.tierName}
+            </motion.h2>
+            <div className="square-grid-section">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4 }}
+                className="square-grid-container"
+              >
+                {tier.members.map((member, index) => (
+                  <SquareGridCard key={member.id} member={member} index={index} />
+                ))}
+              </motion.div>
+            </div>
+          </div>
+        ))}
       </div>
       
     </div>

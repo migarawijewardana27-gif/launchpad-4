@@ -18,7 +18,7 @@ const heroImages = [
 ];
 
 // Reusable 3D Flip Card for Core Pillars
-const FlipCardPillar = ({ icon: Icon, title, delay }) => {
+const FlipCardPillar = ({ icon: Icon, title, description, delay }) => {
   const [isFlipped, setIsFlipped] = useState(false);
 
   return (
@@ -39,14 +39,14 @@ const FlipCardPillar = ({ icon: Icon, title, delay }) => {
         </div>
         <div className="pillar-flip-back">
           <h3>{title}</h3>
-          <p>Unlocking your potential in {title.toLowerCase()} for the global stage.</p>
+          <p>{description}</p>
         </div>
       </div>
     </motion.div>
   );
 };
 
-const memoryImages = Array.from({ length: 20 }, (_, i) => `/images carousel/memory-${i + 1}.jpg`);
+const memoryImages = Array.from({ length: 20 }, (_, i) => `/images carousel/memory-${i + 1}.webp`);
 
 const Home = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -88,12 +88,17 @@ const Home = () => {
             </div>
             <h1 className="hero-title text-white">Beyond the blueprint</h1>
             <motion.div className="hero-cta-container">
-              <Link href="/register" className="btn btn-primary pulse-btn">
-                Register Now
-              </Link>
-              <Link href="/ambassadors" className="btn btn-secondary">
-                Become an Ambassador
-              </Link>
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem' }}>
+                <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', justifyContent: 'center' }}>
+                  <Link href="/register" className="btn btn-primary pulse-btn">
+                    Register Now
+                  </Link>
+                  <Link href="/ambassadors" className="btn btn-secondary">
+                    Become an Ambassador
+                  </Link>
+                </div>
+                <span style={{ fontSize: '1rem', opacity: 0.9, marginTop: '0.5rem', fontWeight: 500 }}>Hurry! Registrations close on October 25th</span>
+              </div>
             </motion.div>
           </motion.div>
         </div>
@@ -152,7 +157,7 @@ const Home = () => {
               >
                 <Target className="card-icon" style={{ color: 'var(--color-crimson-bold)' }} />
                 <h3>Mission</h3>
-                <p>To equip Sri Lanka's youth with the tools, mindset, and opportunities to elevate themselves, secure careers, share ideas, and connect with key partners.</p>
+                <p>To equip Sri Lanka’s youth with the tools, mindset and opportunities to showcase their potential in the career paths they aspire to pursue and emerge as the next generation of global leaders.</p>
               </motion.div>
             </div>
           </div>
@@ -169,10 +174,10 @@ const Home = () => {
             <StaggeredText text="Core Pillars" className="" />
           </div>
           <div className="pillars-grid">
-            <FlipCardPillar icon={Target} title="Career Exploration" delay={0.1} />
-            <FlipCardPillar icon={Rocket} title="Skill Development" delay={0.2} />
-            <FlipCardPillar icon={Users} title="Leadership Nurturing" delay={0.3} />
-            <FlipCardPillar icon={Briefcase} title="Networking" delay={0.4} />
+            <FlipCardPillar icon={Target} title="Career Exploration" description="Unlocking clear pathways into diverse industries and future-ready careers." delay={0.1} />
+            <FlipCardPillar icon={Rocket} title="Skill Development" description="Equipping you with tactical, high-demand skills for the modern workplace." delay={0.2} />
+            <FlipCardPillar icon={Users} title="Leadership Development" description="Empowering youth with the resilience and vision to lead on a global stage." delay={0.3} />
+            <FlipCardPillar icon={Briefcase} title="Networking" description="Bridging ambitious young talent directly with top employers and mentors." delay={0.4} />
           </div>
         </div>
       </section>

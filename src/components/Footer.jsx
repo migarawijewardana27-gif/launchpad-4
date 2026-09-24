@@ -18,7 +18,7 @@ const Footer = () => {
             <p className="footer-tagline-text">
               Empowering Sri Lanka's youth for the global stage.
             </p>
-            <p className="footer-sub-brand">A Project by AIESEC in USJ</p>
+            <p className="footer-sub-brand">A Project by AIESEC in University of Sri Jayewardenepura</p>
           </div>
 
           {/* CENTER: Quick Links */}
@@ -48,10 +48,9 @@ const Footer = () => {
 
         </div>
 
-        {/* Bottom Bar */}
         <div className="footer-bottom">
-          <p>&copy; {new Date().getFullYear()} LaunchPad 4.0 by AIESEC. All rights reserved.</p>
-          <p>Made with ❤️ by AIESEC in USJ</p>
+          <p>&copy; All rights reserved.</p>
+          <p>Made with ❤️ by AIESEC in University of Sri Jayewardenepura</p>
         </div>
       </div>
     </footer>

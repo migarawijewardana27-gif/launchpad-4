@@ -51,23 +51,12 @@ const Navbar = () => {
           <div className="nav-links desktop-only">
             <Link href="/" className={`nav-link ${pathname === '/' ? 'active' : ''}`}>Home</Link>
             
-            <div className="nav-dropdown-container">
-              <span className={`nav-link ${aboutLinks.some(link => pathname === link.path) ? 'active' : ''}`}>
-                About Us
-              </span>
-              <div className="nav-dropdown">
-                {aboutLinks.map((link) => (
-                  <Link key={link.name} href={link.path} className={`dropdown-item ${pathname === link.path ? 'active' : ''}`}>
-                    {link.name}
-                  </Link>
-                ))}
-              </div>
-            </div>
-
+            <Link href="/legacy" className={`nav-link ${pathname === '/legacy' ? 'active' : ''}`}>Legacy</Link>
+            <Link href="/team" className={`nav-link ${pathname === '/team' ? 'active' : ''}`}>Team</Link>
             <span className="nav-link" style={{ cursor: 'not-allowed', opacity: 0.6, display: 'inline-flex', alignItems: 'center' }} title="Coming Soon">
               Event <Lock size={14} style={{ marginLeft: '4px' }} />
             </span>
-            <Link href="/updates" className={`nav-link ${pathname === '/updates' ? 'active' : ''}`}>Updates</Link>
+            {/* Updates link hidden */}
             <span className="nav-link" style={{ cursor: 'not-allowed', opacity: 0.6, display: 'inline-flex', alignItems: 'center' }} title="Coming Soon">
               Shop <Lock size={14} style={{ marginLeft: '4px' }} />
             </span>
@@ -82,6 +71,9 @@ const Navbar = () => {
             )}
             <Link href="/register" className="btn btn-primary nav-cta">
               Register Now
+            </Link>
+            <Link href="/ambassadors" className="btn btn-secondary nav-cta">
+              Become an Ambassador
             </Link>
           </div>
 
@@ -98,17 +90,12 @@ const Navbar = () => {
         <div className={`mobile-menu ${isMobileMenuOpen ? 'open' : ''}`}>
           <Link href="/" className={`mobile-nav-link ${pathname === '/' ? 'active' : ''}`}>Home</Link>
           
-          <div className="mobile-nav-section-title">About Us</div>
-          {aboutLinks.map((link) => (
-            <Link key={link.name} href={link.path} className={`mobile-nav-link nested ${pathname === link.path ? 'active' : ''}`}>
-              {link.name}
-            </Link>
-          ))}
-
+          <Link href="/legacy" className={`mobile-nav-link ${pathname === '/legacy' ? 'active' : ''}`}>Legacy</Link>
+          <Link href="/team" className={`mobile-nav-link ${pathname === '/team' ? 'active' : ''}`}>Team</Link>
           <span className="mobile-nav-link" style={{ cursor: 'not-allowed', opacity: 0.6, display: 'flex', alignItems: 'center' }} title="Coming Soon">
             Event <Lock size={16} style={{ marginLeft: '6px' }} />
           </span>
-          <Link href="/updates" className={`mobile-nav-link ${pathname === '/updates' ? 'active' : ''}`}>Updates</Link>
+          {/* Updates link hidden */}
           <span className="mobile-nav-link" style={{ cursor: 'not-allowed', opacity: 0.6, display: 'flex', alignItems: 'center' }} title="Coming Soon">
             Shop <Lock size={16} style={{ marginLeft: '6px' }} />
           </span>
@@ -119,6 +106,9 @@ const Navbar = () => {
           )}
           <Link href="/register" className="btn btn-primary mobile-nav-cta">
             Register Now
+          </Link>
+          <Link href="/ambassadors" className="btn btn-secondary mobile-nav-cta">
+            Become an Ambassador
           </Link>
         </div>
       </nav>

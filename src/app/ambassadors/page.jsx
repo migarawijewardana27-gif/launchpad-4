@@ -41,14 +41,14 @@ const Ambassadors = () => {
       <section className="ambassador-details-section theme-white">
         <div className="container">
           <motion.div
-            className="center-align"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
+            style={{ marginBottom: '2rem' }}
           >
-            <div className="section-label" style={{ justifyContent: 'center' }}>The Details</div>
-            <h2>How It Works & What You Get</h2>
-            <p style={{ maxWidth: '600px', margin: '0 auto 3rem', color: '#555' }}>
+            <div className="section-label">The Details</div>
+            <h2 style={{ textAlign: 'left' }}>How It Works & What You Get</h2>
+            <p style={{ maxWidth: '800px', margin: '1rem 0 4rem 0', color: '#555', textAlign: 'left', lineHeight: '1.8', fontSize: '1.1rem' }}>
               By leveraging your personal network to bring delegates to Launchpad 4.0, you unlock direct career capital, high-level networking, and behind-the-scenes event access.
             </p>
           </motion.div>
@@ -82,9 +82,9 @@ const Ambassadors = () => {
                 </div>
               </div>
               
-              <div className="mt-xl">
+              <div style={{ marginTop: '4rem' }}>
                 <h3>Who Can Join?</h3>
-                <p style={{ color: '#555', lineHeight: '1.6' }}>
+                <p style={{ color: '#555', lineHeight: '1.8' }}>
                   This program is open to everyone. Whether you are an active AIESEC member or a driven non-AIESECer looking to expand your professional footprint, the Ambassador Program is built for you. If you are highly connected and want to elevate your personal brand alongside Launchpad 4.0, secure your code today.
                 </p>
               </div>
@@ -157,9 +157,6 @@ const Ambassadors = () => {
           >
             <div className="section-label" style={{ justifyContent: 'center' }}>Join The Network</div>
             <h2>Ambassador Registration</h2>
-            <p style={{ opacity: 0.85, maxWidth: '500px', margin: '0 auto' }}>
-              Fill out the form below to claim your unique tracking code and officially join the LaunchPad 4.0 Ambassador network.
-            </p>
           </motion.div>
 
           <motion.div 

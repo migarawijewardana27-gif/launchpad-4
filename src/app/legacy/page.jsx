@@ -1,11 +1,44 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { Calendar, MapPin } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Calendar } from 'lucide-react';
 import './Legacy.css';
 
-const LegacyEventSection = ({ version, title, date, location, description, aftermovieUrl, quote, ocpName, photos, index, isFirst }) => {
+const RotatingComments = ({ comments }) => {
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    if (!comments || comments.length === 0) return;
+    const interval = setInterval(() => {
+      setIndex((prev) => (prev + 1) % comments.length);
+    }, 6000);
+    return () => clearInterval(interval);
+  }, [comments]);
+
+  if (!comments || comments.length === 0) return null;
+
+  return (
+    <div className="delegate-comments-block" style={{ marginTop: '2rem', padding: '1.5rem', background: 'rgba(0,0,0,0.05)', border: '1px solid rgba(0,0,0,0.1)', borderRadius: 'var(--radius-md)' }}>
+      <h4 style={{ marginBottom: '1rem', fontSize: '1.1rem', color: 'var(--color-coral-glow)' }}>What Delegates Said</h4>
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={index}
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -10 }}
+          transition={{ duration: 0.5 }}
+          className="comment-content"
+        >
+          <p className="comment-text" style={{ fontStyle: 'italic', marginBottom: '0.5rem' }}>"{comments[index].text}"</p>
+          <p className="comment-author" style={{ fontWeight: 'bold', fontSize: '0.9rem' }}>— {comments[index].author}</p>
+        </motion.div>
+      </AnimatePresence>
+    </div>
+  );
+};
+
+const LegacyEventSection = ({ title, date, description, aftermovieUrl, comments, photos, index }) => {
   const isEven = index % 2 === 0;
   
   return (
@@ -19,31 +52,17 @@ const LegacyEventSection = ({ version, title, date, location, description, after
           transition={{ duration: 0.7 }}
         >
       <div className="legacy-event-content glass-panel" style={{ position: 'relative', overflow: 'hidden' }}>
-        {/* Ghost version watermark */}
-        {!isFirst && (
-          <div className="legacy-ghost-version">{version}</div>
-        )}
         <div className="legacy-event-header">
-          <div className="section-label">{isFirst ? 'LaunchPad' : `Edition ${version}`}</div>
-          <div className="legacy-badge" style={isFirst ? { display: 'inline-flex', alignItems: 'center', padding: '6px 16px' } : {}}>
-            {isFirst ? <img src="/icon white.png" alt="LaunchPad Icon" style={{ height: '20px', objectFit: 'contain' }} /> : version}
-          </div>
           <h2>{title}</h2>
           <div className="legacy-meta">
             {date && <span className="meta-item"><Calendar size={14} /> {date}</span>}
-            {location && <span className="meta-item"><MapPin size={14} /> {location}</span>}
           </div>
         </div>
 
         <div className="legacy-event-text">
           <p className="legacy-description">{description}</p>
           
-          {quote && (
-            <div className="ocp-quote-block">
-              <p className="ocp-quote-text">"{quote}"</p>
-              <p className="ocp-name">— {ocpName}, OCP {isFirst ? 'LaunchPad' : `LaunchPad ${version}`}</p>
-            </div>
-          )}
+          <RotatingComments comments={comments} />
         </div>
       </div>
 
@@ -64,7 +83,7 @@ const LegacyEventSection = ({ version, title, date, location, description, after
           <div className="legacy-photo-grid">
             {photos.map((photo, i) => (
               <div key={i} className="legacy-photo-wrapper">
-                <img src={photo} alt={`LaunchPad ${version} Highlight ${i + 1}`} loading="lazy" />
+                <img src={photo} alt={`LaunchPad Highlight ${i + 1}`} loading="lazy" />
               </div>
             ))}
           </div>
@@ -128,30 +147,36 @@ const Legacy = () => {
       <div className="legacy-sections-container">
           <LegacyEventSection 
             index={0}
-            version="3.0" 
-            title="Continuing the Momentum"
-            date="2024"
-            location="TBA"
-            description="LaunchPad 3.0 highlights and key moments will be featured here, building upon the massive success of the previous iterations and continuing to empower the future leaders of tomorrow."
-            aftermovieUrl="https://www.youtube.com/embed/9PwS06duexc"
-            quote="LaunchPad 3.0 is going to be the pinnacle of youth development this year. We are ready."
-            ocpName="OCP Name Placeholder"
+            title="Dare to Dream"
+            date="2023"
+            description="The inception of a movement. The first LaunchPad set the standard with insightful sessions from industry titans, sparking a wave of innovation among undergraduates."
+            aftermovieUrl="https://www.youtube.com/embed/K0rW3LfPTHA"
+            comments={[
+              { text: "Being part of the very first edition was a privilege.", author: "Delegate K" },
+              { text: "The speakers were incredibly inspiring and motivating.", author: "Delegate L" },
+              { text: "It set a new standard for youth events in the country.", author: "Delegate M" },
+              { text: "The beginning of something truly special and impactful.", author: "Delegate N" },
+              { text: "An eye-opening experience that pushed me out of my comfort zone.", author: "Delegate O" }
+            ]}
             photos={[
-              '/images carousel/memory-8.jpg',
-              '/images carousel/memory-18.jpg'
+              '/images carousel/memory-24.jpg',
+              '/images carousel/memory-25.jpg'
             ]}
           />
 
           <LegacyEventSection 
             index={1}
-            version="2.0" 
             title="Scaling New Heights"
-            date="2023"
-            location="Colombo"
-            description="LaunchPad 2.0 introduced the highly anticipated Career Fair and an interactive quiz that tested and rewarded the brightest minds."
+            date="2024"
+            description="Introduced the highly anticipated Career Fair and an interactive quiz that tested and rewarded the brightest minds."
             aftermovieUrl="https://www.youtube.com/embed/gn-eoraTEGg"
-            quote="Seeing the youths engage and unlock their potential at LaunchPad 2.0 was truly a career-defining moment for our entire committee."
-            ocpName="OCP Name Placeholder"
+            comments={[
+              { text: "The Career Fair opened doors I didn't even know existed.", author: "Delegate F" },
+              { text: "I landed my dream internship thanks to the connections I made here.", author: "Delegate G" },
+              { text: "The interactive quiz was so much fun and very challenging!", author: "Delegate H" },
+              { text: "Everything was perfectly organized, from start to finish.", author: "Delegate I" },
+              { text: "Met so many industry leaders and learned so much in one day.", author: "Delegate J" }
+            ]}
             photos={[
               '/images carousel/memory-21.jpg',
               '/images carousel/memory-22.jpg',
@@ -161,18 +186,20 @@ const Legacy = () => {
 
           <LegacyEventSection 
             index={2}
-            isFirst={true}
-            version="" 
-            title="Dare to Dream"
-            date="July 27, 2023"
-            location="PGIM Colombo"
-            description="The inception of a movement. The first LaunchPad set the standard with insightful sessions from industry titans, sparking a wave of innovation among undergraduates."
-            aftermovieUrl="https://www.youtube.com/embed/K0rW3LfPTHA"
-            quote="LaunchPad was the spark that ignited a nationwide phenomenon. We dared to dream, and the youth answered."
-            ocpName="OCP Name Placeholder"
+            title="Continuing the Momentum"
+            date="2025"
+            description="LaunchPad highlights and key moments will be featured here, building upon the massive success of the previous iterations and continuing to empower the future leaders of tomorrow."
+            aftermovieUrl="https://www.youtube.com/embed/9PwS06duexc"
+            comments={[
+              { text: "This year was an absolute game changer for me. The insights were phenomenal.", author: "Delegate A" },
+              { text: "The network I built here will last a lifetime. Highly recommend to everyone.", author: "Delegate B" },
+              { text: "A truly transformative experience that shaped my career path.", author: "Delegate C" },
+              { text: "The sessions were engaging and the energy was just unmatched.", author: "Delegate D" },
+              { text: "An unforgettable event. Looking forward to what comes next!", author: "Delegate E" }
+            ]}
             photos={[
-              '/images carousel/memory-24.jpg',
-              '/images carousel/memory-25.jpg'
+              '/images carousel/memory-8.jpg',
+              '/images carousel/memory-18.jpg'
             ]}
           />
         </div>

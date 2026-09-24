@@ -70,7 +70,7 @@
 .details-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 4rem;
+  gap: 8rem;
   margin-top: 3rem;
 }
 
@@ -84,7 +84,7 @@
 .perks-list {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 2rem;
 }
 
 .perk-item {
@@ -132,7 +132,7 @@
 .steps-container {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 3rem;
 }
 
 .step-box {
