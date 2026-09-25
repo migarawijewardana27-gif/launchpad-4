@@ -10,6 +10,9 @@ import BackToTop from '../components/BackToTop';
 export const metadata = {
   title: 'LaunchPad 4.0',
   description: 'LaunchPad 4.0 AIESEC Event',
+  icons: {
+    icon: '/icon white.png',
+  },
 };
 
 export default function RootLayout({ children }) {

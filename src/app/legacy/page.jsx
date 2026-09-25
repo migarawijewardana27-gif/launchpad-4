@@ -12,7 +12,7 @@ const RotatingComments = ({ comments }) => {
     if (!comments || comments.length === 0) return;
     const interval = setInterval(() => {
       setIndex((prev) => (prev + 1) % comments.length);
-    }, 6000);
+    }, 5000);
     return () => clearInterval(interval);
   }, [comments]);
 
@@ -96,11 +96,11 @@ const LegacyEventSection = ({ title, date, description, aftermovieUrl, comments,
 };
 
 const legacyHeroImages = [
-  '/images carousel/memory-5.jpg',
-  '/images carousel/memory-8.jpg',
-  '/images carousel/memory-12.jpg',
-  '/images carousel/memory-15.jpg',
-  '/images carousel/memory-19.jpg'
+  '/images carousel/memory-5.webp',
+  '/images carousel/memory-8.webp',
+  '/images carousel/memory-12.webp',
+  '/images carousel/memory-15.webp',
+  '/images carousel/memory-19.webp'
 ];
 
 const Legacy = () => {
@@ -152,11 +152,11 @@ const Legacy = () => {
             description="The inception of a movement. The first LaunchPad set the standard with insightful sessions from industry titans, sparking a wave of innovation among undergraduates."
             aftermovieUrl="https://www.youtube.com/embed/K0rW3LfPTHA"
             comments={[
-              { text: "Being part of the very first edition was a privilege.", author: "Delegate K" },
-              { text: "The speakers were incredibly inspiring and motivating.", author: "Delegate L" },
-              { text: "It set a new standard for youth events in the country.", author: "Delegate M" },
-              { text: "The beginning of something truly special and impactful.", author: "Delegate N" },
-              { text: "An eye-opening experience that pushed me out of my comfort zone.", author: "Delegate O" }
+              { text: "Being part of the very first edition was a privilege.", author: "Menuki" },
+              { text: "The speakers were incredibly inspiring and motivating.", author: "Chamudi" },
+              { text: "It set a new standard for youth events in the country.", author: "Imaya" },
+              { text: "The beginning of something truly special and impactful.", author: "Umaira" },
+              { text: "An eye-opening experience that pushed me out of my comfort zone.", author: "Migara" }
             ]}
             photos={[
               '/images carousel/memory-24.jpg',
@@ -171,11 +171,11 @@ const Legacy = () => {
             description="Introduced the highly anticipated Career Fair and an interactive quiz that tested and rewarded the brightest minds."
             aftermovieUrl="https://www.youtube.com/embed/gn-eoraTEGg"
             comments={[
-              { text: "The Career Fair opened doors I didn't even know existed.", author: "Delegate F" },
-              { text: "I landed my dream internship thanks to the connections I made here.", author: "Delegate G" },
-              { text: "The interactive quiz was so much fun and very challenging!", author: "Delegate H" },
-              { text: "Everything was perfectly organized, from start to finish.", author: "Delegate I" },
-              { text: "Met so many industry leaders and learned so much in one day.", author: "Delegate J" }
+              { text: "The Career Fair opened doors I didn't even know existed.", author: "Brian" },
+              { text: "I landed my dream internship thanks to the connections I made here.", author: "Dinuka" },
+              { text: "The interactive quiz was so much fun and very challenging!", author: "Thisuni" },
+              { text: "Everything was perfectly organized, from start to finish.", author: "Dulna" },
+              { text: "Met so many industry leaders and learned so much in one day.", author: "Thakshika" }
             ]}
             photos={[
               '/images carousel/memory-21.jpg',
@@ -191,15 +191,15 @@ const Legacy = () => {
             description="LaunchPad highlights and key moments will be featured here, building upon the massive success of the previous iterations and continuing to empower the future leaders of tomorrow."
             aftermovieUrl="https://www.youtube.com/embed/9PwS06duexc"
             comments={[
-              { text: "This year was an absolute game changer for me. The insights were phenomenal.", author: "Delegate A" },
-              { text: "The network I built here will last a lifetime. Highly recommend to everyone.", author: "Delegate B" },
-              { text: "A truly transformative experience that shaped my career path.", author: "Delegate C" },
-              { text: "The sessions were engaging and the energy was just unmatched.", author: "Delegate D" },
-              { text: "An unforgettable event. Looking forward to what comes next!", author: "Delegate E" }
+              { text: "This year was an absolute game changer for me. The insights were phenomenal.", author: "Imashi" },
+              { text: "The network I built here will last a lifetime. Highly recommend to everyone.", author: "Duwasha" },
+              { text: "A truly transformative experience that shaped my career path.", author: "Yohan" },
+              { text: "The sessions were engaging and the energy was just unmatched.", author: "Venumi" },
+              { text: "An unforgettable event. Looking forward to what comes next!", author: "Niyoma" }
             ]}
             photos={[
-              '/images carousel/memory-8.jpg',
-              '/images carousel/memory-18.jpg'
+              '/images carousel/memory-8.webp',
+              '/images carousel/memory-18.webp'
             ]}
           />
         </div>

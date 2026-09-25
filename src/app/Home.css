@@ -419,7 +419,7 @@
 .marquee-content-row {
   display: flex;
   width: max-content;
-  animation: scroll-left-single 80s linear infinite;
+  animation: scroll-left-single 150s linear infinite;
   padding: 1rem 0;
 }
 
