@@ -19,7 +19,7 @@ const teamHierarchy = [
     ]
   },
   {
-    tierName: "Partnership Development",
+    tierName: "OCVP Partnership Development",
     members: [
       { id: 'pd-1', name: 'Gayathmie Gunarathne', role: 'OCVP Partnership Dev', description: "Bringing sharp tactics from the IT function, ready to secure big wins and rock-solid corporate partnerships for the project.", image: '/oc/gayathmie.png', links: { linkedin: 'https://www.linkedin.com/in/gayathmie-gunarathne-890622275?utm_source=share_via&utm_content=profile&utm_medium=member_android', whatsapp: 'https://wa.me/94706074100', instagram: 'https://www.instagram.com/___gaya__mie___?igsi=cmZnOHlpcWtsZ3Fz', email: 'gayathmie.gunarathne@aiesec.net' } },
       { id: 'pd-2', name: 'Sangeethma Perera', role: 'OCVP Partnership Dev', description: "Channeling a superpower of overthinking into analyzing every detail, making sure our partnerships are completely flawless.", image: '/oc/sangeethma.png', links: { linkedin: 'https://www.linkedin.com/in/sangeethma-perera-948108290/', whatsapp: 'https://wa.me/94702787523', instagram: 'https://www.instagram.com/sangeethma_/?utm_source=ig_web_button_share_sheet', email: 'sangeethmaperera@aiesec.net' } },
@@ -27,14 +27,14 @@ const teamHierarchy = [
     ]
   },
   {
-    tierName: "Public Relations",
+    tierName: "OCVP Public Relations",
     members: [
       { id: 'pr-1', name: 'Ashrath Rumie', role: 'OCVP Public Relations', description: "Stepping up to handle PR! Armed with brilliant communication skills and a passion for networking.", image: '/oc/ashrath.png', links: { linkedin: 'https://www.linkedin.com/in/ashrath-rumie-29261826b?utm_source=share_via&utm_content=profile&utm_medium=member_ios', whatsapp: 'https://wa.me/94762191023', instagram: 'https://www.instagram.com/ashrath.rumie?igsi=MXNvcHI2aGtzM3JyMQ==', email: 'ashrath2025@gmail.com' } },
       { id: 'pr-2', name: 'Savandi Liyanayapa', role: 'OCVP Public Relations', description: "Ready to keep everyone engaged, talking, and smiling all day long while promoting the LaunchPad brand.", image: '/oc/savandi.png', links: { linkedin: 'https://www.linkedin.com/in/savandi-liyanayapa-31ba86310?utm_source=share_via&utm_content=profile&utm_medium=member_ios', whatsapp: 'https://wa.me/94711496849', instagram: 'https://www.instagram.com/savandii_?utm_source=ig_web_button_share_sheet&stkn=ZDNlZDc0MzIxNw==', email: 'savandisanulya@aiesec.net' } }
     ]
   },
   {
-    tierName: "Delegates",
+    tierName: "OCVP Delegates",
     members: [
       { id: 'del-1', name: 'Pumuthu Weerakoon', role: 'OCVP Delegates', description: "Dedicated to ensuring the delegates have the time of their lives with an unforgettable and smooth experience.", image: '/oc/pumuthu.png', links: { linkedin: 'https://www.linkedin.com/in/pumuthu-weerakoon?utm_source=share_via&utm_content=profile&utm_medium=member_ios', whatsapp: 'https://wa.me/94761020132', instagram: 'https://www.instagram.com/pumuthunimaya?igsi=MWRyam1hMnpjYnIxMA%3D%3D&utm_source=qr', email: 'pumuthunimaya@aiesec.net' } },
       { id: 'del-2', name: 'Sahanya Herath', role: 'OCVP Delegates', description: "Bringing endless enthusiasm to the delegate experience, ready to answer questions and keep the energy high.", image: '/oc/sahanya.png', links: { linkedin: 'https://www.linkedin.com/in/sahanya-herath-97a260311?utm_source=share_via&utm_content=profile&utm_medium=member_ios', whatsapp: 'https://wa.me/94773979334', instagram: 'https://www.instagram.com/justt.ssiya?igsi=NnQ1a240MWp2dzU0&utm_source=qr', email: 'sahanyaherath@aiesec.net' } },
@@ -42,14 +42,14 @@ const teamHierarchy = [
     ]
   },
   {
-    tierName: "Events",
+    tierName: "OCVP Events",
     members: [
       { id: 'evt-1', name: 'Fathima Afsha', role: 'OCVP Events', description: "Planning the core events of LaunchPad 4.0 with meticulous attention to detail and a flair for the dramatic.", image: '/oc/afsha.png', links: { linkedin: 'https://www.linkedin.com/in/fathima-afsha', whatsapp: 'https://wa.me/94772568368', instagram: 'https://www.instagram.com/_fathima.afsha_?igsi=MTY3NjE0eHN5bjdoYQ==', email: 'fathimaafsha@aiesec.net' } },
       { id: 'evt-2', name: 'Dinithi Muthukumarana', role: 'OCVP Events', description: "A creative powerhouse ready to brainstorm brilliant event designs that will leave a lasting impact.", image: '/oc/dinithi.png', links: { linkedin: 'https://www.linkedin.com/in/dinithi-muthukumarana-636594348?utm_source=share_via&utm_content=profile&utm_medium=member_ios', whatsapp: 'https://wa.me/94704982264', instagram: 'https://www.instagram.com/dinithi.m_7?utm_source=ig_web_button_share_sheet&stkn=ZDNlZDc0MzIxNw==', email: 'dinithimuthu@aiesec.net' } }
     ]
   },
   {
-    tierName: "Marketing",
+    tierName: "OCVP Marketing",
     members: [
       { id: 'mkt-1', name: 'Disen Sathnidu', role: 'OCVP Marketing', description: "Fueled by a passion for the project and ready to keep the team's marketing energy buzzing with brilliant posts.", image: '/oc/disen.png', links: { linkedin: 'https://www.linkedin.com/in/disen-sathnidu-19a8b52b0?utm_source=share_via&utm_content=profile&utm_medium=member_android', whatsapp: 'https://wa.me/94764761285', instagram: 'https://www.instagram.com/itssathnidu?igsi=ZmFoeXFycTU1d3Zu', email: 'disensathnidu@aiesec.net' } },
       { id: 'mkt-2', name: 'Sanistha', role: 'OCVP Marketing', description: "Bringing out-of-the-box ideas to our digital campaigns and ensuring LaunchPad is seen everywhere.", image: '/oc/sanistha.png', links: { linkedin: '#', whatsapp: '#', instagram: '#', email: '#' } },
@@ -57,7 +57,7 @@ const teamHierarchy = [
     ]
   },
   {
-    tierName: "Logistics",
+    tierName: "OCVP Logistics",
     members: [
       { id: 'log-1', name: 'Abiram Mathivathanan', role: 'OCVP Logistics', description: "Masterminding the backend operations, ensuring that all physical and technical requirements are flawlessly met.", image: '/oc/abiram.png', links: { linkedin: 'https://www.linkedin.com/in/abiram-mathivathanan-788790206', whatsapp: 'https://wa.me/94741293233', instagram: 'https://www.instagram.com/_abi._.ram_?igsi=MXFiZDA5dzdmYXg=', email: 'abirammathi@aiesec.net' } },
       { id: 'log-2', name: 'Chanula Fernando', role: 'OCVP Logistics', description: "Mapping out seamless event logistics with the exact same focus and precision used to win strategy games.", image: '/oc/chanula.png', links: { linkedin: 'https://www.linkedin.com/in/chanula-fernando-813b75310', whatsapp: 'https://wa.me/94702455817', instagram: 'https://www.instagram.com/chanula333?igsi=anMzbXN1Z2l5ZWdq', email: 'chanulafernando@aiesec.net' } }

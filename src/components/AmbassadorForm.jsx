@@ -2,9 +2,10 @@
 
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { CheckCircle, AlertCircle } from 'lucide-react';
+import { CheckCircle, AlertCircle, Copy } from 'lucide-react';
 
 const AmbassadorForm = () => {
+  const [copied, setCopied] = useState(false);
   const [formData, setFormData] = useState({
     fullName: '',
     email: '',
@@ -51,6 +52,12 @@ const AmbassadorForm = () => {
   };
 
   if (submitStatus?.success) {
+    const handleCopy = () => {
+      navigator.clipboard.writeText(submitStatus.code);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    };
+
     return (
       <motion.div
         className="form-success-message"
@@ -60,8 +67,46 @@ const AmbassadorForm = () => {
         <CheckCircle size={56} className="success-icon" />
         <h3>You're In!</h3>
         <p>Welcome to the LaunchPad 4.0 Ambassador network. Your code is:</p>
-        <div className="code-display">{submitStatus.code}</div>
+        
+        <div 
+          className="code-display" 
+          onClick={handleCopy}
+          style={{ cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', position: 'relative' }}
+          title="Click to copy"
+        >
+          {submitStatus.code}
+          <Copy size={20} style={{ opacity: 0.7 }} />
+          <AnimatePresence>
+            {copied && (
+              <motion.div 
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0 }}
+                style={{ position: 'absolute', top: '-30px', background: '#333', color: '#fff', padding: '4px 8px', borderRadius: '4px', fontSize: '12px' }}
+              >
+                Copied!
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+
         <p className="code-hint">Check your email for full details and next steps. Share this code with your network and start climbing the leaderboard!</p>
+        
+        <div className="whatsapp-prompt" style={{ marginTop: '2rem', padding: '1.5rem', background: 'rgba(22, 163, 74, 0.1)', border: '1px solid rgba(22, 163, 74, 0.3)', borderRadius: '8px', color: '#333' }}>
+          <h3 style={{ color: '#16a34a', marginBottom: '0.5rem', fontSize: '1.25rem' }}>Join the Ambassador WhatsApp Group</h3>
+          <p style={{ marginBottom: '1.5rem', fontSize: '0.95rem', opacity: 0.9 }}>
+            Join the official group to receive exclusive updates, network with other ambassadors, and track leaderboard progress.
+          </p>
+          <a 
+            href="https://chat.whatsapp.com/IQqZKmoWGuTGEgzEQa1LLc?mode=gi_t" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="btn btn-primary"
+            style={{ backgroundColor: '#16a34a', borderColor: '#16a34a', display: 'inline-flex', alignItems: 'center', gap: '0.5rem', padding: '0.75rem 1.5rem', borderRadius: '4px', textDecoration: 'none', color: '#fff', fontWeight: 'bold' }}
+          >
+            Join WhatsApp Group
+          </a>
+        </div>
       </motion.div>
     );
   }

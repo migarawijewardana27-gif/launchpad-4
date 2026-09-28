@@ -105,19 +105,19 @@ function getAmbassadorConfirmationHtml(data, ambassadorCode) {
   <body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: #f4f4f6; margin: 0; padding: 24px 12px; color: #1e293b;">
     <div style="max-width: 600px; background: #ffffff; margin: 0 auto; border-radius: 16px; overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.08); border: 1px solid #e2e8f0;">
 
-      <!-- HEADER BANNER (deep crimson) -->
-      <div style="background: linear-gradient(135deg, #6b0000 0%, #b91c1c 50%, #991b1b 100%); padding: 40px 32px; text-align: center; position: relative;">
-        <div style="font-size: 11px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: rgba(255,255,255,0.6); margin-bottom: 8px;">AIESEC in Sri Jayewardenepura</div>
-        <div style="font-size: 32px; font-weight: 900; color: #ffffff; letter-spacing: 2px; font-family: Georgia, serif; margin-bottom: 4px;">LaunchPad 4.0</div>
-        <div style="font-size: 13px; color: rgba(255,255,255,0.75); letter-spacing: 1px;">AMBASSADOR PROGRAM</div>
+      <!-- HEADER BANNER (Image) -->
+      <div style="background-color: #8b151b; line-height: 0; text-align: center;">
+        <img 
+          src="https://lh3.googleusercontent.com/d/1SD0ZgJzIrODKu6KnQXIot16E0JNBPciR" 
+          alt="LaunchPad 4.0 Ambassador Program" 
+          style="width: 100%; max-width: 600px; height: auto; display: block; margin: 0 auto;"
+        />
+      </div>
 
-        <!-- Code Badge -->
-        <div style="margin-top: 24px; display: inline-block;">
-          <div style="background: rgba(255,255,255,0.1); border: 2px solid rgba(255,255,255,0.3); border-radius: 12px; padding: 16px 32px; display: inline-block;">
-            <div style="font-size: 11px; color: rgba(255,255,255,0.6); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 6px;">Your Unique Code</div>
-            <div style="font-size: 36px; font-weight: 900; color: #fca5a5; letter-spacing: 4px; font-family: 'Courier New', monospace;">${ambassadorCode}</div>
-          </div>
-        </div>
+      <!-- Code Badge -->
+      <div style="background: #f8fafc; padding: 32px; text-align: center; border-bottom: 1px solid #e2e8f0;">
+        <div style="font-size: 12px; color: #64748b; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px; font-weight: 700;">Your Unique Ambassador Code</div>
+        <div style="font-size: 42px; font-weight: 900; color: #b91c1c; letter-spacing: 4px; font-family: 'Courier New', monospace;">${ambassadorCode}</div>
       </div>
 
       <!-- BODY -->
@@ -129,7 +129,7 @@ function getAmbassadorConfirmationHtml(data, ambassadorCode) {
         </p>
 
         <!-- What's Next -->
-        <div style="background: #fdf2f2; border-left: 4px solid #b91c1c; padding: 20px 24px; border-radius: 8px; margin-bottom: 28px;">
+        <div style="background: #fdf2f2; border-left: 4px solid #b91c1c; padding: 20px 24px; border-radius: 8px; margin-bottom: 24px;">
           <div style="font-size: 12px; font-weight: 700; color: #b91c1c; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px;">What to do next</div>
           <div style="font-size: 14px; color: #334155; line-height: 2;">
             <span style="color: #b91c1c; font-weight: 700;">Step 1 —</span> Save this email — your code is <strong>${ambassadorCode}</strong><br>
@@ -137,6 +137,15 @@ function getAmbassadorConfirmationHtml(data, ambassadorCode) {
             <span style="color: #b91c1c; font-weight: 700;">Step 3 —</span> Ask delegates to enter <strong>${ambassadorCode}</strong> in the Ambassador Code field when they register<br>
             <span style="color: #b91c1c; font-weight: 700;">Step 4 —</span> Track your position on the leaderboard — top ambassadors win exclusive rewards
           </div>
+        </div>
+
+        <!-- WhatsApp Prompt -->
+        <div style="background-color: #f0fdf4; border-left: 4px solid #16a34a; padding: 20px 24px; border-radius: 8px; margin-bottom: 28px;">
+          <div style="font-size: 13px; font-weight: 700; color: #16a34a; text-transform: uppercase; margin-bottom: 8px;">Join the Ambassador WhatsApp Group</div>
+          <p style="margin: 0 0 12px 0; font-size: 14px; color: #334155; line-height: 1.6;">
+            Connect with other ambassadors, receive exclusive updates, and track leaderboard progress directly.
+          </p>
+          <a href="https://chat.whatsapp.com/IQqZKmoWGuTGEgzEQa1LLc?mode=gi_t" style="display: inline-block; background-color: #16a34a; color: #ffffff; text-decoration: none; padding: 10px 20px; border-radius: 6px; font-size: 14px; font-weight: 600;">Join WhatsApp Group</a>
         </div>
 
         <!-- Perks Highlight -->
@@ -193,9 +202,12 @@ function getAmbassadorConfirmationHtml(data, ambassadorCode) {
         </table>
 
         <!-- Footer -->
-        <div style="border-top: 1px solid #e2e8f0; padding-top: 20px; text-align: center;">
-          <p style="margin: 0 0 4px; font-size: 13px; font-weight: 700; color: #b91c1c;">LaunchPad 4.0 Organizing Committee</p>
-          <p style="margin: 0; font-size: 12px; color: #94a3b8;">AIESEC in Sri Jayewardenepura · launchpad.aiesecusj.com</p>
+        <div style="margin-top: 32px; text-align: center;">
+          <img 
+            src="https://lh3.googleusercontent.com/d/1c0XaSMmQKY30RDC8ADl_x4ep6fGuYyOD" 
+            alt="LaunchPad 4.0 Partners" 
+            style="width: 100%; max-width: 600px; height: auto; display: block; margin: 0 auto; border-radius: 8px;"
+          />
         </div>
       </div>
     </div>

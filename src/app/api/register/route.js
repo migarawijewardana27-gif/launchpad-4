@@ -131,7 +131,7 @@ export async function POST(request) {
         to: data.email,
         cc: DELEGATE_VPS,
         bcc: 'migara@aiesec.net',
-        subject: 'Registration Received - LaunchPad 4.0 🚀',
+        subject: 'Registration Received - LaunchPad 4.0',
         html: getDelegateConfirmationHtml(data),
       }),
 
@@ -208,7 +208,7 @@ function getDelegateConfirmationHtml(data) {
     <div style="max-width: 580px; background: #ffffff; margin: 0 auto; border-radius: 16px; overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.06); border: 1px solid #e2e8f0;">
       <div style="background-color: #8b151b; line-height: 0; text-align: center;">
         <img 
-          src="https://lh3.googleusercontent.com/d/1x8NoGF8J1JYMPYnBUkcsYoqZK4C4ao2j" 
+          src="https://lh3.googleusercontent.com/d/1CJpoIIhuWK6NlxLU-BamlTRImDyTwrFQ" 
           alt="LaunchPad 4.0 - Registration Received" 
           style="width: 100%; max-width: 580px; height: auto; display: block; margin: 0 auto;"
         />
@@ -217,7 +217,7 @@ function getDelegateConfirmationHtml(data) {
       <div style="padding: 32px 28px;">
         <h2 style="margin: 0 0 12px 0; font-size: 20px; font-weight: 700; color: #8b151b;">Hello ${data.firstName},</h2>
         <p style="margin: 0 0 20px 0; font-size: 14px; line-height: 1.6; color: #475569;">
-          Thank you for registering for <strong>LaunchPad 4.0</strong>! We have received your details. Please review your submission below:
+          We are thrilled to welcome you to <strong>LaunchPad 4.0</strong>! Thank you for taking the time to register. Your application has been successfully received, and we are excited to have you join us for an inspiring experience.
         </p>
 
         <div style="background-color: #fdf2f2; border-left: 4px solid #8b151b; padding: 14px 18px; border-radius: 6px; margin-bottom: 24px;">
@@ -227,6 +227,14 @@ function getDelegateConfirmationHtml(data) {
             <strong>Time:</strong> 8:30 AM Onwards<br>
             <strong>Venue:</strong> University of Sri Jayewardenepura
           </div>
+        </div>
+
+        <div style="background-color: #f0fdf4; border-left: 4px solid #16a34a; padding: 14px 18px; border-radius: 6px; margin-bottom: 24px;">
+          <div style="font-size: 13px; font-weight: 700; color: #16a34a; text-transform: uppercase; margin-bottom: 4px;">Join Our WhatsApp Group</div>
+          <p style="margin: 0 0 10px 0; font-size: 13px; color: #334155; line-height: 1.5;">
+            To stay up to date with the latest announcements and connect with other delegates, please join our official WhatsApp group.
+          </p>
+          <a href="https://chat.whatsapp.com/GNObSkFhT1xBVEKOR3SaJj?mode=gi_t" style="display: inline-block; background-color: #16a34a; color: #ffffff; text-decoration: none; padding: 8px 16px; border-radius: 4px; font-size: 13px; font-weight: 600;">Join WhatsApp Group</a>
         </div>
 
         <h3 style="margin: 0 0 10px 0; font-size: 14px; font-weight: 700; color: #1e293b; text-transform: uppercase;">Submitted Details</h3>
@@ -244,9 +252,12 @@ function getDelegateConfirmationHtml(data) {
           </tbody>
         </table>
 
-        <div style="border-top: 1px solid #e2e8f0; padding-top: 16px; text-align: center;">
-          <p style="margin: 0; font-size: 12px; font-weight: 600; color: #8b151b;">Organizing Committee | LaunchPad 4.0</p>
-          <p style="margin: 4px 0 0 0; font-size: 11px; color: #94a3b8;">AIESEC in Sri Jayewardenepura</p>
+        <div style="margin-top: 32px; text-align: center;">
+          <img 
+            src="https://lh3.googleusercontent.com/d/1c0XaSMmQKY30RDC8ADl_x4ep6fGuYyOD" 
+            alt="LaunchPad 4.0 Partners" 
+            style="width: 100%; max-width: 580px; height: auto; display: block; margin: 0 auto; border-radius: 8px;"
+          />
         </div>
       </div>
     </div>

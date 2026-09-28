@@ -152,11 +152,11 @@ const Legacy = () => {
             description="The inception of a movement. The first LaunchPad set the standard with insightful sessions from industry titans, sparking a wave of innovation among undergraduates."
             aftermovieUrl="https://www.youtube.com/embed/K0rW3LfPTHA"
             comments={[
-              { text: "Being part of the very first edition was a privilege.", author: "Menuki" },
-              { text: "The speakers were incredibly inspiring and motivating.", author: "Chamudi" },
-              { text: "It set a new standard for youth events in the country.", author: "Imaya" },
-              { text: "The beginning of something truly special and impactful.", author: "Umaira" },
-              { text: "An eye-opening experience that pushed me out of my comfort zone.", author: "Migara" }
+              { text: "Being part of the very first edition was a privilege.", author: "Menuki, a delegate of LaunchPad 1.0" },
+              { text: "The speakers were incredibly inspiring and motivating.", author: "Chamudi, a delegate of LaunchPad 1.0" },
+              { text: "It set a new standard for youth events in the country.", author: "Imaya, a delegate of LaunchPad 1.0" },
+              { text: "The beginning of something truly special and impactful.", author: "Umaira, a delegate of LaunchPad 1.0" },
+              { text: "An eye-opening experience that pushed me out of my comfort zone.", author: "Migara, a delegate of LaunchPad 1.0" }
             ]}
             photos={[
               '/images carousel/memory-24.jpg',
@@ -171,11 +171,11 @@ const Legacy = () => {
             description="Introduced the highly anticipated Career Fair and an interactive quiz that tested and rewarded the brightest minds."
             aftermovieUrl="https://www.youtube.com/embed/gn-eoraTEGg"
             comments={[
-              { text: "The Career Fair opened doors I didn't even know existed.", author: "Brian" },
-              { text: "I landed my dream internship thanks to the connections I made here.", author: "Dinuka" },
-              { text: "The interactive quiz was so much fun and very challenging!", author: "Thisuni" },
-              { text: "Everything was perfectly organized, from start to finish.", author: "Dulna" },
-              { text: "Met so many industry leaders and learned so much in one day.", author: "Thakshika" }
+              { text: "The Career Fair opened doors I didn't even know existed.", author: "Brian, a delegate of LaunchPad 2.0" },
+              { text: "I landed my dream internship thanks to the connections I made here.", author: "Dinuka, a delegate of LaunchPad 2.0" },
+              { text: "The interactive quiz was so much fun and very challenging!", author: "Thisuni, a delegate of LaunchPad 2.0" },
+              { text: "Everything was perfectly organized, from start to finish.", author: "Dulna, a delegate of LaunchPad 2.0" },
+              { text: "Met so many industry leaders and learned so much in one day.", author: "Thakshika, a delegate of LaunchPad 2.0" }
             ]}
             photos={[
               '/images carousel/memory-21.jpg',
@@ -191,11 +191,11 @@ const Legacy = () => {
             description="LaunchPad highlights and key moments will be featured here, building upon the massive success of the previous iterations and continuing to empower the future leaders of tomorrow."
             aftermovieUrl="https://www.youtube.com/embed/9PwS06duexc"
             comments={[
-              { text: "This year was an absolute game changer for me. The insights were phenomenal.", author: "Imashi" },
-              { text: "The network I built here will last a lifetime. Highly recommend to everyone.", author: "Duwasha" },
-              { text: "A truly transformative experience that shaped my career path.", author: "Yohan" },
-              { text: "The sessions were engaging and the energy was just unmatched.", author: "Venumi" },
-              { text: "An unforgettable event. Looking forward to what comes next!", author: "Niyoma" }
+              { text: "This year was an absolute game changer for me. The insights were phenomenal.", author: "Imashi, a delegate of LaunchPad 3.0" },
+              { text: "The network I built here will last a lifetime. Highly recommend to everyone.", author: "Duwasha, a delegate of LaunchPad 3.0" },
+              { text: "A truly transformative experience that shaped my career path.", author: "Yohan, a delegate of LaunchPad 3.0" },
+              { text: "The sessions were engaging and the energy was just unmatched.", author: "Venumi, a delegate of LaunchPad 3.0" },
+              { text: "An unforgettable event. Looking forward to what comes next!", author: "Niyoma, a delegate of LaunchPad 3.0" }
             ]}
             photos={[
               '/images carousel/memory-8.webp',

@@ -220,6 +220,22 @@ const Registration = () => {
           </motion.div>
           <h2>Registration Successful!</h2>
           <p>You have successfully registered for LaunchPad 4.0. Keep an eye on your email for further instructions and updates.</p>
+          
+          <div className="whatsapp-prompt" style={{ marginTop: '2rem', padding: '1.5rem', background: 'rgba(22, 163, 74, 0.1)', border: '1px solid rgba(22, 163, 74, 0.3)', borderRadius: '8px' }}>
+            <h3 style={{ color: '#4ade80', marginBottom: '0.5rem', fontSize: '1.25rem' }}>Join the Official WhatsApp Group</h3>
+            <p style={{ marginBottom: '1.5rem', fontSize: '0.95rem', opacity: 0.9 }}>
+              Stay updated with the latest announcements and connect with other delegates before the event!
+            </p>
+            <a 
+              href="https://chat.whatsapp.com/GNObSkFhT1xBVEKOR3SaJj?mode=gi_t" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="btn btn-primary"
+              style={{ backgroundColor: '#16a34a', borderColor: '#16a34a', display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}
+            >
+              Join WhatsApp Group
+            </a>
+          </div>
         </motion.div>
       </div>
     );
@@ -554,7 +570,7 @@ const Registration = () => {
                     </div>
 
                     <div className="receipt-upload-box">
-                      <label className="static-label">Upload Your CV (PDF)</label>
+                      <label className="static-label">Upload Your CV (PDF) (Optional)</label>
                       <input type="file" id="cv-upload" accept=".pdf" onChange={handleFileChange} />
                       <label htmlFor="cv-upload" className="upload-label">
                         <Upload size={32} className="upload-icon" />

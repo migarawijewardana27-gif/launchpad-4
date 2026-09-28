@@ -7,6 +7,7 @@ import { Target, Rocket, Users, Briefcase, ChevronDown, Eye } from 'lucide-react
 import { FaWhatsapp, FaInstagram, FaLinkedinIn, FaGlobe, FaFacebookF, FaYoutube } from 'react-icons/fa';
 import StaggeredText from '../components/StaggeredText';
 import SectionDivider from '../components/SectionDivider';
+import MagneticButton from '../components/MagneticButton';
 import './Home.css';
 
 const heroImages = [
@@ -90,12 +91,16 @@ const Home = () => {
             <motion.div className="hero-cta-container">
               <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem' }}>
                 <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', justifyContent: 'center' }}>
-                  <Link href="/register" className="btn btn-primary pulse-btn">
-                    Register Now
-                  </Link>
-                  <Link href="/ambassadors" className="btn btn-secondary">
-                    Become an Ambassador
-                  </Link>
+                  <MagneticButton>
+                    <Link href="/register" className="btn btn-primary pulse-btn">
+                      Register Now
+                    </Link>
+                  </MagneticButton>
+                  <MagneticButton>
+                    <Link href="/ambassadors" className="btn btn-secondary">
+                      Become an Ambassador
+                    </Link>
+                  </MagneticButton>
                 </div>
                 <span style={{ fontSize: '1rem', opacity: 0.9, marginTop: '0.5rem', fontWeight: 500 }}></span>
               </div>
@@ -130,7 +135,7 @@ const Home = () => {
             >
               <div className="section-label">About the Event</div>
               <h2>What is LaunchPad 4.0?</h2>
-              <p>A premier career guidance program equipping and empowering Sri Lanka's youth for the global stage.</p>
+              <p>A premier career guidance program equipping and empowering Sri&nbsp;Lanka's youth for the global stage.</p>
             </motion.div>
 
             <div className="vision-mission-side-by-side">
@@ -144,7 +149,7 @@ const Home = () => {
               >
                 <Eye className="card-icon" style={{ color: 'var(--color-crimson-bold)' }} />
                 <h3>Vision</h3>
-                <p>Sri Lanka's youth being equipped, empowered, and ready to own the global stage.</p>
+                <p>Sri&nbsp;Lanka's youth being equipped, empowered, and ready to own the global stage.</p>
               </motion.div>
 
               <motion.div
@@ -157,7 +162,7 @@ const Home = () => {
               >
                 <Target className="card-icon" style={{ color: 'var(--color-crimson-bold)' }} />
                 <h3>Mission</h3>
-                <p>To equip Sri Lanka’s youth with the tools, mindset and opportunities to showcase their potential in the career paths they aspire to pursue and emerge as the next generation of global leaders.</p>
+                <p>To equip Sri&nbsp;Lanka’s youth with the tools, mindset and opportunities to showcase their potential in the career paths they aspire to pursue and emerge as the next generation of global leaders.</p>
               </motion.div>
             </div>
           </div>
