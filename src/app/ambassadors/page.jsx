@@ -49,7 +49,7 @@ const Ambassadors = () => {
             <div className="section-label">The Details</div>
             <h2 style={{ textAlign: 'left' }}>How It Works & What You Get</h2>
             <p style={{ maxWidth: '800px', margin: '1rem 0 4rem 0', color: '#555', textAlign: 'left', lineHeight: '1.8', fontSize: '1.1rem' }}>
-              By leveraging your personal network to bring delegates to Launchpad 4.0, you unlock direct career capital, high-level networking, and behind-the-scenes event access.
+              By leveraging your personal network to bring delegates to LaunchPad 4.0, you unlock direct career capital, high-level networking, and behind-the-scenes event access.
             </p>
           </motion.div>
 
@@ -68,7 +68,7 @@ const Ambassadors = () => {
                 <div className="step-box">
                   <div className="step-number">1</div>
                   <h4>Claim Your Code</h4>
-                  <p>Sign up to become an official Launchpad 4.0 Ambassador and receive your unique registration tracking code.</p>
+                  <p>Sign up to become an official LaunchPad 4.0 Ambassador and receive your unique registration tracking code.</p>
                 </div>
                 <div className="step-box">
                   <div className="step-number">2</div>
@@ -85,7 +85,7 @@ const Ambassadors = () => {
               <div style={{ marginTop: '4rem' }}>
                 <h3>Who Can Join?</h3>
                 <p style={{ color: '#555', lineHeight: '1.8' }}>
-                  This program is open to everyone. Whether you are an active AIESEC member or a driven non-AIESECer looking to expand your professional footprint, the Ambassador Program is built for you. If you are highly connected and want to elevate your personal brand alongside Launchpad 4.0, secure your code today.
+                  This program is open to everyone. Whether you are an active AIESEC member or a driven non-AIESECer looking to expand your professional footprint, the Ambassador Program is built for you. If you are highly connected and want to elevate your personal brand alongside LaunchPad 4.0, secure your code today.
                 </p>
               </div>
             </motion.div>
@@ -127,7 +127,7 @@ const Ambassadors = () => {
                   <div className="perk-icon-wrapper"><FaNetworkWired size={22} /></div>
                   <div className="perk-content">
                     <h4>Event Integration</h4>
-                    <p>Go behind the scenes and volunteer during Launchpad 4.0 alongside the core AIESEC organizing committee.</p>
+                    <p>Go behind the scenes and volunteer during LaunchPad 4.0 alongside the core AIESEC organizing committee.</p>
                   </div>
                 </div>
                 <div className="perk-item">
