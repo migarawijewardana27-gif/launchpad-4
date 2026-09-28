@@ -411,7 +411,7 @@
   font-size: 1.5rem;
   font-family: var(--font-secondary);
   letter-spacing: 1px;
-  min-height: 4rem;
+  min-height: 4.5rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -443,9 +443,10 @@
 .pillar-flip-back h3 {
   font-family: var(--font-secondary);
   font-size: 1.5rem;
+  margin: 0;
   margin-bottom: 1rem;
   color: var(--color-crimson-bold) !important;
-  min-height: 4rem;
+  min-height: 4.5rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -454,6 +455,11 @@
 .pillar-flip-back p {
   color: var(--color-bg-primary) !important;
   font-weight: 500;
+  margin: 0;
+  min-height: 7rem;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
 }
 
 /* Section 5: Aftermovie */

@@ -179,7 +179,7 @@ const Home = () => {
             <StaggeredText text="Core Pillars" className="" />
           </div>
           <div className="pillars-grid">
-            <FlipCardPillar icon={Target} title="Career Exploration" description="Unlocking clear pathways into diverse industries and future-ready careers." delay={0.1} />
+            <FlipCardPillar icon={Target} title="Career Exploration" description="Unlocking clear pathways into diverse industries and careers." delay={0.1} />
             <FlipCardPillar icon={Rocket} title="Skill Development" description="Equipping you with tactical, high-demand skills for the modern workplace." delay={0.2} />
             <FlipCardPillar icon={Users} title="Leadership Development" description="Empowering youth with the resilience and vision to lead on a global stage." delay={0.3} />
             <FlipCardPillar icon={Briefcase} title="Networking" description="Bridging ambitious young talent directly with top employers and mentors." delay={0.4} />
