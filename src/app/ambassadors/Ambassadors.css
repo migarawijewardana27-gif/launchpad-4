@@ -497,4 +497,7 @@
     flex-direction: column;
     gap: 1rem;
   }
+  .radio-grid {
+    grid-template-columns: 1fr;
+  }
 }

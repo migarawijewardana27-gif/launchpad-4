@@ -289,6 +289,15 @@ a:hover {
   padding: 0 var(--spacing-md);
 }
 
+@media (max-width: 768px) {
+  .container {
+    padding: 0 var(--spacing-sm);
+  }
+  .section-padding {
+    padding: var(--spacing-lg) 0;
+  }
+}
+
 /* Full Screen Hero Utility */
 .full-screen-hero {
   min-height: 100vh;
