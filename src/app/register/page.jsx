@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { CheckCircle, ArrowRight, ArrowLeft, Loader, Upload } from 'lucide-react';
+import Link from 'next/link';
 import { submitFormData, uploadFile } from '../../services/supabaseService';
 import './Registration.css';
 
