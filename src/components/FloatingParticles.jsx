@@ -10,9 +10,9 @@ const FloatingParticles = () => {
   const particles = useMemo(() => {
     return Array.from({ length: 12 }, (_, i) => ({
       id: i,
-      size: 20 + (i % 4) * 15, // 20–65px
+      size: 20 + (i % 4) * 15, // 20-65px
       left: `${(i * 8.5) % 100}%`,
-      animDuration: 18 + (i % 5) * 6, // 18–42s
+      animDuration: 18 + (i % 5) * 6, // 18-42s
       animDelay: (i * 2.3) % 10, // stagger
       startY: `${(i * 12) % 100}%`,
       rotateStart: (i * 37) % 360,

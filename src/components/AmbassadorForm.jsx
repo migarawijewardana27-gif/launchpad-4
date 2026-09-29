@@ -216,7 +216,7 @@ const AmbassadorForm = () => {
           </div>
         </div>
 
-        {/* AIESEC Entity — conditional */}
+        {/* AIESEC Entity - conditional */}
         <AnimatePresence>
           {formData.isAiesecer === 'Yes' && (
             <motion.div

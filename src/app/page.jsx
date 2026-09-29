@@ -7,7 +7,6 @@ import { Target, Rocket, Users, Briefcase, ChevronDown, Eye } from 'lucide-react
 import { FaWhatsapp, FaInstagram, FaLinkedinIn, FaGlobe, FaFacebookF, FaYoutube } from 'react-icons/fa';
 import StaggeredText from '../components/StaggeredText';
 import SectionDivider from '../components/SectionDivider';
-import MagneticButton from '../components/MagneticButton';
 import './Home.css';
 
 const heroImages = [
@@ -91,16 +90,12 @@ const Home = () => {
             <motion.div className="hero-cta-container">
               <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem' }}>
                 <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', justifyContent: 'center' }}>
-                  <MagneticButton>
-                    <Link href="/register" className="btn btn-primary pulse-btn">
-                      Register Now
-                    </Link>
-                  </MagneticButton>
-                  <MagneticButton>
-                    <Link href="/ambassadors" className="btn btn-secondary">
-                      Become an Ambassador
-                    </Link>
-                  </MagneticButton>
+                  <Link href="/register" className="btn btn-primary pulse-btn" style={{ width: '300px', justifyContent: 'center', whiteSpace: 'nowrap' }}>
+                    Register Now
+                  </Link>
+                  <Link href="/ambassadors" className="btn btn-secondary" style={{ width: '300px', justifyContent: 'center', whiteSpace: 'nowrap' }}>
+                    Become an Ambassador
+                  </Link>
                 </div>
                 <span style={{ fontSize: '1rem', opacity: 0.9, marginTop: '0.5rem', fontWeight: 500 }}></span>
               </div>

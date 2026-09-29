@@ -10,7 +10,7 @@ const Updates = () => {
   return (
     <div className="page-wrapper updates-page">
 
-      {/* HERO — RED */}
+      {/* HERO - RED */}
       <section className="updates-hero full-screen-hero theme-red" style={{ minHeight: '60vh' }}>
         <div className="updates-hero-bg" />
         <div className="container center-align" style={{ position: 'relative', zIndex: 1 }}>
@@ -32,7 +32,7 @@ const Updates = () => {
 
       <SectionDivider fillColor="#F8FAFC" />
 
-      {/* SOCIAL HUB — WHITE */}
+      {/* SOCIAL HUB - WHITE */}
       <section className="social-hub-section section-padding theme-white">
         <div className="container">
           <div className="section-label">Follow Along</div>
@@ -98,7 +98,7 @@ const Updates = () => {
 
       <SectionDivider flip fillColor="#8B0000" />
 
-      {/* CONTENT & RIBBON — 85/15 split, RED background */}
+      {/* CONTENT & RIBBON - 85/15 split, RED background */}
       <section className="content-ribbon-section theme-red">
         <div className="updates-layout-container">
 

@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Calendar } from 'lucide-react';
-import './Legacy.css';
+import './AboutUs.css';
 
 const RotatingComments = ({ comments }) => {
   const [index, setIndex] = useState(0);
@@ -31,7 +31,7 @@ const RotatingComments = ({ comments }) => {
           className="comment-content"
         >
           <p className="comment-text" style={{ fontStyle: 'italic', marginBottom: '0.5rem' }}>"{comments[index].text}"</p>
-          <p className="comment-author" style={{ fontWeight: 'bold', fontSize: '0.9rem' }}>— {comments[index].author}</p>
+          <p className="comment-author" style={{ fontWeight: 'bold', fontSize: '0.9rem' }}>- {comments[index].author}</p>
         </motion.div>
       </AnimatePresence>
     </div>
@@ -103,7 +103,7 @@ const legacyHeroImages = [
   '/images carousel/memory-19.webp'
 ];
 
-const Legacy = () => {
+const AboutUs = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   useEffect(() => {
@@ -136,7 +136,7 @@ const Legacy = () => {
             transition={{ duration: 0.6 }}
           >
             <img src="/logo only.png" alt="LaunchPad Logo" className="legacy-hero-logo" />
-            <h1 style={{ color: 'white' }}>Our Legacy</h1>
+            <h1 style={{ color: 'white' }}>About Us</h1>
             <p className="max-w-md mx-auto legacy-intro-para">
               Since its inception, LaunchPad has been a beacon of inspiration for thousands of youths across Sri Lanka. What started as a daring dream has evolved into a nationwide movement, equipping the next generation of leaders with the skills, network, and mindset to conquer their futures. Take a journey through our history.
             </p>
@@ -207,4 +207,4 @@ const Legacy = () => {
   );
 };
 
-export default Legacy;
+export default AboutUs;

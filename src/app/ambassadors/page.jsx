@@ -11,7 +11,7 @@ const Ambassadors = () => {
   return (
     <div className="page-wrapper ambassadors-page">
 
-      {/* HERO SECTION — RED */}
+      {/* HERO SECTION - RED */}
       <section className="ambassadors-hero theme-red">
         <div className="ambassadors-hero-bg" />
         <div className="container center-align">
@@ -37,7 +37,7 @@ const Ambassadors = () => {
 
       <SectionDivider fillColor="#F8FAFC" />
 
-      {/* DETAILS SECTION — WHITE */}
+      {/* DETAILS SECTION - WHITE */}
       <section className="ambassador-details-section theme-white">
         <div className="container">
           <motion.div
@@ -146,7 +146,7 @@ const Ambassadors = () => {
 
       <SectionDivider flip fillColor="#8B0000" />
 
-      {/* REGISTRATION FORM SECTION — RED */}
+      {/* REGISTRATION FORM SECTION - RED */}
       <section id="register" className="registration-section theme-red">
         <div className="container">
           <motion.div 

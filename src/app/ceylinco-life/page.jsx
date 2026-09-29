@@ -41,7 +41,7 @@ const CeylincoLife = () => {
   return (
     <div className="page-wrapper ceylinco-page">
 
-      {/* SECTION 1: Cinematic Hero — RED with background */}
+      {/* SECTION 1: Cinematic Hero - RED with background */}
       <section className="ceylinco-hero theme-red">
         <div className="ceylinco-hero-bg-overlay" />
         <div className="container">
@@ -75,7 +75,7 @@ const CeylincoLife = () => {
       {/* Angled Divider into WHITE */}
       <SectionDivider fillColor="#F8FAFC" />
 
-      {/* SECTION 2: Commitment — WHITE */}
+      {/* SECTION 2: Commitment - WHITE */}
       <section className="commitment-section section-padding theme-white">
         <div className="container">
           <div className="commitment-layout">
@@ -92,7 +92,7 @@ const CeylincoLife = () => {
                 As the leading life insurance provider in Sri Lanka, Ceylinco Life has always been deeply invested in the future of our nation. By partnering with LaunchPad 4.0, they aim to bridge the gap between academic education and the dynamic needs of the corporate world.
               </p>
               <p>
-                This collaboration is more than just a sponsorship — it's a shared vision to nurture talent, foster leadership, and create meaningful opportunities for the next generation.
+                This collaboration is more than just a sponsorship - it's a shared vision to nurture talent, foster leadership, and create meaningful opportunities for the next generation.
               </p>
             </motion.div>
 
@@ -122,7 +122,7 @@ const CeylincoLife = () => {
       {/* Angled Divider into RED */}
       <SectionDivider flip fillColor="#8B0000" />
 
-      {/* SECTION 3: Leadership Quote — RED */}
+      {/* SECTION 3: Leadership Quote - RED */}
       <section className="leadership-message-section section-padding theme-red">
         <div className="container">
           <motion.div
@@ -155,7 +155,7 @@ const CeylincoLife = () => {
       {/* Angled Divider into WHITE */}
       <SectionDivider fillColor="#F8FAFC" />
 
-      {/* SECTION 4: Opportunities — WHITE */}
+      {/* SECTION 4: Opportunities - WHITE */}
       <section className="opportunities-section section-padding theme-white">
         <div className="container">
           <motion.div
@@ -196,7 +196,7 @@ const CeylincoLife = () => {
       {/* Angled Divider into RED */}
       <SectionDivider flip fillColor="#8B0000" />
 
-      {/* SECTION 5: Connect — RED */}
+      {/* SECTION 5: Connect - RED */}
       <section className="digital-footprint-section section-padding theme-red">
         <div className="container">
           <motion.div

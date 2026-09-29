@@ -38,7 +38,7 @@ const Event = () => {
   return (
     <div className="page-wrapper event-page">
 
-      {/* HERO — RED with a cinematic overlay */}
+      {/* HERO - RED with a cinematic overlay */}
       <section className="event-hero theme-red">
         <div className="event-hero-bg" />
         <div className="container center-align event-hero-inner">
@@ -79,7 +79,7 @@ const Event = () => {
 
       <SectionDivider fillColor="#F8FAFC" />
 
-      {/* ITINERARY — WHITE */}
+      {/* ITINERARY - WHITE */}
       <section className="itinerary-section section-padding theme-white">
         <div className="container">
           <div className="section-label">Event Flow</div>
@@ -132,7 +132,7 @@ const Event = () => {
 
       <SectionDivider flip fillColor="#8B0000" />
 
-      {/* SPEAKERS — RED */}
+      {/* SPEAKERS - RED */}
       <section className="speakers-section section-padding theme-red">
         <div className="container">
           <div className="section-label" style={{ justifyContent: 'center' }}>Industry Leaders</div>
@@ -166,7 +166,7 @@ const Event = () => {
 
       <SectionDivider fillColor="#F8FAFC" />
 
-      {/* CAREER FAIR MAP — WHITE */}
+      {/* CAREER FAIR MAP - WHITE */}
       <section className="map-section section-padding theme-white">
         <div className="container">
           <div className="section-label">Venue Layout</div>
@@ -211,7 +211,7 @@ const Event = () => {
 
       <SectionDivider flip fillColor="#8B0000" />
 
-      {/* REGISTER CTA — RED */}
+      {/* REGISTER CTA - RED */}
       <section className="event-cta-section section-padding theme-red">
         <div className="container center-align">
           <motion.div

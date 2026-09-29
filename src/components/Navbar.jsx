@@ -27,7 +27,7 @@ const Navbar = () => {
   }, [pathname]);
 
   const aboutLinks = [
-    { name: 'Legacy', path: '/legacy' },
+    { name: 'About Us', path: '/about-us' },
     { name: 'Team', path: '/team' },
   ];
 
@@ -51,7 +51,7 @@ const Navbar = () => {
           <div className="nav-links desktop-only">
             <Link href="/" className={`nav-link ${pathname === '/' ? 'active' : ''}`}>Home</Link>
             
-            <Link href="/legacy" className={`nav-link ${pathname === '/legacy' ? 'active' : ''}`}>Legacy</Link>
+            <Link href="/about-us" className={`nav-link ${pathname === '/about-us' ? 'active' : ''}`}>About Us</Link>
             <Link href="/team" className={`nav-link ${pathname === '/team' ? 'active' : ''}`}>Team</Link>
             <span className="nav-link" style={{ cursor: 'not-allowed', opacity: 0.6, display: 'inline-flex', alignItems: 'center' }} title="Coming Soon">
               Event <Lock size={14} style={{ marginLeft: '4px' }} />
@@ -90,7 +90,7 @@ const Navbar = () => {
         <div className={`mobile-menu ${isMobileMenuOpen ? 'open' : ''}`}>
           <Link href="/" className={`mobile-nav-link ${pathname === '/' ? 'active' : ''}`}>Home</Link>
           
-          <Link href="/legacy" className={`mobile-nav-link ${pathname === '/legacy' ? 'active' : ''}`}>Legacy</Link>
+          <Link href="/about-us" className={`mobile-nav-link ${pathname === '/about-us' ? 'active' : ''}`}>About Us</Link>
           <Link href="/team" className={`mobile-nav-link ${pathname === '/team' ? 'active' : ''}`}>Team</Link>
           <span className="mobile-nav-link" style={{ cursor: 'not-allowed', opacity: 0.6, display: 'flex', alignItems: 'center' }} title="Coming Soon">
             Event <Lock size={16} style={{ marginLeft: '6px' }} />

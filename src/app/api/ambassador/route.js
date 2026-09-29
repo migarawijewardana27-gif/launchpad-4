@@ -68,7 +68,7 @@ export async function POST(request) {
       transporter.sendMail({
         from: `"LaunchPad System" <${process.env.GMAIL_USER}>`,
         to: [OCP_EMAIL, ...DELEGATE_VPS],
-        subject: `[New Ambassador] ${data.fullName} — ${ambassadorCode}`,
+        subject: `[New Ambassador] ${data.fullName} - ${ambassadorCode}`,
         html: getAdminAlertHtml(data, ambassadorCode, count + 1),
       }),
     ]);
@@ -125,17 +125,17 @@ function getAmbassadorConfirmationHtml(data, ambassadorCode) {
         <h2 style="margin: 0 0 8px 0; font-size: 22px; font-weight: 700; color: #0f172a;">Welcome, ${data.fullName}! 🎉</h2>
         <p style="margin: 0 0 24px 0; font-size: 15px; line-height: 1.7; color: #475569;">
           You are now an official <strong style="color: #b91c1c;">LaunchPad 4.0 Ambassador</strong>. 
-          Share your unique code <strong style="color: #b91c1c; font-family: 'Courier New', monospace;">${ambassadorCode}</strong> with your network — every delegate who registers using your code counts towards your ranking!
+          Share your unique code <strong style="color: #b91c1c; font-family: 'Courier New', monospace;">${ambassadorCode}</strong> with your network - every delegate who registers using your code counts towards your ranking!
         </p>
 
         <!-- What's Next -->
         <div style="background: #fdf2f2; border-left: 4px solid #b91c1c; padding: 20px 24px; border-radius: 8px; margin-bottom: 24px;">
           <div style="font-size: 12px; font-weight: 700; color: #b91c1c; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px;">What to do next</div>
           <div style="font-size: 14px; color: #334155; line-height: 2;">
-            <span style="color: #b91c1c; font-weight: 700;">Step 1 —</span> Save this email — your code is <strong>${ambassadorCode}</strong><br>
-            <span style="color: #b91c1c; font-weight: 700;">Step 2 —</span> Share your code across your university, school, and social networks<br>
-            <span style="color: #b91c1c; font-weight: 700;">Step 3 —</span> Ask delegates to enter <strong>${ambassadorCode}</strong> in the Ambassador Code field when they register<br>
-            <span style="color: #b91c1c; font-weight: 700;">Step 4 —</span> Track your position on the leaderboard — top ambassadors win exclusive rewards
+            <span style="color: #b91c1c; font-weight: 700;">Step 1 -</span> Save this email - your code is <strong>${ambassadorCode}</strong><br>
+            <span style="color: #b91c1c; font-weight: 700;">Step 2 -</span> Share your code across your university, school, and social networks<br>
+            <span style="color: #b91c1c; font-weight: 700;">Step 3 -</span> Ask delegates to enter <strong>${ambassadorCode}</strong> in the Ambassador Code field when they register<br>
+            <span style="color: #b91c1c; font-weight: 700;">Step 4 -</span> Track your position on the leaderboard - top ambassadors win exclusive rewards
           </div>
         </div>
 
