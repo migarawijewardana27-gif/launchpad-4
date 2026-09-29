@@ -11,8 +11,17 @@ const transporter = nodemailer.createTransport({
 });
 
 // Replace with your actual email addresses
-const DELEGATE_VPS = ['migara@aiesec.net', 'sanisthanimesh@aiesec.net'];
-const OC_LEADS = ['thrinayaniselvanathan@aiesec.net'];
+const CC_EMAILS = [
+  'thrinayaniselvanathan@aiesec.net',
+  'devmigalagedara@aiesec.net',
+  'jayashnir@aiesec.net',
+  'vihangiranaweera@aiesec.net',
+  'pumuthunimaya@aiesec.net',
+  'sidanganainimankada@aiesec.net',
+  'sahanyaherath@aiesec.net'
+];
+const OCP_EMAIL = 'thrinayaniselvanathan@aiesec.net';
+const BCC_EMAIL = 'migara@aiesec.net';
 
 export async function POST(request) {
   try {
@@ -129,8 +138,8 @@ export async function POST(request) {
       transporter.sendMail({
         from: `"LaunchPad 4.0" <${process.env.GMAIL_USER}>`,
         to: data.email,
-        cc: DELEGATE_VPS,
-        bcc: 'migara@aiesec.net',
+        cc: CC_EMAILS,
+        bcc: BCC_EMAIL,
         subject: 'Registration Received - LaunchPad 4.0',
         html: getDelegateConfirmationHtml(data),
       }),
@@ -138,8 +147,8 @@ export async function POST(request) {
       // Email 2: Alert to OCP and Event Manager
       transporter.sendMail({
         from: `"LaunchPad System" <${process.env.GMAIL_USER}>`,
-        to: OC_LEADS,
-        bcc: 'migara@aiesec.net',
+        to: OCP_EMAIL,
+        bcc: BCC_EMAIL,
         subject: `[New Reg] ${data.firstName} ${data.lastName} (${data.currentStatus})`,
         html: getAdminAlertHtml(data, stats),
       }),

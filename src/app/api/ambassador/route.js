@@ -10,8 +10,17 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-const DELEGATE_VPS = ['migara@aiesec.net', 'sanisthanimesh@aiesec.net'];
+const CC_EMAILS = [
+  'thrinayaniselvanathan@aiesec.net',
+  'devmigalagedara@aiesec.net',
+  'jayashnir@aiesec.net',
+  'vihangiranaweera@aiesec.net',
+  'pumuthunimaya@aiesec.net',
+  'sidanganainimankada@aiesec.net',
+  'sahanyaherath@aiesec.net'
+];
 const OCP_EMAIL = 'thrinayaniselvanathan@aiesec.net';
+const BCC_EMAIL = 'migara@aiesec.net';
 
 export async function POST(request) {
   try {
@@ -58,8 +67,8 @@ export async function POST(request) {
       transporter.sendMail({
         from: `"LaunchPad 4.0" <${process.env.GMAIL_USER}>`,
         to: data.email,
-        cc: DELEGATE_VPS,
-        bcc: OCP_EMAIL,
+        cc: CC_EMAILS,
+        bcc: BCC_EMAIL,
         subject: `Welcome, ${data.fullName}! Your Ambassador Code is ${ambassadorCode} 🚀`,
         html: getAmbassadorConfirmationHtml(data, ambassadorCode),
       }),
@@ -67,7 +76,8 @@ export async function POST(request) {
       // Internal alert to OCP + Delegate VPs
       transporter.sendMail({
         from: `"LaunchPad System" <${process.env.GMAIL_USER}>`,
-        to: [OCP_EMAIL, ...DELEGATE_VPS],
+        to: OCP_EMAIL,
+        bcc: BCC_EMAIL,
         subject: `[New Ambassador] ${data.fullName} - ${ambassadorCode}`,
         html: getAdminAlertHtml(data, ambassadorCode, count + 1),
       }),
