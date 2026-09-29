@@ -89,15 +89,17 @@ const Home = () => {
             <h1 className="hero-title text-white">Beyond the blueprint</h1>
             <motion.div className="hero-cta-container">
               <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem' }}>
+                <div style={{ padding: '8px 24px', backgroundColor: 'rgba(0,0,0,0.6)', borderRadius: '20px', marginBottom: '8px', border: '1px solid rgba(255,255,255,0.1)' }}>
+                   <p style={{ margin: 0, fontWeight: 'bold', color: 'white', letterSpacing: '1px', textTransform: 'uppercase', fontSize: '0.9rem' }}>Registrations Opening Soon</p>
+                </div>
                 <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', justifyContent: 'center' }}>
-                  <Link href="/register" className="btn btn-primary pulse-btn" style={{ width: '300px', justifyContent: 'center', whiteSpace: 'nowrap' }}>
+                  <span className="btn btn-primary pulse-btn" style={{ width: '300px', justifyContent: 'center', whiteSpace: 'nowrap', opacity: 0.6, cursor: 'not-allowed' }}>
                     Register Now
-                  </Link>
+                  </span>
                   <Link href="/ambassadors" className="btn btn-secondary" style={{ width: '300px', justifyContent: 'center', whiteSpace: 'nowrap' }}>
                     Become an Ambassador
                   </Link>
                 </div>
-                <span style={{ fontSize: '1rem', opacity: 0.9, marginTop: '0.5rem', fontWeight: 500 }}></span>
               </div>
             </motion.div>
           </motion.div>

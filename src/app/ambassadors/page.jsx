@@ -25,7 +25,7 @@ const Ambassadors = () => {
             </div>
             <h1 className="ambassadors-hero-title">Ambassador Program</h1>
             <p className="ambassadors-hero-sub">
-              Step into a central role at one of the year's most anticipated career development events. 
+              Step into a central role at one of the year's most anticipated career development events.
               A grassroots advocacy network open to both AIESECers and non-AIESECers.
             </p>
             <a href="#register" className="btn btn-primary pulse-btn" style={{ padding: '1rem 2.5rem', fontSize: '1.1rem' }}>
@@ -54,9 +54,9 @@ const Ambassadors = () => {
           </motion.div>
 
           <div className="details-grid">
-            
+
             {/* Left Column: How it Works */}
-            <motion.div 
+            <motion.div
               className="details-column"
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -81,7 +81,7 @@ const Ambassadors = () => {
                   <p>Every finalized delegate registration tied to your code increases your ranking. Top-performing ambassadors will be officially recognized and rewarded.</p>
                 </div>
               </div>
-              
+
               <div style={{ marginTop: '4rem' }}>
                 <h3>Who Can Join?</h3>
                 <p style={{ color: '#555', lineHeight: '1.8' }}>
@@ -91,7 +91,7 @@ const Ambassadors = () => {
             </motion.div>
 
             {/* Right Column: Perks */}
-            <motion.div 
+            <motion.div
               className="details-column"
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -100,7 +100,7 @@ const Ambassadors = () => {
             >
               <h3>Ambassador Perks & Career Capital</h3>
               <p style={{ color: '#555', marginBottom: '1.5rem' }}>This program is designed to reward your influence with tangible career and networking value.</p>
-              
+
               <div className="perks-list">
                 <div className="perk-item">
                   <div className="perk-icon-wrapper"><FaFileAlt size={22} /></div>
@@ -149,7 +149,7 @@ const Ambassadors = () => {
       {/* REGISTRATION FORM SECTION - RED */}
       <section id="register" className="registration-section theme-red">
         <div className="container">
-          <motion.div 
+          <motion.div
             className="center-align mb-lg"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -159,14 +159,17 @@ const Ambassadors = () => {
             <h2>Ambassador Registration</h2>
           </motion.div>
 
-          <motion.div 
+          <motion.div
             className="form-wrapper"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
           >
-            <AmbassadorForm />
+            <div className="glass-panel" style={{ padding: '3rem', textAlign: 'center', maxWidth: '600px', margin: '0 auto' }}>
+              <h3 style={{ marginBottom: '1rem', color: 'var(--color-crimson-bold)' }}>Registrations Opening Soon!</h3>
+              <p style={{ color: 'var(--color-text-secondary)', fontSize: '1.1rem' }}>Ambassador registrations are closed at the moment. Please check back later to apply as an ambassador.</p>
+            </div>
           </motion.div>
         </div>
       </section>
