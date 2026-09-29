@@ -38,7 +38,7 @@ const RotatingComments = ({ comments }) => {
   );
 };
 
-const LegacyEventSection = ({ title, date, description, aftermovieUrl, comments, photos, index }) => {
+const LegacyEventSection = ({ edition, title, date, description, aftermovieUrl, comments, photos, index }) => {
   const isEven = index % 2 === 0;
   
   return (
@@ -53,6 +53,7 @@ const LegacyEventSection = ({ title, date, description, aftermovieUrl, comments,
         >
       <div className="legacy-event-content glass-panel" style={{ position: 'relative', overflow: 'hidden' }}>
         <div className="legacy-event-header">
+          {edition && <div className="legacy-edition-label">{edition}</div>}
           <h2>{title}</h2>
           <div className="legacy-meta">
             {date && <span className="meta-item"><Calendar size={14} /> {date}</span>}
@@ -147,6 +148,7 @@ const AboutUs = () => {
       <div className="legacy-sections-container">
           <LegacyEventSection 
             index={0}
+            edition="LaunchPad 1.0"
             title="Dare to Dream"
             date="2023"
             description="The inception of a movement. The first LaunchPad set the standard with insightful sessions from industry titans, sparking a wave of innovation among undergraduates."
@@ -166,6 +168,7 @@ const AboutUs = () => {
 
           <LegacyEventSection 
             index={1}
+            edition="LaunchPad 2.0"
             title="Scaling New Heights"
             date="2024"
             description="Introduced the highly anticipated Career Fair and an interactive quiz that tested and rewarded the brightest minds."
@@ -186,6 +189,7 @@ const AboutUs = () => {
 
           <LegacyEventSection 
             index={2}
+            edition="LaunchPad 3.0"
             title="Continuing the Momentum"
             date="2025"
             description="LaunchPad highlights and key moments will be featured here, building upon the massive success of the previous iterations and continuing to empower the future leaders of tomorrow."

@@ -111,6 +111,26 @@
   letter-spacing: -0.02em;
 }
 
+.legacy-edition-label {
+  display: inline-block;
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--color-crimson-bold);
+  background: rgba(139, 0, 0, 0.1);
+  padding: 6px 14px;
+  border-radius: 20px;
+  margin-bottom: 0.75rem;
+  border: 1px solid rgba(139, 0, 0, 0.2);
+}
+
+.theme-red .legacy-edition-label {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
 .legacy-event-header h2 {
   color: var(--color-text-primary);
   font-size: 2.5rem;
@@ -230,7 +250,48 @@
 }
 
 @media (max-width: 768px) {
+  .legacy-sections-container {
+    margin-top: 2rem;
+    gap: 3rem;
+  }
+
   .legacy-event-header h2 {
-    font-size: 2rem;
+    font-size: 1.8rem;
+  }
+
+  .legacy-event-content {
+    padding: 1.5rem;
+  }
+
+  .legacy-photo-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .legacy-hero-logo {
+    height: 80px;
+    margin-bottom: 1.5rem;
+  }
+
+  .legacy-intro-para {
+    font-size: 0.95rem;
+    padding: 0 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .legacy-event-header h2 {
+    font-size: 1.5rem;
+  }
+  
+  .legacy-meta {
+    font-size: 0.85rem;
+  }
+  
+  .legacy-description {
+    font-size: 0.95rem;
+  }
+
+  .legacy-photo-grid {
+    gap: 0.5rem;
   }
 }
