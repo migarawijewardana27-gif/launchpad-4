@@ -93,9 +93,9 @@ const Home = () => {
                   <Link href="/register" className="btn btn-primary pulse-btn" style={{ width: '300px', justifyContent: 'center', whiteSpace: 'nowrap' }}>
                     Register Now
                   </Link>
-                  <Link href="/ambassadors" className="btn btn-secondary" style={{ width: '300px', justifyContent: 'center', whiteSpace: 'nowrap' }}>
-                    Become an Ambassador
-                  </Link>
+                  <span className="btn btn-secondary" style={{ width: '300px', justifyContent: 'center', whiteSpace: 'nowrap', opacity: 0.6, cursor: 'not-allowed' }}>
+                    Ambassador Registrations Closed
+                  </span>
                 </div>
                 <span style={{ fontSize: '1rem', opacity: 0.9, marginTop: '0.5rem', fontWeight: 500 }}></span>
               </div>

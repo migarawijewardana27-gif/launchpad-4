@@ -166,7 +166,10 @@ const Ambassadors = () => {
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
           >
-            <AmbassadorForm />
+            <div className="glass-panel" style={{ padding: '3rem', textAlign: 'center', maxWidth: '600px', margin: '0 auto' }}>
+              <h3 style={{ marginBottom: '1rem', color: 'var(--color-crimson-bold)' }}>Registrations Closed!</h3>
+              <p style={{ color: 'var(--color-text-secondary)', fontSize: '1.1rem' }}>Ambassador registrations are currently closed. Thank you for your overwhelming interest!</p>
+            </div>
           </motion.div>
         </div>
       </section>
