@@ -182,33 +182,6 @@ export async function POST(request) {
 // EMAIL TEMPLATE 1: DELEGATE CONFIRMATION (WITH DRIVE IMAGE)
 // =========================================================================
 function getDelegateConfirmationHtml(data) {
-  const dynamicRows = [];
-
-  if (data.currentStatus === 'Undergraduate') {
-    if (data.university) dynamicRows.push({ label: 'University', value: data.university });
-    if (data.academicYear) dynamicRows.push({ label: 'Academic Year', value: `${data.academicYear} Year` });
-  } else if (data.currentStatus === 'School Student') {
-    if (data.school) dynamicRows.push({ label: 'School / Institution', value: data.school });
-    if (data.planningToPursue) dynamicRows.push({ label: 'Pursuing Next', value: data.planningToPursue });
-  } else if (data.currentStatus === 'Graduate') {
-    if (data.university) dynamicRows.push({ label: 'Graduated From', value: data.university });
-    if (data.gradYear) dynamicRows.push({ label: 'Graduation Year', value: data.gradYear });
-  } else if (data.currentStatus === 'Employed') {
-    if (data.jobRole) dynamicRows.push({ label: 'Job Role', value: data.jobRole });
-    if (data.industry) dynamicRows.push({ label: 'Industry', value: data.industry });
-    if (data.experienceYears) dynamicRows.push({ label: 'Experience', value: data.experienceYears });
-  }
-
-  const dynamicTableRows = dynamicRows
-    .map(
-      (item) => `
-      <tr>
-        <td style="padding: 10px 14px; border-bottom: 1px solid #f1f5f9; color: #64748b; font-weight: 600; width: 40%; font-size: 13px;">${item.label}</td>
-        <td style="padding: 10px 14px; border-bottom: 1px solid #f1f5f9; color: #1e293b; font-size: 13px;">${item.value}</td>
-      </tr>`
-    )
-    .join('');
-
   return `
   <!DOCTYPE html>
   <html lang="en">
@@ -228,46 +201,6 @@ function getDelegateConfirmationHtml(data) {
         <p style="margin: 0 0 20px 0; font-size: 14px; line-height: 1.6; color: #475569;">
           We are thrilled to welcome you to <strong>LaunchPad 4.0</strong>! Thank you for taking the time to register. Your application has been successfully received, and we are excited to have you join us for an inspiring experience.
         </p>
-
-        <div style="background-color: #fdf2f2; border-left: 4px solid #8b151b; padding: 14px 18px; border-radius: 6px; margin-bottom: 24px;">
-          <div style="font-size: 13px; font-weight: 700; color: #8b151b; text-transform: uppercase; margin-bottom: 4px;">Event Details</div>
-          <div style="font-size: 13px; color: #334155; line-height: 1.5;">
-            <strong>Date:</strong> 31st of October<br>
-            <strong>Time:</strong> 8:30 AM Onwards<br>
-            <strong>Venue:</strong> University of Sri Jayewardenepura
-          </div>
-        </div>
-
-        <div style="background-color: #f0fdf4; border-left: 4px solid #16a34a; padding: 14px 18px; border-radius: 6px; margin-bottom: 24px;">
-          <div style="font-size: 13px; font-weight: 700; color: #16a34a; text-transform: uppercase; margin-bottom: 4px;">Join Our WhatsApp Group</div>
-          <p style="margin: 0 0 10px 0; font-size: 13px; color: #334155; line-height: 1.5;">
-            To stay up to date with the latest announcements and connect with other delegates, please join our official WhatsApp group.
-          </p>
-          <a href="https://chat.whatsapp.com/GNObSkFhT1xBVEKOR3SaJj?mode=gi_t" style="display: inline-block; background-color: #16a34a; color: #ffffff; text-decoration: none; padding: 8px 16px; border-radius: 4px; font-size: 13px; font-weight: 600;">Join WhatsApp Group</a>
-        </div>
-
-        <h3 style="margin: 0 0 10px 0; font-size: 14px; font-weight: 700; color: #1e293b; text-transform: uppercase;">Submitted Details</h3>
-        <table style="width: 100%; border-collapse: collapse; background: #fafafa; border-radius: 8px; border: 1px solid #edf2f7; margin-bottom: 24px;">
-          <tbody>
-            <tr><td style="padding: 10px 14px; border-bottom: 1px solid #f1f5f9; color: #64748b; font-weight: 600; width: 40%; font-size: 13px;">Full Name</td><td style="padding: 10px 14px; border-bottom: 1px solid #f1f5f9; font-size: 13px;">${data.firstName} ${data.lastName}</td></tr>
-            <tr><td style="padding: 10px 14px; border-bottom: 1px solid #f1f5f9; color: #64748b; font-weight: 600; font-size: 13px;">Email Address</td><td style="padding: 10px 14px; border-bottom: 1px solid #f1f5f9; font-size: 13px;">${data.email}</td></tr>
-            <tr><td style="padding: 10px 14px; border-bottom: 1px solid #f1f5f9; color: #64748b; font-weight: 600; font-size: 13px;">WhatsApp Number</td><td style="padding: 10px 14px; border-bottom: 1px solid #f1f5f9; font-size: 13px;">${data.whatsapp}</td></tr>
-            <tr><td style="padding: 10px 14px; border-bottom: 1px solid #f1f5f9; color: #64748b; font-weight: 600; font-size: 13px;">Current Status</td><td style="padding: 10px 14px; border-bottom: 1px solid #f1f5f9; font-size: 13px;">${data.currentStatus}</td></tr>
-            ${dynamicTableRows}
-            <tr><td style="padding: 10px 14px; border-bottom: 1px solid #f1f5f9; color: #64748b; font-weight: 600; font-size: 13px;">Preferred Sector</td><td style="padding: 10px 14px; border-bottom: 1px solid #f1f5f9; font-size: 13px;">${data.preferredCareerSector || 'Not specified'}</td></tr>
-            <tr><td style="padding: 10px 14px; border-bottom: 1px solid #f1f5f9; color: #64748b; font-weight: 600; font-size: 13px;">Opportunities Interested In</td><td style="padding: 10px 14px; border-bottom: 1px solid #f1f5f9; font-size: 13px;">${data.opportunityType || 'Not specified'}</td></tr>
-            <tr><td style="padding: 10px 14px; border-bottom: 1px solid #f1f5f9; color: #64748b; font-weight: 600; font-size: 13px;">AIESEC Member</td><td style="padding: 10px 14px; border-bottom: 1px solid #f1f5f9; font-size: 13px;">${data.isAiesecer}</td></tr>
-            <tr><td style="padding: 10px 14px; color: #64748b; font-weight: 600; font-size: 13px;">Ambassador Code</td><td style="padding: 10px 14px; font-size: 13px;">${data.ambassadorCode || 'None'}</td></tr>
-          </tbody>
-        </table>
-
-        <div style="margin-top: 32px; text-align: center;">
-          <img 
-            src="https://lh3.googleusercontent.com/d/1c0XaSMmQKY30RDC8ADl_x4ep6fGuYyOD" 
-            alt="LaunchPad 4.0 Partners" 
-            style="width: 100%; max-width: 580px; height: auto; display: block; margin: 0 auto; border-radius: 8px;"
-          />
-        </div>
       </div>
     </div>
   </body>
