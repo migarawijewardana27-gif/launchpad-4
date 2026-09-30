@@ -242,17 +242,6 @@ const Registration = () => {
     );
   }
 
-  return (
-    <div className="page-wrapper form-page theme-red" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: '80vh' }}>
-      <div className="container" style={{ display: 'flex', justifyContent: 'center' }}>
-        <div className="glass-panel" style={{ padding: '3rem', textAlign: 'center', maxWidth: '600px', width: '100%' }}>
-          <h2 style={{ marginBottom: '1rem', color: 'var(--color-crimson-bold)' }}>Registrations Opening Soon!</h2>
-          <p style={{ color: 'var(--color-text-secondary)', fontSize: '1.1rem', marginBottom: '2rem' }}>We are currently finalizing the details. Please check back later to secure your spot at LaunchPad 4.0.</p>
-          <Link href="/" className="btn btn-primary">Back to Home</Link>
-        </div>
-      </div>
-    </div>
-  );
 
   return (
     <div className="page-wrapper form-page theme-red">
