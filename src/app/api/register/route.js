@@ -195,13 +195,6 @@ function getDelegateConfirmationHtml(data) {
           style="width: 100%; max-width: 580px; height: auto; display: block; margin: 0 auto;"
         />
       </div>
-
-      <div style="padding: 32px 28px;">
-        <h2 style="margin: 0 0 12px 0; font-size: 20px; font-weight: 700; color: #8b151b;">Hello ${data.firstName},</h2>
-        <p style="margin: 0 0 20px 0; font-size: 14px; line-height: 1.6; color: #475569;">
-          We are thrilled to welcome you to <strong>LaunchPad 4.0</strong>! Thank you for taking the time to register. Your application has been successfully received, and we are excited to have you join us for an inspiring experience.
-        </p>
-      </div>
     </div>
   </body>
   </html>`;
