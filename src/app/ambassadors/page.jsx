@@ -28,9 +28,14 @@ const Ambassadors = () => {
               Step into a central role at one of the year's most anticipated career development events.
               A grassroots advocacy network open to both AIESECers and non-AIESECers.
             </p>
-            <a href="#register" className="btn btn-primary pulse-btn" style={{ padding: '1rem 2.5rem', fontSize: '1.1rem' }}>
-              Claim Your Code
-            </a>
+            <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', marginTop: '1rem', flexWrap: 'wrap' }}>
+              <a href="#register" className="btn btn-primary pulse-btn" style={{ padding: '1rem 2.5rem', fontSize: '1.1rem' }}>
+                Claim Your Code
+              </a>
+              <a href="https://drive.google.com/file/d/1qB8qUOOO2xrUanD4LijutZEw4JMUANxG/view" target="_blank" rel="noopener noreferrer" className="btn btn-secondary" style={{ padding: '1rem 2.5rem', fontSize: '1.1rem' }}>
+                Ambassador Booklet
+              </a>
+            </div>
           </motion.div>
         </div>
       </section>
@@ -157,6 +162,9 @@ const Ambassadors = () => {
           >
             <div className="section-label" style={{ justifyContent: 'center' }}>Join The Network</div>
             <h2>Ambassador Registration</h2>
+            <p style={{ marginTop: '1rem', marginBottom: '2rem' }}>
+              Make sure to read the <a href="https://drive.google.com/file/d/1qB8qUOOO2xrUanD4LijutZEw4JMUANxG/view" target="_blank" rel="noopener noreferrer" style={{ color: '#fff', textDecoration: 'underline', fontWeight: 'bold' }}>Ambassador Booklet</a> before registering!
+            </p>
           </motion.div>
 
           <motion.div
