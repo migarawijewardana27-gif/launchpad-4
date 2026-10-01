@@ -80,7 +80,7 @@ const Registration = () => {
     if (typeof window !== 'undefined') {
       const params = new URLSearchParams(window.location.search);
       const code = params.get('ambassadorCode');
-      if (code) {
+      if (code === 'LPA001') {
         setFormData(prev => ({ ...prev, ambassadorCode: code }));
       }
     }
