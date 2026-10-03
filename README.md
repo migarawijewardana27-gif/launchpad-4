@@ -19,7 +19,7 @@ Set these in Vercel (Project → Settings → Environment Variables) and in `.en
 
 `vercel.json` schedules `GET /api/cron/ambassador-report` at `0 18 * * *` (18:00 UTC / 23:30 Asia/Colombo; Vercel Hobby crons may fire up to an hour late). It emails headline totals and the top 10 ambassadors to the OCP (BCC Migara) every night through 31 Oct 2026 (Colombo time), then responds `report period ended` without sending.
 
-Each run also overwrites two tabs in the ambassador Google Sheet: **Ambassadors** (every ambassador's registration details) and **Leaderboard** (rank, code, name, referral count for every ambassador, same order as the email). If the sheet update fails, the email is still sent with a warning line.
+Each run also overwrites two tabs in the ambassador Google Sheet: **Ambassadors** (every ambassador's registration details) and **Leaderboard** (rank, code, name, referral count for every ambassador, same order as the email). It also appends one row to **Daily History** (Colombo date, total ambassadors, new in last 24h, total referred delegates). Every run appends a row, including manual triggers. If the sheet update fails, the email is still sent with a warning line.
 
 Trigger it manually:
 
@@ -35,7 +35,7 @@ curl -H "Authorization: Bearer $CRON_SECRET" https://<deployment>/api/cron/ambas
 4. **Deploy → New deployment → Web app**, Execute as **Me**, Who has access **Anyone**. Authorize it, then copy the `/exec` URL. (After later script edits, use **Manage deployments → Edit → New version** so the URL stays the same.)
 5. Share the sheet with thrinayaniselvanathan@aiesec.net. Viewer access is enough, because both tabs are overwritten every night.
 6. In Vercel, add `AMBASSADOR_SHEET_SCRIPT_URL` (the `/exec` URL), `AMBASSADOR_SHEET_SECRET` (same value as `SHEET_SECRET`) and `AMBASSADOR_SHEET_URL` (the sheet's browser URL), then redeploy.
-7. Trigger the report manually (above). Check that both tabs fill and that the email's "Open Sheet" button opens the sheet.
+7. Trigger the report manually (above). Check that the Ambassadors and Leaderboard tabs fill, that Daily History gains a row, and that the email's "Open Sheet" button opens the sheet.
 
 ## Tests
 

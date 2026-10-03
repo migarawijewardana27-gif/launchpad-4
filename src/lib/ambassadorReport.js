@@ -91,8 +91,10 @@ export function buildAmbassadorReport({ ambassadors, referralCodes, now }) {
   // Sheet "Leaderboard" tab: rank, code, name, referral count
   const leaderboardRows = ranking.map((a, i) => [i + 1, a.code, a.name, a.referrals]);
 
+  const reportIsoDate = colomboIsoDate(now);
+
   return {
-    shouldSend: colomboIsoDate(now) <= LAST_REPORT_DATE,
+    shouldSend: reportIsoDate <= LAST_REPORT_DATE,
     reportDate: colomboDisplayDate(now),
     totalAmbassadors: ambassadors.length,
     newAmbassadors,
@@ -100,5 +102,7 @@ export function buildAmbassadorReport({ ambassadors, referralCodes, now }) {
     topAmbassadors: ranking.slice(0, TOP_N),
     ambassadorRows,
     leaderboardRows,
+    // Sheet "Daily History" tab: one row appended per run
+    historyRow: [reportIsoDate, ambassadors.length, newAmbassadors, totalReferrals],
   };
 }

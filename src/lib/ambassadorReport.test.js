@@ -216,3 +216,16 @@ test('leaderboard rows rank every ambassador, including zero-referral ones, in t
     report.leaderboardRows.slice(0, 10).map((row) => row[1]),
   );
 });
+
+test('history row holds the Colombo date and headline totals; a run just after 18:00 UTC is dated the same Colombo day', () => {
+  const report = buildAmbassadorReport({
+    ambassadors: [
+      ambassador('LPA001', { created_at: '2026-10-04T10:00:00Z' }),
+      ambassador('LPA002'),
+    ],
+    referralCodes: ['LPA001', 'lpa002 ', 'UNKNOWN'],
+    now: new Date('2026-10-04T18:05:00Z'), // 23:35 Colombo
+  });
+
+  assert.deepEqual(report.historyRow, ['2026-10-04', 2, 1, 2]);
+});

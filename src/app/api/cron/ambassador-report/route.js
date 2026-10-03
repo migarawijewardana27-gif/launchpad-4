@@ -33,8 +33,9 @@ async function selectAll(supabase, table, columns) {
 
 const SHEET_TIMEOUT_MS = 30_000;
 
-// Overwrites the Ambassadors and Leaderboard tabs via the ambassador sheet's
-// Apps Script web app (source: docs/apps-script/ambassador-sheet.gs).
+// Overwrites the Ambassadors and Leaderboard tabs, and appends a Daily History
+// row, via the ambassador sheet's Apps Script web app
+// (source: docs/apps-script/ambassador-sheet.gs).
 // Returns null on success, or a short error message; never throws.
 async function syncSheet(report) {
   const url = process.env.AMBASSADOR_SHEET_SCRIPT_URL;
@@ -51,6 +52,7 @@ async function syncSheet(report) {
         secret,
         ambassadors: report.ambassadorRows,
         leaderboard: report.leaderboardRows,
+        history: report.historyRow,
       }),
       signal: AbortSignal.timeout(SHEET_TIMEOUT_MS),
     });

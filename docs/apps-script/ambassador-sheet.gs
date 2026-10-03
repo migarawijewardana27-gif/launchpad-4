@@ -5,12 +5,14 @@
  * ("Execute as: Me", "Who has access: Anyone"). The nightly report route
  * (/api/cron/ambassador-report) POSTs:
  *
- *   { "secret": "...", "ambassadors": [[...], ...], "leaderboard": [[...], ...] }
+ *   { "secret": "...", "ambassadors": [[...], ...], "leaderboard": [[...], ...], "history": [...] }
  *
  * The secret is checked against the SHEET_SECRET script property
  * (Project Settings → Script properties), which must equal the
- * AMBASSADOR_SHEET_SECRET env var in Vercel. Both tabs are cleared and
- * rewritten with a header row. Responds { ok: true } or { ok: false, error }.
+ * AMBASSADOR_SHEET_SECRET env var in Vercel. Ambassadors and Leaderboard are
+ * cleared and rewritten with a header row; the history row is appended to
+ * Daily History (created with a header row if missing), leaving earlier rows
+ * untouched. Responds { ok: true } or { ok: false, error }.
  */
 
 const TABS = {
@@ -28,6 +30,9 @@ const TABS = {
   Leaderboard: ['Rank', 'Code', 'Name', 'Referrals'],
 };
 
+const HISTORY_TAB = 'Daily History';
+const HISTORY_HEADER = ['Date (Asia/Colombo)', 'Total Ambassadors', 'New in Last 24h', 'Total Referred Delegates'];
+
 function doPost(e) {
   try {
     const body = JSON.parse(e.postData.contents);
@@ -39,6 +44,7 @@ function doPost(e) {
 
     validateRows_('ambassadors', body.ambassadors, TABS.Ambassadors.length);
     validateRows_('leaderboard', body.leaderboard, TABS.Leaderboard.length);
+    validateRows_('history', [body.history], HISTORY_HEADER.length);
 
     // Serialise overlapping runs (e.g. a manual trigger during the cron run).
     const lock = LockService.getScriptLock();
@@ -46,6 +52,7 @@ function doPost(e) {
     try {
       writeTab_('Ambassadors', TABS.Ambassadors, body.ambassadors);
       writeTab_('Leaderboard', TABS.Leaderboard, body.leaderboard);
+      appendHistory_(body.history);
       SpreadsheetApp.flush();
     } finally {
       lock.releaseLock();
@@ -75,6 +82,19 @@ function writeTab_(name, header, rows) {
   sheet.getRange(1, 1, values.length, header.length).setValues(values);
   sheet.getRange(1, 1, 1, header.length).setFontWeight('bold');
   sheet.setFrozenRows(1);
+}
+
+function appendHistory_(row) {
+  const spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
+  let sheet = spreadsheet.getSheetByName(HISTORY_TAB);
+  if (!sheet) sheet = spreadsheet.insertSheet(HISTORY_TAB);
+  if (sheet.getLastRow() === 0) {
+    sheet.appendRow(HISTORY_HEADER);
+    sheet.getRange(1, 1, 1, HISTORY_HEADER.length).setFontWeight('bold');
+    sheet.setFrozenRows(1);
+    sheet.getRange('A:A').setNumberFormat('yyyy-mm-dd');
+  }
+  sheet.appendRow(row.map(asCell_));
 }
 
 // Strings starting with = + - @ would be parsed as formulas (and "+94..."
