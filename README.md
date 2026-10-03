@@ -17,7 +17,7 @@ Set these in Vercel (Project → Settings → Environment Variables) and in `.en
 
 ## Nightly ambassador report
 
-`vercel.json` schedules `GET /api/cron/ambassador-report` at `0 18 * * *` (18:00 UTC / 23:30 Asia/Colombo; Vercel Hobby crons may fire up to an hour late). It emails headline totals and the top 10 ambassadors to the OCP (BCC Migara) every night through 31 Oct 2026 (Colombo time), then responds `report period ended` without sending.
+`vercel.json` schedules `GET /api/cron/ambassador-report` at `0 17 * * *` (17:00 UTC / 22:30 Asia/Colombo). Vercel Hobby crons may fire up to an hour late, so the run always lands between 22:30 and 23:30 Colombo, before midnight. That keeps the report date (email subject, Daily History) on the right day and ensures the final 31 Oct report is sent. Don't move it later than 18:00 UTC. It emails headline totals and the top 10 ambassadors to the OCP (BCC Migara) every night through 31 Oct 2026 (Colombo time), then responds `report period ended` without sending.
 
 Each run also overwrites two tabs in the ambassador Google Sheet: **Ambassadors** (every ambassador's registration details) and **Leaderboard** (rank, code, name, referral count for every ambassador, same order as the email). It also appends one row to **Daily History** (Colombo date, total ambassadors, new in last 24h, total referred delegates). Every run appends a row, including manual triggers. If the sheet update fails, the email is still sent with a warning line.
 

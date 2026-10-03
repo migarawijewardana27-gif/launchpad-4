@@ -229,3 +229,12 @@ test('history row holds the Colombo date and headline totals; a run just after 1
 
   assert.deepEqual(report.historyRow, ['2026-10-04', 2, 1, 2]);
 });
+
+test('a cron run up to an hour late on 31 Oct (17:00 UTC schedule) is still dated 31 Oct and still sends', () => {
+  for (const iso of ['2026-10-31T17:00:00Z', '2026-10-31T17:59:59Z']) {
+    const report = buildAmbassadorReport({ ambassadors: [], referralCodes: [], now: new Date(iso) });
+    assert.equal(report.shouldSend, true, iso);
+    assert.equal(report.historyRow[0], '2026-10-31', iso);
+    assert.equal(report.reportDate, '31 Oct 2026', iso);
+  }
+});
