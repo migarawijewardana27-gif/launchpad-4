@@ -21,9 +21,28 @@ const colomboDisplayDate = (date) =>
     year: 'numeric',
   }).format(date);
 
+// e.g. "2026-10-04 23:30:00" in Colombo time; blank if missing or invalid
+const colomboTimestamp = (value) => {
+  const date = new Date(value ?? NaN);
+  if (!value || Number.isNaN(date.getTime())) return '';
+  return new Intl.DateTimeFormat('sv-SE', {
+    timeZone: TIME_ZONE,
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+    hourCycle: 'h23',
+  }).format(date);
+};
+
+const byCode = (a, b) => (a < b ? -1 : a > b ? 1 : 0);
+const orBlank = (value) => value ?? '';
+
 /**
  * @param {object} input
- * @param {Array<{ ambassador_code: string, full_name: string, created_at: string }>} input.ambassadors
+ * @param {Array<object>} input.ambassadors  rows from the `ambassadors` table
  * @param {Array<string | null | undefined>} input.referralCodes  `ambassador_code` of each registration
  * @param {Date} input.now  the run time
  */
@@ -46,14 +65,31 @@ export function buildAmbassadorReport({ ambassadors, referralCodes, now }) {
     return createdMs > nowMs - DAY_MS && createdMs <= nowMs;
   }).length;
 
-  const topAmbassadors = ambassadors
+  const ranking = ambassadors
     .map((a) => ({
       code: a.ambassador_code,
       name: a.full_name,
       referrals: referralsByCode.get(normalizeCode(a.ambassador_code)),
     }))
-    .sort((a, b) => b.referrals - a.referrals || (a.code < b.code ? -1 : a.code > b.code ? 1 : 0))
-    .slice(0, TOP_N);
+    .sort((a, b) => b.referrals - a.referrals || byCode(a.code, b.code));
+
+  // Sheet "Ambassadors" tab: registration details only, no referral counts
+  const ambassadorRows = [...ambassadors]
+    .sort((a, b) => byCode(a.ambassador_code, b.ambassador_code))
+    .map((a) => [
+      orBlank(a.ambassador_code),
+      orBlank(a.full_name),
+      orBlank(a.email),
+      a.whatsapp ? `+94${a.whatsapp}` : '',
+      orBlank(a.current_status),
+      orBlank(a.organization),
+      orBlank(a.is_aiesecer),
+      orBlank(a.aiesec_entity),
+      colomboTimestamp(a.created_at),
+    ]);
+
+  // Sheet "Leaderboard" tab: rank, code, name, referral count
+  const leaderboardRows = ranking.map((a, i) => [i + 1, a.code, a.name, a.referrals]);
 
   return {
     shouldSend: colomboIsoDate(now) <= LAST_REPORT_DATE,
@@ -61,6 +97,8 @@ export function buildAmbassadorReport({ ambassadors, referralCodes, now }) {
     totalAmbassadors: ambassadors.length,
     newAmbassadors,
     totalReferrals,
-    topAmbassadors,
+    topAmbassadors: ranking.slice(0, TOP_N),
+    ambassadorRows,
+    leaderboardRows,
   };
 }

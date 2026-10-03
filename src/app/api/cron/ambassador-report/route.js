@@ -31,6 +31,39 @@ async function selectAll(supabase, table, columns) {
   }
 }
 
+const SHEET_TIMEOUT_MS = 30_000;
+
+// Overwrites the Ambassadors and Leaderboard tabs via the ambassador sheet's
+// Apps Script web app (source: docs/apps-script/ambassador-sheet.gs).
+// Returns null on success, or a short error message; never throws.
+async function syncSheet(report) {
+  const url = process.env.AMBASSADOR_SHEET_SCRIPT_URL;
+  const secret = process.env.AMBASSADOR_SHEET_SECRET;
+  if (!url || !secret) {
+    return 'AMBASSADOR_SHEET_SCRIPT_URL or AMBASSADOR_SHEET_SECRET is not set';
+  }
+
+  try {
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        secret,
+        ambassadors: report.ambassadorRows,
+        leaderboard: report.leaderboardRows,
+      }),
+      signal: AbortSignal.timeout(SHEET_TIMEOUT_MS),
+    });
+    if (!response.ok) return `Apps Script responded with HTTP ${response.status}`;
+
+    const body = await response.json().catch(() => null);
+    if (body?.ok !== true) return `Apps Script error: ${body?.error ?? 'unexpected response'}`;
+    return null;
+  } catch (error) {
+    return `Could not reach Apps Script: ${error.message}`;
+  }
+}
+
 // Called nightly by Vercel Cron (see vercel.json), which sends
 // `Authorization: Bearer <CRON_SECRET>`.
 export async function GET(request) {
@@ -47,7 +80,11 @@ export async function GET(request) {
     );
 
     const [ambassadors, registrations] = await Promise.all([
-      selectAll(supabaseAdmin, 'ambassadors', 'ambassador_code, full_name, created_at'),
+      selectAll(
+        supabaseAdmin,
+        'ambassadors',
+        'ambassador_code, full_name, email, whatsapp, current_status, organization, is_aiesecer, aiesec_entity, created_at'
+      ),
       selectAll(supabaseAdmin, 'registrations', 'ambassador_code'),
     ]);
 
@@ -65,20 +102,24 @@ export async function GET(request) {
     return NextResponse.json({ message: 'report period ended' });
   }
 
+  // A sheet failure must not stop the email; it's reported in it instead.
+  const sheetError = await syncSheet(report);
+  if (sheetError) console.error('Ambassador sheet sync error:', sheetError);
+
   try {
     await transporter.sendMail({
       from: `"LaunchPad System" <${process.env.GMAIL_USER}>`,
       to: OCP_EMAIL,
       bcc: BCC_EMAIL,
       subject: `[Ambassador Report] ${report.reportDate} · ${report.totalAmbassadors} ambassadors · ${report.totalReferrals} referrals`,
-      html: getReportHtml(report),
+      html: getReportHtml(report, { sheetUrl: process.env.AMBASSADOR_SHEET_URL, sheetError }),
     });
   } catch (error) {
     console.error('Ambassador report email error:', error);
     return NextResponse.json({ error: 'Failed to send report email' }, { status: 500 });
   }
 
-  return NextResponse.json({ success: true });
+  return NextResponse.json({ success: true, sheetSynced: !sheetError });
 }
 
 const escapeHtml = (value) =>
@@ -91,7 +132,7 @@ const escapeHtml = (value) =>
 // =============================================================================
 // EMAIL TEMPLATE: NIGHTLY AMBASSADOR REPORT (styled like the internal admin alert)
 // =============================================================================
-function getReportHtml(report) {
+function getReportHtml(report, { sheetUrl, sheetError }) {
   const stat = (label, value, color) => `
         <td style="padding: 0 8px; text-align: center; width: 33%;">
           <div style="font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #94a3b8; margin-bottom: 4px;">${label}</div>
@@ -121,6 +162,10 @@ function getReportHtml(report) {
 
       <h2 style="margin: 0 0 4px 0; font-size: 22px; color: #0f172a;">Nightly Ambassador Summary</h2>
       <p style="margin: 0 0 20px 0; color: #64748b; font-size: 14px;">${escapeHtml(report.reportDate)}</p>
+${sheetError ? `
+      <div style="background: #fffbeb; border-left: 4px solid #d97706; color: #92400e; padding: 12px 16px; border-radius: 6px; margin: 0 0 20px; font-size: 13px;">
+        <strong>Warning:</strong> the Google Sheet could not be updated tonight, so it may be out of date. (${escapeHtml(sheetError)})
+      </div>` : ''}
 
       <!-- Headline totals -->
       <div style="background: #0f172a; color: #ffffff; padding: 20px 16px; border-radius: 8px; margin: 0 0 24px;">
@@ -147,6 +192,11 @@ function getReportHtml(report) {
         <tbody>${rows}
         </tbody>
       </table>
+${sheetUrl ? `
+      <div style="margin-top: 24px; text-align: center;">
+        <a href="${escapeHtml(sheetUrl)}" style="display: inline-block; background-color: #b91c1c; color: #ffffff; text-decoration: none; padding: 10px 20px; border-radius: 6px; font-size: 14px; font-weight: 600;">Open Sheet</a>
+        <div style="margin-top: 8px; font-size: 12px; color: #64748b;">Full ambassador list and leaderboard</div>
+      </div>` : ''}
     </div>
   </body>
   </html>`;

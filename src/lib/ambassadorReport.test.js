@@ -153,3 +153,66 @@ test('reports the Colombo calendar date of the run', () => {
 
   assert.equal(report.reportDate, '5 Oct 2026');
 });
+
+test('ambassador rows hold every registration detail plus signup time in Colombo, ordered by code, with no referral counts', () => {
+  const report = buildAmbassadorReport({
+    ambassadors: [
+      ambassador('LPA002', {
+        email: 'b@example.com',
+        whatsapp: '771234567',
+        current_status: 'Undergraduate',
+        organization: 'University of Colombo',
+        is_aiesecer: 'Yes',
+        aiesec_entity: 'CC',
+        created_at: '2026-10-04T18:00:00Z',
+      }),
+      ambassador('LPA001', {
+        email: 'a@example.com',
+        whatsapp: '711111111',
+        current_status: 'Employed',
+        organization: 'Acme',
+        is_aiesecer: 'No',
+        aiesec_entity: null,
+        created_at: '2026-09-30T20:15:42Z',
+      }),
+    ],
+    referralCodes: ['LPA001', 'LPA001'],
+    now: NOW,
+  });
+
+  assert.deepEqual(report.ambassadorRows, [
+    ['LPA001', 'Name LPA001', 'a@example.com', '+94711111111', 'Employed', 'Acme', 'No', '', '2026-10-01 01:45:42'],
+    ['LPA002', 'Name LPA002', 'b@example.com', '+94771234567', 'Undergraduate', 'University of Colombo', 'Yes', 'CC', '2026-10-04 23:30:00'],
+  ]);
+});
+
+test('ambassador rows leave missing fields blank rather than printing null', () => {
+  const report = buildAmbassadorReport({
+    ambassadors: [{ ambassador_code: 'LPA001', full_name: 'Solo', created_at: null }],
+    referralCodes: [],
+    now: NOW,
+  });
+
+  assert.deepEqual(report.ambassadorRows, [['LPA001', 'Solo', '', '', '', '', '', '', '']]);
+});
+
+test('leaderboard rows rank every ambassador, including zero-referral ones, in the same order as the top 10', () => {
+  const codes = Array.from({ length: 12 }, (_, i) => `LPA${String(i + 1).padStart(3, '0')}`);
+  const report = buildAmbassadorReport({
+    ambassadors: codes.map((code) => ambassador(code)),
+    referralCodes: ['lpa012', 'LPA012', ' LPA003 ', 'UNKNOWN'],
+    now: NOW,
+  });
+
+  assert.equal(report.leaderboardRows.length, 12);
+  assert.deepEqual(report.leaderboardRows.slice(0, 3), [
+    [1, 'LPA012', 'Name LPA012', 2],
+    [2, 'LPA003', 'Name LPA003', 1],
+    [3, 'LPA001', 'Name LPA001', 0],
+  ]);
+  assert.deepEqual(report.leaderboardRows.at(-1), [12, 'LPA011', 'Name LPA011', 0]);
+  assert.deepEqual(
+    report.topAmbassadors.map((a) => a.code),
+    report.leaderboardRows.slice(0, 10).map((row) => row[1]),
+  );
+});
