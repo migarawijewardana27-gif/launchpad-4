@@ -1,3 +1,37 @@
+# LaunchPad 4.0
+
+## Environment variables
+
+Set these in Vercel (Project → Settings → Environment Variables) and in `.env.local` for local dev.
+
+| Variable | Required | Purpose |
+| --- | --- | --- |
+| `NEXT_PUBLIC_SUPABASE_URL` | Yes | Supabase project URL |
+| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Yes | Supabase anon key (browser client) |
+| `SUPABASE_SERVICE_ROLE_KEY` | Yes | Supabase service-role key (API routes) |
+| `GMAIL_USER` / `GMAIL_APP_PASSWORD` | Yes | Gmail transport for outgoing email |
+| `CRON_SECRET` | Yes | Shared secret for `/api/cron/ambassador-report`. Vercel Cron sends it as `Authorization: Bearer <CRON_SECRET>`; requests without it get 401. Use a random string of at least 16 characters. |
+
+## Nightly ambassador report
+
+`vercel.json` schedules `GET /api/cron/ambassador-report` at `0 18 * * *` (18:00 UTC / 23:30 Asia/Colombo; Vercel Hobby crons may fire up to an hour late). It emails headline totals and the top 10 ambassadors to the OCP (BCC Migara) every night through 31 Oct 2026 (Colombo time), then responds `report period ended` without sending.
+
+Trigger it manually:
+
+```sh
+curl -H "Authorization: Bearer $CRON_SECRET" https://<deployment>/api/cron/ambassador-report
+```
+
+## Tests
+
+```sh
+npm test
+```
+
+Uses Node's built-in test runner (`node --test`) on `src/**/*.test.js`.
+
+---
+
 # React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
