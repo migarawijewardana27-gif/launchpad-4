@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { CheckCircle, Upload, ArrowLeft, Loader } from 'lucide-react';
+import { CheckCircle, Upload, ArrowLeft, Loader, Copy, Check, Mail, ShieldCheck, ShoppingBag } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { useCart } from '../../context/CartContext';
 import { MAX_RECEIPT_BYTES } from '../../lib/orders';
@@ -23,6 +23,9 @@ const Checkout = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState('');
   const [orderCode, setOrderCode] = useState('');
+  const [receipt, setReceipt] = useState(null);
+  const [copied, setCopied] = useState(false);
+  const [verify, setVerify] = useState({ step: 'idle', token: '', proof: '', code: '', error: '', busy: false });
 
   useEffect(() => {
     if (cartItems.length === 0 && !isSubmitted) {
@@ -33,6 +36,36 @@ const Checkout = () => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
+    if (name === 'email') setVerify({ step: 'idle', token: '', proof: '', code: '', error: '', busy: false });
+  };
+
+  const patchVerify = (p) => setVerify((v) => ({ ...v, ...p }));
+
+  const postJson = async (url, data) => {
+    const res = await fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
+    const result = await res.json().catch(() => ({}));
+    if (!res.ok) throw new Error(result.error || 'Something went wrong. Please try again.');
+    return result;
+  };
+
+  const sendCode = async () => {
+    patchVerify({ busy: true, error: '' });
+    try {
+      const { token } = await postJson('/api/orders/verify-email', { email: formData.email });
+      patchVerify({ step: 'code', token, code: '', busy: false });
+    } catch (err) {
+      patchVerify({ error: err.message, busy: false });
+    }
+  };
+
+  const confirmCode = async () => {
+    patchVerify({ busy: true, error: '' });
+    try {
+      const { proof } = await postJson('/api/orders/verify-email/confirm', { email: formData.email, code: verify.code, token: verify.token });
+      patchVerify({ step: 'verified', proof, busy: false });
+    } catch (err) {
+      patchVerify({ error: err.message, busy: false });
+    }
   };
 
   const handleFileChange = (e) => {
@@ -50,6 +83,10 @@ const Checkout = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (verify.step !== 'verified') {
+      setSubmitError('Please verify your email address first.');
+      return;
+    }
     if (cartItems.length > 0) {
       setSubmitError('');
       setIsSubmitting(true);
@@ -59,6 +96,7 @@ const Checkout = () => {
         body.append('fullName', formData.fullName);
         body.append('email', formData.email);
         body.append('phone', formData.phone);
+        body.append('emailProof', verify.proof);
         body.append('items', JSON.stringify(cartItems.map(({ size, quantity }) => ({ size, quantity }))));
         body.append('receipt', fileToUpload);
 
@@ -67,6 +105,7 @@ const Checkout = () => {
         if (!res.ok) throw new Error(result.error || 'Failed to submit order.');
 
         setOrderCode(result.orderCode);
+        setReceipt({ items: cartItems, total: getCartTotal(), email: formData.email, name: formData.fullName });
         clearCart();
         setIsSubmitted(true);
       } catch (error) {
@@ -78,28 +117,77 @@ const Checkout = () => {
     }
   };
 
+  const copyCode = async () => {
+    try {
+      await navigator.clipboard.writeText(orderCode);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {}
+  };
+
   if (isSubmitted) {
+    const steps = [
+      { icon: ShieldCheck, title: 'We verify your transfer', text: 'Our team checks your bank receipt against the amount.' },
+      { icon: Mail, title: 'Confirmation email', text: `We'll email ${receipt?.email || 'you'} as soon as it's verified.` },
+      { icon: ShoppingBag, title: 'Collect your T-shirt', text: 'Show your order ID when you pick it up at the event.' },
+    ];
     return (
-      <div className="page-wrapper center-content theme-red">
-        <motion.div 
-          className="success-message glass-panel"
-          initial={{ scale: 0.8, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ type: 'spring', bounce: 0.5 }}
+      <div className="page-wrapper order-page theme-red">
+        <motion.div
+          className="order-card glass-panel"
+          initial={{ y: 30, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.5 }}
         >
           <motion.div
+            className="order-check"
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
             transition={{ delay: 0.2, type: 'spring', stiffness: 200 }}
           >
-            <CheckCircle size={80} className="success-icon" />
+            <CheckCircle size={44} />
           </motion.div>
-          <h2>Order Received!</h2>
-          <p>Your order ID is <strong>{orderCode}</strong>. We are manually reviewing your bank transfer receipt.</p>
-          <p>You will receive a confirmation email shortly once verified.</p>
-          <button className="btn btn-primary mt-4" onClick={() => router.push('/')}>
-            Return Home
-          </button>
+          <h2 className="order-heading">Order received{receipt?.name ? `, ${receipt.name.split(' ')[0]}` : ''}!</h2>
+          <p className="order-sub">Thanks for pre-ordering. Your bank transfer is now awaiting verification.</p>
+
+          <div className="order-code-box">
+            <span className="order-code-label">Order ID</span>
+            <div className="order-code-row">
+              <strong>{orderCode}</strong>
+              <button type="button" className="order-copy-btn" onClick={copyCode} aria-label="Copy order ID">
+                {copied ? <Check size={16} /> : <Copy size={16} />} {copied ? 'Copied' : 'Copy'}
+              </button>
+            </div>
+          </div>
+
+          {receipt && (
+            <div className="order-items">
+              {receipt.items.map((item) => (
+                <div key={item.id} className="order-item-row">
+                  <span><b>{item.quantity}×</b> {item.name} <em>({item.size})</em></span>
+                  <span>LKR {item.price * item.quantity}</span>
+                </div>
+              ))}
+              <div className="order-item-row order-total">
+                <span>Total paid</span>
+                <span>LKR {receipt.total}</span>
+              </div>
+            </div>
+          )}
+
+          <ol className="order-steps">
+            {steps.map(({ icon: Icon, title, text }) => (
+              <li key={title}>
+                <span className="order-step-icon"><Icon size={18} /></span>
+                <div><strong>{title}</strong><p>{text}</p></div>
+              </li>
+            ))}
+          </ol>
+
+          <div className="order-actions">
+            <button className="btn btn-primary" onClick={() => router.push('/shop')}>Order more</button>
+            <button className="btn order-secondary" onClick={() => router.push('/')}>Return Home</button>
+          </div>
         </motion.div>
       </div>
     );
@@ -169,9 +257,40 @@ const Checkout = () => {
                 <label>Full Name</label>
               </div>
               
-              <div className="form-group modern-input-group">
-                <input type="email" name="email" placeholder=" " required value={formData.email} onChange={handleChange} />
-                <label>Email Address</label>
+              <div className="email-verify">
+                <div className="form-group modern-input-group">
+                  <input type="email" name="email" placeholder=" " required value={formData.email} onChange={handleChange} readOnly={verify.step === 'verified'} />
+                  <label>Email Address</label>
+                </div>
+                {verify.step === 'verified' ? (
+                  <span className="verify-ok"><Check size={16} /> Email verified</span>
+                ) : (
+                  <>
+                    {verify.step === 'idle' && (
+                      <button type="button" className="verify-btn" onClick={sendCode} disabled={verify.busy || !formData.email}>
+                        {verify.busy ? 'Sending…' : 'Send verification code'}
+                      </button>
+                    )}
+                    {verify.step === 'code' && (
+                      <div className="verify-code-row">
+                        <input
+                          className="verify-code-input"
+                          inputMode="numeric"
+                          maxLength={6}
+                          placeholder="6-digit code"
+                          value={verify.code}
+                          onChange={(e) => patchVerify({ code: e.target.value.replace(/\D/g, '') })}
+                        />
+                        <button type="button" className="verify-btn" onClick={confirmCode} disabled={verify.busy || verify.code.length !== 6}>
+                          {verify.busy ? 'Checking…' : 'Verify'}
+                        </button>
+                        <button type="button" className="verify-link" onClick={sendCode} disabled={verify.busy}>Resend</button>
+                      </div>
+                    )}
+                    {verify.step === 'code' && <span className="verify-hint">We emailed a code to {formData.email}. Check your spam folder too.</span>}
+                  </>
+                )}
+                {verify.error && <span className="error-text">{verify.error}</span>}
               </div>
 
               <div className="form-group modern-input-group">
@@ -194,7 +313,7 @@ const Checkout = () => {
                 <button 
                   type="submit" 
                   className="btn btn-primary checkout-submit-btn pulse-btn"
-                  disabled={isSubmitting}
+                  disabled={isSubmitting || verify.step !== 'verified'}
                   style={{ width: '100%' }}
                 >
                   {isSubmitting ? (

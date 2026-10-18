@@ -4,7 +4,9 @@ import { timingSafeEqual } from 'node:crypto';
 import { verifiedEmail } from '../../../../lib/orders.js';
 import { sendOrderEmail } from '../../../../lib/mailer.js';
 
-const CODE_RE = /^LPO\d{3,}$/;
+// Accepts LPO-001 and the legacy LPO001 spelling; the database stores LPO-001.
+const CODE_RE = /^LPO-?\d{3,}$/;
+const normalizeCode = (c) => c.replace(/^LPO-?/, 'LPO-');
 
 const safeEqual = (a, b) => {
   const x = Buffer.from(String(a));
@@ -34,7 +36,7 @@ export async function POST(request) {
       const { data: order, error } = await supabase
         .from('shop_orders')
         .select('id, order_code, full_name, email, items, total, email_sent_at')
-        .eq('order_code', code)
+        .eq('order_code', normalizeCode(code))
         .maybeSingle();
       if (error) throw error;
       if (!order) {

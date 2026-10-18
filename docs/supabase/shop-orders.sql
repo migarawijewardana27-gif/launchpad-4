@@ -7,7 +7,7 @@ create sequence if not exists shop_order_seq;
 create table if not exists shop_orders (
   id            uuid primary key default gen_random_uuid(),
   order_no      bigint not null default nextval('shop_order_seq'),
-  order_code    text generated always as ('LPO' || lpad(order_no::text, 3, '0')) stored unique,
+  order_code    text generated always as ('LPO-' || lpad(order_no::text, 3, '0')) stored unique,
   full_name     text not null,
   email         text not null,
   phone         text not null,
@@ -27,3 +27,10 @@ insert into storage.buckets (id, name, public, file_size_limit, allowed_mime_typ
 values ('receipts', 'receipts', false, 4194304,
         array['image/jpeg', 'image/png', 'image/webp', 'application/pdf'])
 on conflict (id) do nothing;
+
+-- Migration for tables created before the dash (LPO001 -> LPO-001). Run once:
+--   alter table shop_orders drop column order_code;
+--   alter table shop_orders add column order_code text
+--     generated always as ('LPO-' || lpad(order_no::text, 3, '0')) stored unique;
+-- Rows already pasted into the Orders sheet keep the old code; the confirm
+-- endpoint accepts both spellings.

@@ -3,11 +3,11 @@ import { createClient } from '@supabase/supabase-js';
 import { randomBytes, randomUUID } from 'node:crypto';
 import { parseItems, itemsSummary, receivedEmail, MAX_RECEIPT_BYTES, RECEIPT_TYPES } from '../../../lib/orders.js';
 import { sendOrderEmail } from '../../../lib/mailer.js';
+import { checkProof } from '../../../lib/email-verify.js';
+import { checkEmail, EMAIL_RE } from '../../../lib/email-check.js';
 
 const BUCKET = 'receipts';
 const SHEET_TIMEOUT_MS = 15_000;
-
-const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 // Appends the order to the Orders sheet via Apps Script
 // (source: docs/apps-script/orders-sheet.gs). Returns an error message or null.
@@ -28,6 +28,12 @@ async function syncSheet(order, receiptUrl) {
           email: order.email,
           phone: order.phone,
           items: itemsSummary(order.items),
+          lines: order.items.map((i) => ({
+            item: i.name,
+            size: i.size,
+            quantity: i.quantity,
+            amount: i.unitPrice * i.quantity,
+          })),
           total: order.total,
           receiptUrl,
         },
@@ -62,6 +68,14 @@ export async function POST(request) {
 
   if (!fullName || !phone || !EMAIL_RE.test(email)) {
     return NextResponse.json({ error: 'Please fill in your name, a valid email and phone number.' }, { status: 400 });
+  }
+
+  const emailProblem = await checkEmail(email);
+  if (emailProblem) {
+    return NextResponse.json({ error: emailProblem }, { status: 400 });
+  }
+  if (!checkProof(process.env.ORDERS_SHEET_SECRET ?? '', email, form.get('emailProof'))) {
+    return NextResponse.json({ error: 'Please verify your email address first.' }, { status: 400 });
   }
 
   let parsed;

@@ -23,7 +23,7 @@ test('rejects bad sizes, quantities and empty carts', () => {
 
 test('verified email escapes the buyer name', () => {
   const { items, total } = parseItems([{ size: 'S', quantity: 1 }]);
-  const { html } = verifiedEmail({ order_code: 'LPO001', full_name: '<b>x</b>', items, total });
+  const { html } = verifiedEmail({ order_code: 'LPO-001', full_name: '<b>x</b>', items, total });
   assert.ok(!html.includes('<b>x</b>'));
-  assert.ok(html.includes('LPO001'));
+  assert.ok(html.includes('LPO-001'));
 });
