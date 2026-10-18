@@ -2,8 +2,35 @@
   padding-bottom: var(--spacing-xl);
 }
 
-.shop-hero {
-  background: radial-gradient(circle at center, rgba(139, 0, 0, 0.15) 0%, transparent 70%);
+.shop-hero.full-screen-hero {
+  position: relative;
+  overflow: hidden;
+  min-height: 0;
+  justify-content: flex-start;
+  padding-top: 150px;
+  /* the shirts fill the lower ~69% of the artwork (height = 0.388 x width, max 1500px wide):
+     reserve that much under the text, plus a gap, so they never touch the copy */
+  padding-bottom: calc(min(38.8vw, 582px) + 60px);
+}
+
+/* public/shop hero.png, pinned to the bottom and faded out into the page colour */
+.shop-hero::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: min(100%, 1500px);
+  aspect-ratio: 16 / 9;
+  transform: translateX(-50%);
+  background: url('/shop%20hero.png') center bottom / 100% auto no-repeat;
+  -webkit-mask-image: linear-gradient(to bottom, #000 68%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 68%, transparent 100%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.shop-hero h1 {
+  text-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
 }
 
 .merch-badge {
@@ -20,7 +47,7 @@
 }
 
 .shop-container {
-  margin-top: -5rem; /* Pull up slightly over hero */
+  margin-top: 1rem;
   position: relative;
   z-index: 10;
 }
@@ -238,11 +265,13 @@
 .size-options {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
+  gap: 0.75rem;
+  padding: 0.5rem 0.5rem 0.75rem 0;
 }
 
 .size-btn {
-  min-width: 52px;
+  min-width: 56px;
+  min-height: 44px;
   padding: 0.6rem 0.9rem;
   background: transparent;
   color: inherit;
@@ -263,25 +292,6 @@
   color: #fff;
 }
 
-.tshirt-card .qty-controls {
-  display: inline-flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-.tshirt-card .qty-controls button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 36px;
-  height: 36px;
-  background: transparent;
-  color: inherit;
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  border-radius: 50%;
-  cursor: pointer;
-}
-
 .add-to-cart-btn:disabled {
   opacity: 0.55;
   cursor: not-allowed;
@@ -298,5 +308,183 @@
   }
   .tshirt-card .product-info {
     padding: 1.5rem;
+  }
+}
+
+/* ---- T-shirt card polish ---- */
+.tshirt-card {
+  background: rgba(20, 0, 0, 0.55);
+  border-radius: 24px;
+  overflow: hidden;
+}
+
+.tshirt-card .product-image-wrapper.tshirt-image-btn {
+  position: relative;
+  padding: 0;
+  border: none;
+  cursor: zoom-in;
+  background: radial-gradient(circle at 50% 40%, #ffffff 0%, #f1efec 100%);
+}
+
+.tshirt-card .tshirt-image-btn .placeholder-bg {
+  display: none;
+}
+
+.tshirt-card .tshirt-image-btn .product-image {
+  max-width: 100%;
+  max-height: 100%;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 1.5rem;
+}
+
+.tshirt-card:hover {
+  transform: none;
+}
+
+.tshirt-card:hover .tshirt-image-btn .product-image {
+  transform: scale(1.04);
+}
+
+.zoom-hint {
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.5rem 1rem;
+  background: rgba(20, 0, 0, 0.8);
+  color: #fff;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  white-space: nowrap;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.tshirt-card .product-info h3 {
+  font-size: 1.7rem;
+  line-height: 1.2;
+}
+
+.tshirt-card .product-footer {
+  margin-top: 1.75rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.tshirt-card .product-price {
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  background: rgba(0, 0, 0, 0.88);
+  cursor: zoom-out;
+}
+
+.lightbox-img {
+  max-width: min(92vw, 900px);
+  max-height: 90vh;
+  object-fit: contain;
+  background: #fff;
+  border-radius: 16px;
+  padding: 1rem;
+  cursor: default;
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .tshirt-card .tshirt-image-btn {
+    min-height: 380px;
+  }
+}
+
+/* ---- Multi-size chips ---- */
+.size-chip {
+  position: relative;
+}
+
+.size-badge {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  min-width: 22px;
+  height: 22px;
+  display: grid;
+  place-items: center;
+  border-radius: 11px;
+  background: #fff;
+  color: #900;
+  font-size: 12px;
+  font-weight: 700;
+  pointer-events: none;
+}
+
+.size-undo {
+  position: absolute;
+  bottom: -8px;
+  right: -8px;
+  width: 22px;
+  height: 22px;
+  display: grid;
+  place-items: center;
+  border: none;
+  border-radius: 11px;
+  background: #111;
+  color: #fff;
+  cursor: pointer;
+}
+
+.order-summary {
+  display: block;
+  font-size: 12px;
+  font-weight: 400;
+  opacity: 0.7;
+}
+
+@media (max-width: 768px) {
+  .shop-hero.full-screen-hero {
+    padding-top: 120px;
+    padding-bottom: calc(38.8vw + 40px);
+  }
+  .tshirt-card .product-footer {
+    position: sticky;
+    bottom: 0;
+    z-index: 5;
+    margin: 1.5rem -1.5rem -1.5rem;
+    padding: 1rem 1.5rem;
+    background: rgba(20, 0, 0, 0.95);
+    backdrop-filter: blur(10px);
+  }
+  .tshirt-card .product-footer .product-price,
+  .tshirt-card .product-footer .add-to-cart-btn {
+    width: 100%;
   }
 }
