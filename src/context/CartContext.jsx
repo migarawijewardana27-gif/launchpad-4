@@ -1,6 +1,7 @@
 "use client";
 
 import React, { createContext, useState, useContext } from 'react';
+import { MAX_QTY_PER_LINE } from '../lib/products';
 
 const CartContext = createContext();
 
@@ -10,15 +11,19 @@ export const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
 
-  const addToCart = (product) => {
+  // A cart line is a product in one size; its id is `${product.id}-${size}`.
+  const addToCart = (product, size, quantity = 1) => {
+    const lineId = `${product.id}-${size}`;
     setCartItems((prevItems) => {
-      const existingItem = prevItems.find(item => item.id === product.id);
+      const existingItem = prevItems.find(item => item.id === lineId);
       if (existingItem) {
         return prevItems.map(item =>
-          item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
+          item.id === lineId
+            ? { ...item, quantity: Math.min(item.quantity + quantity, MAX_QTY_PER_LINE) }
+            : item
         );
       }
-      return [...prevItems, { ...product, quantity: 1 }];
+      return [...prevItems, { ...product, id: lineId, productId: product.id, size, quantity: Math.min(quantity, MAX_QTY_PER_LINE) }];
     });
     setIsCartOpen(true); // Auto-open cart when item added
   };
@@ -32,7 +37,7 @@ export const CartProvider = ({ children }) => {
       prevItems.map(item => {
         if (item.id === productId) {
           const newQty = item.quantity + delta;
-          return { ...item, quantity: newQty > 0 ? newQty : 1 };
+          return { ...item, quantity: Math.min(Math.max(newQty, 1), MAX_QTY_PER_LINE) };
         }
         return item;
       })

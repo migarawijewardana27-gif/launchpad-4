@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 import { CheckCircle, Upload, ArrowLeft, Loader } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { useCart } from '../../context/CartContext';
-import { submitFormData, uploadFile } from '../../services/supabaseService';
+import { MAX_RECEIPT_BYTES } from '../../lib/orders';
 import './Checkout.css';
 
 const Checkout = () => {
@@ -15,14 +15,14 @@ const Checkout = () => {
   const [formData, setFormData] = useState({
     fullName: '',
     email: '',
-    phone: '',
-    address: ''
+    phone: ''
   });
   const [fileName, setFileName] = useState('');
   const [fileToUpload, setFileToUpload] = useState(null);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState('');
+  const [orderCode, setOrderCode] = useState('');
 
   useEffect(() => {
     if (cartItems.length === 0 && !isSubmitted) {
@@ -36,10 +36,16 @@ const Checkout = () => {
   };
 
   const handleFileChange = (e) => {
-    if (e.target.files && e.target.files.length > 0) {
-      setFileName(e.target.files[0].name);
-      setFileToUpload(e.target.files[0]);
+    const file = e.target.files?.[0];
+    if (!file) return;
+    if (file.size > MAX_RECEIPT_BYTES) {
+      setSubmitError('Receipt is too large (max 4 MB).');
+      e.target.value = '';
+      return;
     }
+    setSubmitError('');
+    setFileName(file.name);
+    setFileToUpload(file);
   };
 
   const handleSubmit = async (e) => {
@@ -49,23 +55,23 @@ const Checkout = () => {
       setIsSubmitting(true);
       
       try {
-        let receiptUrl = null;
-        if (fileToUpload) {
-          receiptUrl = await uploadFile(fileToUpload, 'receipts');
-        }
+        const body = new FormData();
+        body.append('fullName', formData.fullName);
+        body.append('email', formData.email);
+        body.append('phone', formData.phone);
+        body.append('items', JSON.stringify(cartItems.map(({ size, quantity }) => ({ size, quantity }))));
+        body.append('receipt', fileToUpload);
 
-        await submitFormData('orders', {
-          ...formData,
-          items: cartItems,
-          total: getCartTotal(),
-          receiptUrl,
-        });
+        const res = await fetch('/api/orders', { method: 'POST', body });
+        const result = await res.json().catch(() => ({}));
+        if (!res.ok) throw new Error(result.error || 'Failed to submit order.');
 
+        setOrderCode(result.orderCode);
         clearCart();
         setIsSubmitted(true);
       } catch (error) {
         console.error(error);
-        setSubmitError('Failed to submit order. Please try again.');
+        setSubmitError(error.message || 'Failed to submit order. Please try again.');
       } finally {
         setIsSubmitting(false);
       }
@@ -89,7 +95,7 @@ const Checkout = () => {
             <CheckCircle size={80} className="success-icon" />
           </motion.div>
           <h2>Order Received!</h2>
-          <p>Thank you for your purchase. We are manually reviewing your bank transfer receipt.</p>
+          <p>Your order ID is <strong>{orderCode}</strong>. We are manually reviewing your bank transfer receipt.</p>
           <p>You will receive a confirmation email shortly once verified.</p>
           <button className="btn btn-primary mt-4" onClick={() => router.push('/')}>
             Return Home
@@ -117,7 +123,7 @@ const Checkout = () => {
                 <div key={item.id} className="checkout-item-row">
                   <div className="checkout-item-info">
                     <span className="checkout-item-qty">{item.quantity}x</span>
-                    <span className="checkout-item-name">{item.name}</span>
+                    <span className="checkout-item-name">{item.name} ({item.size})</span>
                   </div>
                   <span className="checkout-item-price">LKR {item.price * item.quantity}</span>
                 </div>
@@ -134,20 +140,20 @@ const Checkout = () => {
               
               <div className="bank-info-grid">
                 <div className="bank-info-item">
-                  <span>Bank Name</span>
-                  <strong>Commercial Bank</strong>
+                  <span>Account Name</span>
+                  <strong>M.Abiram</strong>
+                </div>
+                <div className="bank-info-item">
+                  <span>Bank</span>
+                  <strong>Peoples Bank</strong>
                 </div>
                 <div className="bank-info-item">
                   <span>Branch</span>
-                  <strong>Colombo 07</strong>
-                </div>
-                <div className="bank-info-item">
-                  <span>Account Name</span>
-                  <strong>AIESEC LaunchPad</strong>
+                  <strong>Kandy</strong>
                 </div>
                 <div className="bank-info-item highlight">
                   <span>Account Number</span>
-                  <strong>1234 5678 9101</strong>
+                  <strong>003200100121866</strong>
                 </div>
               </div>
             </div>
@@ -173,11 +179,6 @@ const Checkout = () => {
                 <label>Phone Number</label>
               </div>
 
-              <div className="form-group modern-input-group">
-                <input type="text" name="address" placeholder=" " required value={formData.address} onChange={handleChange} />
-                <label>Delivery / Pickup Address</label>
-              </div>
-
               <div className="receipt-upload-box">
                 <input type="file" id="receipt-upload" accept="image/*,.pdf" onChange={handleFileChange} required />
                 <label htmlFor="receipt-upload" className="upload-label">
@@ -185,7 +186,7 @@ const Checkout = () => {
                   <span className="upload-text">
                     {fileName ? fileName : 'Click to Upload Transfer Receipt'}
                   </span>
-                  <span className="upload-subtext">Supports JPG, PNG, PDF</span>
+                  <span className="upload-subtext">Supports JPG, PNG, PDF (max 4 MB)</span>
                 </label>
               </div>
 

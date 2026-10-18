@@ -185,3 +185,118 @@
   align-items: flex-start;
   gap: 1rem;
 }
+
+/* Single T-shirt layout */
+.tshirt-card {
+  flex-direction: row;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.tshirt-card .product-image-wrapper {
+  flex: 1;
+  aspect-ratio: auto;
+  min-height: 420px;
+  border-bottom: none;
+  border-right: 1px solid var(--color-glass-border);
+}
+
+.tshirt-card .product-image {
+  max-width: 85%;
+  max-height: 85%;
+}
+
+.tshirt-card .product-info {
+  flex: 1;
+  padding: 2.5rem;
+  justify-content: center;
+}
+
+.product-material {
+  color: var(--color-coral-glow);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin: 0.25rem 0 0.75rem;
+}
+
+.option-label {
+  display: block;
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  opacity: 0.7;
+  margin-bottom: 0.5rem;
+}
+
+.size-picker,
+.qty-picker {
+  margin-top: 1.25rem;
+}
+
+.size-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.size-btn {
+  min-width: 52px;
+  padding: 0.6rem 0.9rem;
+  background: transparent;
+  color: inherit;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: var(--radius-sm, 8px);
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.size-btn:hover {
+  border-color: var(--color-coral-glow);
+}
+
+.size-btn.selected {
+  background: var(--color-coral-glow);
+  border-color: var(--color-coral-glow);
+  color: #fff;
+}
+
+.tshirt-card .qty-controls {
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.tshirt-card .qty-controls button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background: transparent;
+  color: inherit;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.add-to-cart-btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+@media (max-width: 768px) {
+  .tshirt-card {
+    flex-direction: column;
+  }
+  .tshirt-card .product-image-wrapper {
+    min-height: 320px;
+    border-right: none;
+    border-bottom: 1px solid var(--color-glass-border);
+  }
+  .tshirt-card .product-info {
+    padding: 1.5rem;
+  }
+}

@@ -60,6 +60,7 @@ const CartSlideOver = () => {
                       <img src={item.image} alt={item.name} className="cart-item-img" />
                       <div className="cart-item-details">
                         <h4>{item.name}</h4>
+                        {item.size && <p className="item-size">Size: {item.size}</p>}
                         <p className="item-price">LKR {item.price}</p>
                         
                         <div className="item-controls">
