@@ -68,7 +68,7 @@ function sendConfirmations() {
   const ui = SpreadsheetApp.getUi();
   const props = PropertiesService.getScriptProperties();
   const secret = props.getProperty('SHEET_SECRET');
-  const siteUrl = props.getProperty('SITE_URL');
+  const siteUrl = (props.getProperty('SITE_URL') || '').trim().replace(/\/+$/, '');
   if (!secret || !siteUrl) {
     ui.alert('Set SHEET_SECRET and SITE_URL in Script properties first.');
     return;
