@@ -73,12 +73,12 @@ const Ambassadors = () => {
                 <div className="step-box">
                   <div className="step-number">1</div>
                   <h4>Claim Your Code</h4>
-                  <p>Sign up to become an official LaunchPad 4.0 Ambassador and receive your unique registration tracking code.</p>
+                  <p>Sign up to become an official LaunchPad 4.0 Ambassador and receive your unique registration code.</p>
                 </div>
                 <div className="step-box">
                   <div className="step-number">2</div>
                   <h4>Activate Your Network</h4>
-                  <p>Share your code with peers, university networks, and friends. When delegates register, they enter your code to support your campaign.</p>
+                  <p>Share your code with peers, university networks, and friends. When delegates register, they enter your code to support you.</p>
                 </div>
                 <div className="step-box">
                   <div className="step-number">3</div>

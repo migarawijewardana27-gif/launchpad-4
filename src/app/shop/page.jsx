@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ShoppingCart, Minus, ZoomIn, X } from 'lucide-react';
+import { ShoppingCart, Minus, ZoomIn, X, Ruler } from 'lucide-react';
 import { useCart } from '../../context/CartContext';
 import { SIZES, MAX_QTY_PER_LINE, TSHIRT } from '../../lib/products';
 import './Shop.css';
@@ -85,7 +85,10 @@ const Shop = () => {
               <p className="product-desc">{TSHIRT.description}</p>
 
               <div className="size-picker" role="group" aria-label="Sizes">
-                <span className="option-label">Tap a size to add one — tap again for more</span>
+                <div className="size-picker-head">
+                  <span className="option-label">Tap a size to add one — tap again for more</span>
+                  <a href="#size-guide" className="size-guide-link"><Ruler size={14} /> Size guide</a>
+                </div>
                 <div className="size-options">
                   {SIZES.map((s) => (
                     <div key={s} className="size-chip">
@@ -123,6 +126,7 @@ const Shop = () => {
           </motion.div>
 
           <motion.div
+            id="size-guide"
             className="size-chart glass-panel"
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -138,22 +142,22 @@ const Shop = () => {
                 <thead>
                   <tr>
                     <th scope="col"><span className="sr-only">Measurement</span></th>
-                    {SIZE_CHART.map((r) => <th key={r.size} scope="col">{r.size}</th>)}
+                    {SIZE_CHART.map((r) => <th key={r.size} scope="col" className={counts[r.size] ? 'is-picked' : ''}>{r.size}</th>)}
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
                     <th scope="row">Chest</th>
-                    {SIZE_CHART.map((r) => <td key={r.size}>{r.chest}</td>)}
+                    {SIZE_CHART.map((r) => <td key={r.size} className={counts[r.size] ? 'is-picked' : ''}>{r.chest}</td>)}
                   </tr>
                   <tr>
                     <th scope="row">Length</th>
-                    {SIZE_CHART.map((r) => <td key={r.size}>{r.length}</td>)}
+                    {SIZE_CHART.map((r) => <td key={r.size} className={counts[r.size] ? 'is-picked' : ''}>{r.length}</td>)}
                   </tr>
                 </tbody>
               </table>
             </div>
-            <p className="size-chart-note">Chest is measured flat across the chest; length from the top of the shoulder to the hem. Same sizing across all Fit-In T-shirts.</p>
+            <p className="size-chart-note">Chest is measured flat across the chest; length from the top of the shoulder to the hem. Sizes you've picked are highlighted.</p>
           </motion.div>
         </div>
       </section>

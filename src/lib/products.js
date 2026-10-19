@@ -1,4 +1,4 @@
-export const SIZES = ['XS', 'S', 'M', 'L', 'XL', 'XXL'];
+export const SIZES = ['XS', 'S', 'M', 'L', 'XL', '2XL', '3XL'];
 export const MAX_QTY_PER_LINE = 10;
 
 export const TSHIRT = {
