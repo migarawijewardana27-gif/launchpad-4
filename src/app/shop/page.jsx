@@ -7,6 +7,16 @@ import { useCart } from '../../context/CartContext';
 import { SIZES, MAX_QTY_PER_LINE, TSHIRT } from '../../lib/products';
 import './Shop.css';
 
+const SIZE_CHART = [
+  { size: 'XS', chest: 18, length: 24.5 },
+  { size: 'S', chest: 19, length: 25.5 },
+  { size: 'M', chest: 20, length: 26.5 },
+  { size: 'L', chest: 21, length: 27.5 },
+  { size: 'XL', chest: 22, length: 28.5 },
+  { size: '2XL', chest: 23, length: 29.5 },
+  { size: '3XL', chest: 24, length: 30.5 },
+];
+
 const Shop = () => {
   const { addToCart } = useCart();
   const [counts, setCounts] = useState({});
@@ -110,6 +120,40 @@ const Shop = () => {
                 </button>
               </div>
             </div>
+          </motion.div>
+
+          <motion.div
+            className="size-chart glass-panel"
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
+            <div className="size-chart-head">
+              <h3>T-Shirt Size Guide</h3>
+              <p>All sizes are in <strong>inches</strong> · ±0.5 in may vary</p>
+            </div>
+            <div className="size-chart-scroll">
+              <table>
+                <thead>
+                  <tr>
+                    <th scope="col"><span className="sr-only">Measurement</span></th>
+                    {SIZE_CHART.map((r) => <th key={r.size} scope="col">{r.size}</th>)}
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">Chest</th>
+                    {SIZE_CHART.map((r) => <td key={r.size}>{r.chest}</td>)}
+                  </tr>
+                  <tr>
+                    <th scope="row">Length</th>
+                    {SIZE_CHART.map((r) => <td key={r.size}>{r.length}</td>)}
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p className="size-chart-note">Chest is measured flat across the chest; length from the top of the shoulder to the hem. Same sizing across all Fit-In T-shirts.</p>
           </motion.div>
         </div>
       </section>

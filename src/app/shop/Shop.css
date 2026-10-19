@@ -498,3 +498,90 @@
   text-shadow: 0 0 20px rgba(255, 107, 107, 0.4);
   margin: 0 0 0.35rem;
 }
+
+/* Size chart */
+.size-chart {
+  margin-top: 2rem;
+  padding: 2rem;
+  border-radius: var(--radius-md);
+}
+
+.size-chart-head h3 {
+  color: white;
+  font-size: 1.5rem;
+  margin-bottom: 0.25rem;
+}
+
+.size-chart-head p {
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 0.9rem;
+  margin-bottom: 1.25rem;
+}
+
+.size-chart-head strong {
+  color: var(--color-coral-glow);
+}
+
+.size-chart-scroll {
+  overflow-x: auto;
+}
+
+.size-chart table {
+  width: 100%;
+  min-width: 520px;
+  border-collapse: collapse;
+  text-align: center;
+}
+
+.size-chart th,
+.size-chart td {
+  padding: 0.85rem 0.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  color: white;
+  font-size: 1rem;
+}
+
+.size-chart thead th {
+  color: var(--color-coral-glow);
+  font-family: var(--font-secondary);
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+.size-chart tbody th {
+  text-align: left;
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  padding-left: 0;
+}
+
+.size-chart tbody td {
+  font-weight: 700;
+}
+
+.size-chart tbody tr:last-child th,
+.size-chart tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.size-chart-note {
+  margin-top: 1rem;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.8rem;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+}
+
+@media (max-width: 768px) {
+  .size-chart {
+    padding: 1.5rem 1.25rem;
+  }
+}
