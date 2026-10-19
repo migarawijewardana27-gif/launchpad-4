@@ -137,6 +137,38 @@
   color: var(--color-coral-glow);
 }
 
+.bank-reference {
+  margin-top: 1.25rem;
+  padding: 1rem 1.25rem;
+  border-radius: var(--radius-md);
+  background: rgba(255, 107, 107, 0.1);
+  border: 1px dashed rgba(255, 107, 107, 0.5);
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.bank-reference span {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.bank-reference strong {
+  color: var(--color-coral-glow);
+  font-size: 1.3rem;
+}
+
+.bank-details-box .bank-reference small {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.85rem;
+}
+
+.bank-reference b {
+  color: white;
+}
+
 /* Right Side Form */
 .checkout-form {
   display: flex;

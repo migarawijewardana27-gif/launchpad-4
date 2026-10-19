@@ -224,25 +224,31 @@ const Checkout = () => {
 
             <div className="bank-details-box">
               <h3>Bank Transfer Instructions</h3>
-              <p>Please transfer the exact Grand Total to the bank account below and upload the receipt in the form.</p>
+              <p>Please transfer the exact Grand Total to the bank account below, using the bank reference shown, and upload the receipt in the form.</p>
               
               <div className="bank-info-grid">
                 <div className="bank-info-item">
                   <span>Account Name</span>
-                  <strong>M.Abiram</strong>
+                  <strong>H. U. W. Rajapaksha</strong>
                 </div>
                 <div className="bank-info-item">
                   <span>Bank</span>
-                  <strong>Peoples Bank</strong>
+                  <strong>Hatton National Bank</strong>
                 </div>
                 <div className="bank-info-item">
                   <span>Branch</span>
-                  <strong>Kandy</strong>
+                  <strong>Dehiwala</strong>
                 </div>
                 <div className="bank-info-item highlight">
                   <span>Account Number</span>
-                  <strong>003200100121866</strong>
+                  <strong>093020297046</strong>
                 </div>
+              </div>
+
+              <div className="bank-reference">
+                <span>Bank Reference</span>
+                <strong>[Your Name]-LP</strong>
+                <small>Use your first name followed by -LP, e.g. <b>Abiram-LP</b></small>
               </div>
             </div>
           </div>

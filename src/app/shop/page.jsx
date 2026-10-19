@@ -69,6 +69,7 @@ const Shop = () => {
             </button>
 
             <div className="product-info">
+              <p className="product-price-tag">LKR {TSHIRT.price.toLocaleString('en-US')}</p>
               <h3>{TSHIRT.name}</h3>
               <p className="product-material">Baby Pique Cotton</p>
               <p className="product-desc">{TSHIRT.description}</p>

@@ -54,9 +54,7 @@ const Footer = () => {
             <div className="footer-col-title">More</div>
             <div className="footer-nav-col">
               <Link href="/ambassadors">Register as an Ambassador</Link>
-              <span style={{ cursor: 'not-allowed', opacity: 0.5 }} title="Coming Soon">
-                Shop <Lock size={11} style={{ marginLeft: '2px' }} />
-              </span>
+              <Link href="/shop">Shop</Link>
               <Link href="/register">Register Now</Link>
             </div>
           </div>

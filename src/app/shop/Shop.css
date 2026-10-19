@@ -488,3 +488,13 @@
     width: 100%;
   }
 }
+
+.product-price-tag {
+  font-family: var(--font-secondary);
+  font-size: 1.9rem;
+  font-weight: 900;
+  color: var(--color-coral-glow);
+  letter-spacing: 0.02em;
+  text-shadow: 0 0 20px rgba(255, 107, 107, 0.4);
+  margin: 0 0 0.35rem;
+}

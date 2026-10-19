@@ -57,9 +57,7 @@ const Navbar = () => {
               Event <Lock size={14} style={{ marginLeft: '4px' }} />
             </span>
             {/* Updates link hidden */}
-            <span className="nav-link" style={{ cursor: 'not-allowed', opacity: 0.6, display: 'inline-flex', alignItems: 'center' }} title="Coming Soon">
-              Shop <Lock size={14} style={{ marginLeft: '4px' }} />
-            </span>
+            <Link href="/shop" className={`nav-link ${pathname === '/shop' ? 'active' : ''}`}>Shop</Link>
           </div>
           
           <div className="nav-actions desktop-only">
@@ -96,9 +94,7 @@ const Navbar = () => {
             Event <Lock size={16} style={{ marginLeft: '6px' }} />
           </span>
           {/* Updates link hidden */}
-          <span className="mobile-nav-link" style={{ cursor: 'not-allowed', opacity: 0.6, display: 'flex', alignItems: 'center' }} title="Coming Soon">
-            Shop <Lock size={16} style={{ marginLeft: '6px' }} />
-          </span>
+          <Link href="/shop" className={`mobile-nav-link ${pathname === '/shop' ? 'active' : ''}`}>Shop</Link>
           {cartItems.length > 0 && (
             <button className="mobile-cart-btn" onClick={() => { setIsCartOpen(true); setIsMobileMenuOpen(false); }}>
               <ShoppingCart size={22} /> View Cart ({getCartCount()})
